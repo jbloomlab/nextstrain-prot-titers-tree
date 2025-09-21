@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![Snakemake](https://img.shields.io/badge/snakemake-≥9.9-brightgreen.svg?style=flat)](https://snakemake.readthedocs.io)
+[![Snakemake](https://img.shields.io/badge/snakemake-≥9-brightgreen.svg?style=flat)](https://snakemake.readthedocs.io)
 
 ---
 
@@ -26,7 +26,7 @@ Then run the pipeline with:
 Note that running this requires `snakemake` to be installed, which you can do by building and activating the `conda` environment in [environment.yml](environment.yml).
 
 The result of this is an auspice JSON file with the tree suitable for viewing either by uploading to [https://auspice.us/](https://auspice.us/) or via a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html).
-The auspice JSON tree for the example is in [auspice/nextstrain-prot-titers-tree.json](auspice/nextstrain-prot-titers-tree.json) and can be viewed as a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html) at [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main](https://nextstrain.org/community/jameshadfield/scratch@test-branch/placentalia).
+The auspice JSON tree for the example is in [auspice/nextstrain-prot-titers-tree.json](auspice/nextstrain-prot-titers-tree.json) and can be viewed as a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html) at [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main](https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main).
 
 If the *metadata* in the configuration file has titers, they are displayed on the tree as in the above example.
 You can also show all amino-acid identities on the tree, color by amino-acid identity at a site, and show branch lengths either based on amino-acid mutations per site or time.

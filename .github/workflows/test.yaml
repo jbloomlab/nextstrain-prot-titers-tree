@@ -49,9 +49,8 @@ jobs:
       - name: run pipeline on example
         shell: bash -el {0}
         run: >
-          rm -rf docs
-          && rm -rf auspice
-          && snakemake --software-deployment-method conda -j 1
+          rm -rf auspice
+          && snakemake --software-deployment-method conda -j 1 --configfile example_config.yaml
 
       - name: upload results in case of error
         uses: actions/upload-artifact@v4
