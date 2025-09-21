@@ -72,6 +72,6 @@ auspice_json: auspice/nextstrain-prot-titers-tree.json
 # additional arguments to augur export v2; all of these are optional, set to empty dict
 # of {} of no additional arguments
 addtl_export_args:
-  title: Example tree for `nextstrain-prot-titers-tree` showing human neutralizing antibody titers to H3N2 influenza viruses as of summer of 2025
+  title: Example tree for nextstrain-prot-titers-tree showing human neutralizing antibody titers to H3N2 influenza viruses as of summer of 2025
   maintainers: Jesse Bloom <https://jbloomlab.org/>
   build-url: https://github.com/jbloomlab/nextstrain-prot-titers-tree
