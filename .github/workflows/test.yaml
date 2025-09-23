@@ -55,7 +55,7 @@ jobs:
       - name: run pipeline on example without titers
         shell: bash -el {0}
         run: >
-          rm -rf auspice example_results &&
+          rm -rf auspice example_results
           && snakemake --software-deployment-method conda -j 1 --configfile example_config.yaml --config titers=null
 
       - name: upload results in case of error
