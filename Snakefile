@@ -1,29 +1,53 @@
 """``snakemake`` file for ``nextstrain-prot-titers-tree``."""
 
 import os.path
+import shlex
 
 
 # get some variables from config
 results_subdir = config["results_subdir"]
 log_subdir = os.path.join(results_subdir, "logs")
+titers = config["titers"]
+if titers == "null":
+    titers = None
+
+# if we are getting titers, they are stored in file similar to the
+# auspice_json but with _measurements suffix as a sidecar JSON
+auspice_json = config["auspice_json"]
+auspice_titers_json = os.path.splitext(auspice_json)[0] + "_measurements.json"
 
 
 rule all:
     input:
-        config["auspice_json"],
+        [auspice_json, auspice_titers_json] if titers else [auspice_json],
 
 
 rule prep_and_sanitize_data:
     """Prep alignment and remove special characters from strain names."""
     input:
+        **({"titers": titers["titers_tsv"]} if titers else {}),
         alignment=config["alignment"],
         outgroup=config["outgroup"],
         metadata=config["metadata"],
     output:
+        **({"titers": os.path.join(results_subdir, "titers.tsv")} if titers else {}),
         alignment=os.path.join(results_subdir, "alignment_w_outgroup.fa"),
         metadata=os.path.join(results_subdir, "metadata.tsv"),
     params:
+        **(
+            {
+                "titer_cols": [
+                    "strain",
+                    "serum",
+                    titers["titer_col"],
+                    *titers["grouping_columns"],
+                ]
+            }
+            if titers
+            else {}
+        ),
         color_by_metadata=list(config["color_by_metadata"]),
+        have_titers=bool(titers),
     log:
         os.path.join(log_subdir, "prep_and_sanitize_data.txt"),
     conda:
@@ -132,6 +156,7 @@ rule auspice_config:
     params:
         display_defaults=config["display_defaults"],
         color_by_metadata=config["color_by_metadata"],
+        has_titers=bool(titers),
     log:
         os.path.join(log_subdir, "auspice_config.txt"),
     conda:
@@ -149,16 +174,16 @@ rule export:
         metadata=rules.prep_and_sanitize_data.output.metadata,
         auspice_config=rules.auspice_config.output.auspice_config,
     output:
-        auspice_json=config["auspice_json"],
+        auspice_json=auspice_json,
     params:
         color_by_metadata_args=(
             "--color-by-metadata "
-            + " ".join(f'"{col}"' for col in config["color_by_metadata"])
+            + " ".join(shlex.quote(col) for col in config["color_by_metadata"])
             if config["color_by_metadata"]
             else ""
         ),
         addtl_export_args=" ".join(
-            f'--{k} "{v}"' for k, v in config["addtl_export_args"].items()
+            f"--{k} {shlex.quote(v)}" for k, v in config["addtl_export_args"].items()
         ),
     log:
         os.path.join(log_subdir, "export.txt"),
@@ -177,3 +202,33 @@ rule export:
             --output {output.auspice_json} \
             &> {log}
         """
+
+
+if titers:
+
+    rule export_measurements:
+        """Export the JSON of titer measurements."""
+        input:
+            titers=rules.prep_and_sanitize_data.output.titers,
+        output:
+            auspice_titers_json=auspice_titers_json,
+        params:
+            titer_col=titers["titer_col"],
+            grouping_columns=titers["grouping_columns"],
+            addtl_args=" ".join(
+                f"--{k} {shlex.quote(v)}" for k, v in titers["addtl_args"].items()
+            ),
+        log:
+            os.path.join(log_subdir, "export_measurements.txt"),
+        conda:
+            "environment.yml"
+        shell:
+            """
+            augur measurements export \
+                --collection {input.titers} \
+                --output-json {output.auspice_titers_json} \
+                --value-column {params.titer_col} \
+                --grouping-column {params.grouping_columns:q} \
+                {params.addtl_args} \
+                &> {log}
+            """

@@ -31,6 +31,8 @@ The auspice JSON tree for the example is in [auspice/nextstrain-prot-titers-tree
 If the *metadata* in the configuration file has titers, they are displayed on the tree as in the above example.
 You can also show all amino-acid identities on the tree, color by amino-acid identity at a site, and show branch lengths either based on amino-acid mutations per site or time.
 
+If you also specify *titers* with per-serum titers (as indicated in [example_config.yaml](example_config.yaml)) then the pipeline will also produce a sidecar JSON with these titers (eg, for this example [auspice/nextstrain-prot-titers-tree_measurements.json](auspice/nextstrain-prot-titers-tree_measurements.json)) that can be used to analyze per-serum titers in the *Measurements* panel when viewing the tree.
+
 ## Testing via GitHub Actions
 When updating the pipeline, you should:
 

@@ -53,6 +53,21 @@ color_by_metadata:
     scale_type: viridis_linear
     fixed_max: 1  # just an example of fixing upper limit to scale
 
+# Do we display per-serum titers in measurement panel? If yes, specify dict similar to
+# below; if no then set titers to null.
+titers:
+  titers_tsv: example_data/titers.tsv  # TSV with titers, must have columns "strain" and "serum"
+  titer_col: log2_titer  # column in titers_tsv with the titers
+  grouping_columns:  # list additional columns in titers_tsv by which titers can be grouped
+    - group
+    - collection_date_numerical
+    - age_years
+    - sex
+  addtl_args:  # additional arguments that can be passed to `augur measurements export`
+    title: serum neutralizing titers  # title for measurements panel
+    x-axis-label: log2 titer  # x-axis label
+    measurements-display: raw
+
 # display defaults for auspice configuration, or set to {} if you do
 # not want to set any defaults. See:
 # https://docs.nextstrain.org/projects/auspice/en/v2.47.0/advanced-functionality/view-settings.html
