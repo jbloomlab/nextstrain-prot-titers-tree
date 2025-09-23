@@ -90,6 +90,9 @@ for col, col_d in color_by_metadata.items():
 json_d = {
     "display_defaults": snakemake.params.display_defaults,
     "colorings": colorings,
+    "panels": (
+        ["tree", "entropy"] + (["measurements"] if snakemake.params.has_titers else [])
+    ),
 }
 
 with open(snakemake.output.auspice_config, "w") as f:
