@@ -40,7 +40,11 @@ rule prep_and_sanitize_data:
                     "strain",
                     "serum",
                     titers["titer_col"],
-                    *titers["grouping_columns"],
+                    *[
+                        c
+                        for c in titers["grouping_columns"]
+                        if c not in {"strain", "serum", titers["titer_col"]}
+                    ],
                 ]
             }
             if titers

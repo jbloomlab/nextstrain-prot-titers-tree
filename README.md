@@ -33,6 +33,29 @@ You can also show all amino-acid identities on the tree, color by amino-acid ide
 
 If you also specify *titers* with per-serum titers (as indicated in [example_config.yaml](example_config.yaml)) then the pipeline will also produce a sidecar JSON with these titers (eg, for this example [auspice/nextstrain-prot-titers-tree_measurements.json](auspice/nextstrain-prot-titers-tree_measurements.json)) that can be used to analyze per-serum titers in the *Measurements* panel when viewing the tree.
 
+## Using in a larger `snakemake` pipeline
+The typical way to use this pipeline is as a submodule of a larger `snakemake` pipeline.
+See [https://github.com/jbloomlab/flu-seqneut-2025](https://github.com/jbloomlab/flu-seqneut-2025) for an example of how that can be done.
+
+Briefly, first add this repo as a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to your larger repository pipeline by cloning it into that repository and then additing it as a git submodule with:
+
+      git submodule add https://github.com/jbloomlab/nextstrain-prot-titers-tree
+
+This creates a file called `gitmodules` and adds the `nextstrain-prot-titers-tree` subdirectory, both of which can then be committed to your parent repo.
+
+You can then use it as a module in your larger pipeline, as for instance like this:
+
+```
+for subtype in config["subtypes"]:
+    module_name = f"nextstrain-prot-titers-tree_{subtype}"
+    module:
+        name: module_name
+        snakefile: "nextstrain-prot-titers-tree/Snakefile"
+        config: config["nextstrain-prot-titers-tree_config"][subtype]
+    use rule * from module_name as module_name*
+```
+
+
 ## Testing via GitHub Actions
 When updating the pipeline, you should:
 

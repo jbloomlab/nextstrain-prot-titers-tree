@@ -58,7 +58,8 @@ color_by_metadata:
 titers:
   titers_tsv: example_data/titers.tsv  # TSV with titers, must have columns "strain" and "serum"
   titer_col: log2_titer  # column in titers_tsv with the titers
-  grouping_columns:  # list additional columns in titers_tsv by which titers can be grouped
+  grouping_columns:  # columns in titers_tsv by which titers can be grouped
+    - serum
     - group
     - collection_date_numerical
     - age_years
