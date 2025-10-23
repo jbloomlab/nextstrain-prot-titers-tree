@@ -21,9 +21,11 @@ See [example_config.yaml](example_config.yaml), which has an example configurati
 You should build your own configuration file for your data mirroring that example.
 Then run the pipeline with:
 
-    snakemake -j 1 --configfile <path_to_your_configuration_file> --software-deployment-method conda
+    snakemake -j <nthreads> --configfile <path_to_your_configuration_file> --software-deployment-method conda
 
 Note that running this requires `snakemake` to be installed, which you can do by building and activating the `conda` environment in [environment.yml](environment.yml).
+
+The tree-building step using IQ-TREE will use multiple threads (up to a maximum of 8 threads, or the number of cores specified with the `-j` argument to `snakemake`, whichever is smaller) to speed up the analysis.
 
 The result of this is an auspice JSON file with the tree suitable for viewing either by uploading to [https://auspice.us/](https://auspice.us/) or via a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html).
 The auspice JSON tree for the example is in [auspice/nextstrain-prot-titers-tree.json](auspice/nextstrain-prot-titers-tree.json) and can be viewed as a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html) at [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main](https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main).
