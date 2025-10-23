@@ -185,10 +185,17 @@ dates = (
 )
 for clade in trees["divtree"].find_clades(order="preorder"):
     assert clade.branch_length is not None, clade
+    # Handle '--' values from treetime (dates that couldn't be inferred)
+    num_date = dates[clade.name]["num_date"]
+    if num_date == "--":
+        num_date = None
+    else:
+        num_date = float(num_date)
+
     brlens_nodes[clade.name] = {
         "mutation_length": clade.branch_length * len(refseq),
         "date": dates[clade.name]["date"],
-        "num_date": float(dates[clade.name]["num_date"]),
+        "num_date": num_date,
     }
 
 print(f"Writing branch lengths to {snakemake.output.brlens}")

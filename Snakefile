@@ -69,6 +69,7 @@ rule tree:
         raw_tree=os.path.join(results_subdir, "raw_tree.nwk"),
     params:
         prefix=lambda _, output: os.path.join(output.outdir, "tree"),
+    threads: 8
     log:
         os.path.join(log_subdir, "tree.txt"),
     conda:
@@ -80,7 +81,9 @@ rule tree:
             -s {input.alignment} \
             --seqtype AA \
             -m Poisson \
+            -fast \
             --seed 1 \
+            -T {threads} \
             --prefix {params.prefix} \
             &>> {log}
         cp {params.prefix}.treefile {output.raw_tree} &>> {log}
