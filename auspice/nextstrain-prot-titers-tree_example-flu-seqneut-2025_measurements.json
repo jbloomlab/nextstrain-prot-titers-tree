@@ -6,6 +6,9 @@
       },
       "groupings": [
         {
+          "key": "serum"
+        },
+        {
           "key": "group"
         },
         {
