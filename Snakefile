@@ -114,7 +114,7 @@ rule treetime:
         dates=os.path.join(results_subdir, "treetime/dates.tsv"),
     params:
         outdir=lambda _, output: os.path.dirname(output.timetree_w_outgroup),
-        reroot="least-squares" if no_outgroup else "outgroup"
+        reroot="least-squares" if no_outgroup else "outgroup",
     log:
         os.path.join(log_subdir, "treetime.txt"),
     conda:
