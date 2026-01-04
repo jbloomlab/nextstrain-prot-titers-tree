@@ -5,12 +5,11 @@ channels:
   - bioconda
 
 dependencies:
-  - black-jupyter
-  - jupyterlab
-  - augur=31.4.0
+  - black
+  - augur=32.1.0
   - pandas=2.3
   - pyarrow
   - python=3.13
   - snakefmt
-  - snakemake=9.11
+  - snakemake=9.14
   - ruff
