@@ -43,8 +43,10 @@ if len(strain_renames) != len(set(strain_renames.values())):
 metadata = metadata.assign(strain=lambda x: x["strain"].map(strain_renames))
 metadata.to_csv(snakemake.output.metadata, sep="\t")
 
-outgroup = Bio.SeqIO.read(snakemake.input.outgroup, "fasta")
-assert "outgroup" not in set(strain_renames.values())
+no_outgroup = snakemake.params.no_outgroup
+if not no_outgroup:
+    outgroup = Bio.SeqIO.read(snakemake.input.outgroup, "fasta")
+    assert "outgroup" not in set(strain_renames.values())
 
 seqlengths = collections.defaultdict(int)
 with open(snakemake.output.alignment, "w") as f:
@@ -58,8 +60,10 @@ with open(snakemake.output.alignment, "w") as f:
 
     if len(seqlengths) != 1:
         raise ValueError(f"Not all sequences same length in alignment:\n{seqlengths=}")
-    assert len(outgroup) == list(seqlengths)[0], f"{seqlengths=}, {len(outgroup)=}"
-    f.write(f">outgroup\n{str(outgroup.seq)}\n")
+
+    if not no_outgroup:
+        assert len(outgroup) == list(seqlengths)[0], f"{seqlengths=}, {len(outgroup)=}"
+        f.write(f">outgroup\n{str(outgroup.seq)}\n")
 
 if snakemake.params.have_titers:
     titers = pd.read_csv(snakemake.input.titers, sep="\t")

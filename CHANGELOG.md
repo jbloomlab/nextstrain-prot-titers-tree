@@ -4,6 +4,7 @@
 + Rename *example* to *example-flu-seqneut-2025* in the configuration, results, data, etc to allow multiple examples to be added.
 + Eliminate `ruff.toml` in favor of `pyproject.toml`
 + Update `conda` environment to use latest software versions.
++ Allow rooting of trees by date by allowing *outgroup* to be *null*.
 
 ### version 1.1.0
 + Build the trees faster with `iqtree`

@@ -58,6 +58,12 @@ jobs:
           rm -rf auspice example_results
           && snakemake --software-deployment-method conda -j 1 --configfile config_example-flu-seqneut-2025.yaml --config titers=null
 
+      - name: run pipeline on example-flu-seqneut-2025 without outgroup
+        shell: bash -el {0}
+        run: >
+          rm -rf auspice example_results
+          && snakemake --software-deployment-method conda -j 1 --configfile config_example-flu-seqneut-2025.yaml --config outgroup=null 
+
       - name: upload results in case of error
         uses: actions/upload-artifact@v4
         if: failure()

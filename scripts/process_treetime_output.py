@@ -13,7 +13,7 @@ import pandas as pd
 
 sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 
-print("Reading the trees and removing the outgroup.")
+print("Reading the trees.")
 trees = {}
 root_name = None
 for treetype in ["timetree", "divtree"]:
@@ -30,18 +30,26 @@ for treetype in ["timetree", "divtree"]:
             clade.confidence = None
 
     # Remove outgroup
-    outgroup = [c for c in tree_w_outgroup.find_clades() if c.name == "outgroup"]
-    assert len(outgroup) == 1, "not one sequence called outgroup"
-    # get common ancestor of all non-outgroup tips
-    other_tips = [t for t in tree_w_outgroup.get_terminals() if t.name != "outgroup"]
-    assert len(other_tips) + 1 == len(tree_w_outgroup.get_terminals())
-    root = tree_w_outgroup.common_ancestor(other_tips)
-    root.branch_length = 0
-    root.comment = None
-    tree = Bio.Phylo.BaseTree.Tree(root=root, rooted=True)
-    if any(t.name == "outgroup" for t in tree.get_terminals()):
-        raise ValueError("the outgroup is not actually outgroup to all other tips")
-    assert root.name, root
+    if not snakemake.params.no_outgroup:
+        print("Removing outgroup")
+        outgroup = [c for c in tree_w_outgroup.find_clades() if c.name == "outgroup"]
+        assert len(outgroup) == 1, "not one sequence called outgroup"
+        # get common ancestor of all non-outgroup tips
+        other_tips = [
+            t for t in tree_w_outgroup.get_terminals() if t.name != "outgroup"
+        ]
+        assert len(other_tips) + 1 == len(tree_w_outgroup.get_terminals())
+        root = tree_w_outgroup.common_ancestor(other_tips)
+        root.branch_length = 0
+        root.comment = None
+        tree = Bio.Phylo.BaseTree.Tree(root=root, rooted=True)
+        if any(t.name == "outgroup" for t in tree.get_terminals()):
+            raise ValueError("the outgroup is not actually outgroup to all other tips")
+    else:
+        tree = tree_w_outgroup
+        root = tree.root
+
+    assert root.name, f"{root=} has no name"
     if root_name:
         if root.name != root_name:
             raise ValueError("inconsistent root names between timetree and divtree")
