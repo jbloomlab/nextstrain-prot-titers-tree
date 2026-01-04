@@ -10,15 +10,19 @@
 ---
 
 This repository contains a `snakemake` pipeline developed by the [Bloom lab](https://jbloomlab.org) that builds interactive `nextstrain` trees of protein sequences that can be colored and analyzed in terms of additional data such as neutralization titers.
-The pipeline was designed for the use case of displaying high-throughput neutralization titer data for many strains similar to that described in [Kikawa et al (2025)](https://doi.org/10.1101/2025.09.06.674661).
+The pipeline was designed for the use case of displaying high-throughput neutralization titer data for many strains similar to that described in [Kikawa et al (2025)](https://doi.org/10.1093/ve/veaf086).
 
 This pipeline is specifically tailored for the case where you want to build **protein** sequence trees and have the divergence indicate the number of amino-acid mutations separating different proteins.
 More standard `nextstrain augur` pipelines may be more appropriate if you are using nucleotide sequences.
 
 ## Configuring the pipeline, running it, and viewing the results
 To run the pipeline, you need to build a configuration pipeline that has the configuration for the tree (input data, display options, etc).
-See [example_config.yaml](example_config.yaml), which has an example configuration using the H3N2 data from [Kikawa et al (2025)](https://doi.org/10.1101/2025.09.06.674661) as stored in [./example_data/](example_data).
-You should build your own configuration file for your data mirroring that example.
+
+Here are the configuration files for the examples included in this repository:
+  - [config_example-flu-seqneut-2025.yaml](config_example-flu-seqneut-2025.yaml) which has an example configuration using the H3N2 data from [Kikawa et al (2025)](https://doi.org/10.1093/ve/veaf086) (which s stored in [data/example-flu-seqneut-2025/](data/example-flu-seqneut-2025/)).
+
+You should build your own configuration file for your data mirroring those examples (the configuration files should be self-explanatory).
+
 Then run the pipeline with:
 
     snakemake -j <nthreads> --configfile <path_to_your_configuration_file> --software-deployment-method conda
@@ -28,12 +32,13 @@ Note that running this requires `snakemake` to be installed, which you can do by
 The tree-building step using IQ-TREE will use multiple threads (up to a maximum of 8 threads, or the number of cores specified with the `-j` argument to `snakemake`, whichever is smaller) to speed up the analysis.
 
 The result of this is an auspice JSON file with the tree suitable for viewing either by uploading to [https://auspice.us/](https://auspice.us/) or via a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html).
-The auspice JSON tree for the example is in [auspice/nextstrain-prot-titers-tree.json](auspice/nextstrain-prot-titers-tree.json) and can be viewed as a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html) at [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main](https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main).
+The auspice JSON trees for the examples are in [./auspice](auspice) and can be viewed as a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html) at:
+  - [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-flu-seqneut-2025](https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-flu-seqneut-2025).
 
-If the *metadata* in the configuration file has titers, they are displayed on the tree as in the above example.
+If the *metadata* in the configuration file has titers, they are displayed on the tree. 
 You can also show all amino-acid identities on the tree, color by amino-acid identity at a site, and show branch lengths either based on amino-acid mutations per site or time.
 
-If you also specify *titers* with per-serum titers (as indicated in [example_config.yaml](example_config.yaml)) then the pipeline will also produce a sidecar JSON with these titers (eg, for this example [auspice/nextstrain-prot-titers-tree_measurements.json](auspice/nextstrain-prot-titers-tree_measurements.json)) that can be used to analyze per-serum titers in the *Measurements* panel when viewing the tree.
+If you also specify *titers* with per-serum titers (eg, as in [config_example-flu-seqneut-2025.yaml](config_example-flu-seqneut-2025.yaml)) then the pipeline will also produce a sidecar JSON with these titers (eg, the files in [./auspice](auspice) with the suffix `*_measurements.json`) that can be used to visualize per-serum titers in the *Measurements* panel when viewing the tree.
 
 ## Using in a larger `snakemake` pipeline
 The typical way to use this pipeline is as a submodule of a larger `snakemake` pipeline.

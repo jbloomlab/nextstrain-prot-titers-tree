@@ -44,24 +44,24 @@ jobs:
 
       - name: lint snakemake files with snakemake --lint
         shell: bash -el {0}
-        run: snakemake --configfile example_config.yaml --lint
+        run: snakemake --configfile config_example-flu-seqneut-2025.yaml --lint
 
-      - name: run pipeline on example
+      - name: run pipeline on example-flu-seqneut-2025
         shell: bash -el {0}
         run: >
-          rm -rf auspice example_results
-          && snakemake --software-deployment-method conda -j 1 --configfile example_config.yaml
+          rm -rf auspice results
+          && snakemake --software-deployment-method conda -j 1 --configfile config_example-flu-seqneut-2025.yaml
       
-      - name: run pipeline on example without titers
+      - name: run pipeline on example-flu-seqneut-2025 without titers
         shell: bash -el {0}
         run: >
           rm -rf auspice example_results
-          && snakemake --software-deployment-method conda -j 1 --configfile example_config.yaml --config titers=null
+          && snakemake --software-deployment-method conda -j 1 --configfile config_example-flu-seqneut-2025.yaml --config titers=null
 
       - name: upload results in case of error
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: example_results
-          path: example_results
+          name: results
+          path: results
           retention-days: 7
