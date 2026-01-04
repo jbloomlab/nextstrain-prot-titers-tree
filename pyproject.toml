@@ -1,0 +1,18 @@
+[project]
+name = "nextstrain-prot-titers-tree"
+version = "1.2.0"
+description = "Build interactive nextstrain trees on protein sequences designed to display neutralization titer values"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Bloom Lab", email = "jbloom@fredhutch.org"}
+]
+requires-python = ">=3.9"
+
+[project.urls]
+Repository = "https://github.com/jbloomlab/nextstrain-prot-titers-tree"
+
+[tool.ruff]
+builtins = [
+    "snakemake",  # may appear undefined as passed to scripts via `Snakefile`
+]

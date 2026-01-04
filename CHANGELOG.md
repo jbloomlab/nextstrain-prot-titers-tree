@@ -2,6 +2,7 @@
 
 ### version 1.2.0
 + Rename *example* to *example-flu-seqneut-2025* in the configuration, results, data, etc to allow multiple examples to be added.
++ Eliminate `ruff.toml` in favor of `pyproject.toml`
 
 ### version 1.1.0
 + Build the trees faster with `iqtree`
