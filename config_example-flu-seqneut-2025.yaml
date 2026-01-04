@@ -3,7 +3,9 @@
 # FASTA file with aligned protein sequences with titer measurements
 alignment: data/example-flu-seqneut-2025/alignment.fa
 
-# FASTA file with single outgroup sequence, must already be aligned to rest of alignment
+# FASTA file with single outgroup sequence used to root tree, must already
+# be aligned to rest of alignment. If you set outgroup to null then the
+# tree is instead rooted by the dates using the least-squares method of treetime.
 outgroup: data/example-flu-seqneut-2025/outgroup.fa
 
 # Map sites in alignment to numbering used in mutation naming. Should be a TSV

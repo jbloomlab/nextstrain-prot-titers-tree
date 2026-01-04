@@ -10,6 +10,8 @@ log_subdir = os.path.join(results_subdir, "logs")
 titers = config["titers"]
 if titers == "null":
     titers = None
+outgroup = config["outgroup"]
+no_outgroup = (outgroup is None) or (outgroup == "null")
 
 # if we are getting titers, they are stored in file similar to the
 # auspice_json but with _measurements suffix as a sidecar JSON
@@ -26,8 +28,8 @@ rule prep_and_sanitize_data:
     """Prep alignment and remove special characters from strain names."""
     input:
         **({"titers": titers["titers_tsv"]} if titers else {}),
+        **({} if no_outgroup else {"outgroup": outgroup}),
         alignment=config["alignment"],
-        outgroup=config["outgroup"],
         metadata=config["metadata"],
     output:
         **({"titers": os.path.join(results_subdir, "titers.tsv")} if titers else {}),
@@ -52,6 +54,7 @@ rule prep_and_sanitize_data:
         ),
         color_by_metadata=list(config["color_by_metadata"]),
         have_titers=bool(titers),
+        no_outgroup=no_outgroup,
     log:
         os.path.join(log_subdir, "prep_and_sanitize_data.txt"),
     conda:
@@ -111,6 +114,7 @@ rule treetime:
         dates=os.path.join(results_subdir, "treetime/dates.tsv"),
     params:
         outdir=lambda _, output: os.path.dirname(output.timetree_w_outgroup),
+        reroot="least-squares" if no_outgroup else "outgroup",
     log:
         os.path.join(log_subdir, "treetime.txt"),
     conda:
@@ -123,7 +127,7 @@ rule treetime:
             --dates {input.metadata} \
             --name-column strain \
             --date-column date \
-            --reroot outgroup \
+            --reroot {params.reroot} \
             --branch-length-mode input \
             --aa \
             --gtr jtt92 \
@@ -146,6 +150,8 @@ rule process_treetime_output:
         divtree=os.path.join(results_subdir, "divergence_tree.nwk"),
         brlens=os.path.join(results_subdir, "brlens.json"),
         aa_muts=os.path.join(results_subdir, "aa_muts.json"),
+    params:
+        no_outgroup=no_outgroup,
     log:
         os.path.join(log_subdir, "process_treetime_output.txt"),
     conda:
