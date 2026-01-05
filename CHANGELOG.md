@@ -7,6 +7,7 @@
 + Allow rooting of trees by date by allowing *outgroup* to be *null*.
 + Add check that no spaces in strain names
 + Allow dates of format `YYYY-MM-DD` where the `MM` and `DD` are optional and can also be `XX`; this is in addition to allowing numeric dates (eg, 2022.5) as before.
++ Added *metadata_columns* to config to show node tooltips not in *color_by_metadata*
 
 ### version 1.1.0
 + Build the trees faster with `iqtree`

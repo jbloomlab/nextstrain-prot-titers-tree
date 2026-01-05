@@ -20,11 +20,14 @@ metadata = pd.read_csv(snakemake.input.metadata, sep="\t")
 if not req_metadata_cols.issubset(metadata.columns):
     raise ValueError(f"{metadata.columns=} lacks {req_metadata_cols=}")
 
-color_by_metadata = snakemake.params.color_by_metadata
-assert len(color_by_metadata) == len(set(color_by_metadata))
-assert not req_metadata_cols.intersection(color_by_metadata)
-if not set(color_by_metadata).issubset(metadata.columns):
-    raise ValueError(f"{metadata.columns=} lacks {color_by_metadata=}")
+for col_set in ["color_by_metadata", "metadata_columns"]:
+    cols = snakemake.params[col_set]
+    if len(cols) != len(set(cols)):
+        raise ValueError(f"Duplicate entries in `{col_set}`: {cols}")
+    if req_metadata_cols.intersection(cols):
+        raise ValueError(f"Do not include {req_metadata_cols} in `{col_set}` of {cols}")
+    if not set(cols).issubset(metadata.columns):
+        raise ValueError(f"{metadata.columns=} lacks `{col_set}` {cols}")
 
 # make sure dates all valid
 for strain, date in metadata[["strain", "date"]].itertuples(index=False):
@@ -52,7 +55,7 @@ if len(strain_renames) != len(set(strain_renames.values())):
     raise ValueError(f"re-named strains not unique:\n{strain_renames=}")
 
 metadata = metadata.assign(strain=lambda x: x["strain"].map(strain_renames))
-metadata.to_csv(snakemake.output.metadata, sep="\t")
+metadata.to_csv(snakemake.output.metadata, sep="\t", index=False)
 
 no_outgroup = snakemake.params.no_outgroup
 if not no_outgroup:
@@ -101,4 +104,4 @@ if snakemake.params.have_titers:
         raise ValueError(
             f"multiple titers for some strains/sera:\n{titers_per_strain_serum}"
         )
-    titers.to_csv(snakemake.output.titers, sep="\t", float_format="%.5g")
+    titers.to_csv(snakemake.output.titers, sep="\t", float_format="%.5g", index=False)

@@ -12,6 +12,10 @@ if titers == "null":
     titers = None
 outgroup = config["outgroup"]
 no_outgroup = (outgroup is None) or (outgroup == "null")
+color_by_metadata = config.get("color_by_metadata", {})
+metadata_columns = [
+    c for c in config.get("metadata_columns", []) if c not in color_by_metadata
+]
 
 # if we are getting titers, they are stored in file similar to the
 # auspice_json but with _measurements suffix as a sidecar JSON
@@ -52,7 +56,8 @@ rule prep_and_sanitize_data:
             if titers
             else {}
         ),
-        color_by_metadata=list(config["color_by_metadata"]),
+        color_by_metadata=list(color_by_metadata),
+        metadata_columns=metadata_columns,
         have_titers=bool(titers),
         no_outgroup=no_outgroup,
     log:
@@ -168,7 +173,7 @@ rule auspice_config:
         auspice_config=os.path.join(results_subdir, "auspice_config.json"),
     params:
         display_defaults=config["display_defaults"],
-        color_by_metadata=config["color_by_metadata"],
+        color_by_metadata=color_by_metadata,
         has_titers=bool(titers),
     log:
         os.path.join(log_subdir, "auspice_config.txt"),
@@ -191,8 +196,14 @@ rule export:
     params:
         color_by_metadata_args=(
             "--color-by-metadata "
-            + " ".join(shlex.quote(col) for col in config["color_by_metadata"])
-            if config["color_by_metadata"]
+            + " ".join(shlex.quote(col) for col in color_by_metadata)
+            if color_by_metadata
+            else ""
+        ),
+        metadata_columns_args=(
+            "--metadata-columns "
+            + " ".join(shlex.quote(col) for col in metadata_columns)
+            if metadata_columns
             else ""
         ),
         addtl_export_args=" ".join(
@@ -211,6 +222,7 @@ rule export:
             --auspice-config {input.auspice_config} \
             --metadata {input.metadata} \
             {params.color_by_metadata_args} \
+            {params.metadata_columns_args} \
             {params.addtl_export_args} \
             --output {output.auspice_json} \
             &> {log}
