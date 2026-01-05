@@ -8,6 +8,11 @@ metadata: data/example-H5NX-seqneutVSVdG/metadata.tsv
 
 color_by_metadata:
   clade: {}
+  continent: {}
+
+metadata_columns:
+  - passage_history
+  - country
 
 titers: null
 

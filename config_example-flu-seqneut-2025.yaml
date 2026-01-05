@@ -32,7 +32,6 @@ metadata: data/example-flu-seqneut-2025/metadata.tsv
 #   - fixed_max: number giving fixed maximum of scale; else determined from data
 #   - exclude_auto_scale: list strains to exclude when calculating auto limits
 color_by_metadata:
-  strain_type: {}
   subclade: {}
   median_titer_All_sera:
     scale_type: viridis_r_log
@@ -56,6 +55,10 @@ color_by_metadata:
   frac_w_titer_below_140_UWMC_sera:
     scale_type: viridis_linear
     fixed_max: 1  # just an example of fixing upper limit to scale
+
+# Metadata columns shown via node tooltips not already in `color_by_metadata`
+metadata_columns:
+  - strain_type
 
 # Do we display per-serum titers in measurement panel? If yes, specify dict similar to
 # below; if no then set titers to null.

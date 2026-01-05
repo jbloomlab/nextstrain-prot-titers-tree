@@ -2,7 +2,7 @@
   "version": "v2",
   "meta": {
     "title": "Example tree of with H5NX HA protein sequences",
-    "updated": "2026-01-04",
+    "updated": "2026-01-05",
     "build_url": "https://github.com/jbloomlab/nextstrain-prot-titers-tree",
     "maintainers": [
       {
@@ -56,9 +56,15 @@
         "key": "clade",
         "title": "clade",
         "type": "categorical"
+      },
+      {
+        "key": "continent",
+        "title": "continent",
+        "type": "categorical"
       }
     ],
     "filters": [
+      "continent",
       "clade"
     ],
     "panels": [
@@ -82,6 +88,15 @@
           "div": 7.089995,
           "num_date": {
             "value": 1997.0
+          },
+          "passage_history": {
+            "value": "passaged in allantoic fluid"
+          },
+          "country": {
+            "value": "Hong Kong (SAR)"
+          },
+          "continent": {
+            "value": "Asia"
           },
           "clade": {
             "value": "0"
@@ -136,6 +151,12 @@
               "num_date": {
                 "value": 1996.0
               },
+              "country": {
+                "value": "China"
+              },
+              "continent": {
+                "value": "Asia"
+              },
               "clade": {
                 "value": "0"
               }
@@ -186,6 +207,12 @@
                   "num_date": {
                     "value": 2001.0
                   },
+                  "country": {
+                    "value": "China"
+                  },
+                  "continent": {
+                    "value": "Asia"
+                  },
                   "clade": {
                     "value": "3"
                   }
@@ -227,6 +254,12 @@
                       "div": 20.136665,
                       "num_date": {
                         "value": 2003.0
+                      },
+                      "country": {
+                        "value": "China"
+                      },
+                      "continent": {
+                        "value": "Asia"
                       },
                       "clade": {
                         "value": "4"
@@ -287,6 +320,12 @@
                           "num_date": {
                             "value": 2003.0
                           },
+                          "country": {
+                            "value": "China"
+                          },
+                          "continent": {
+                            "value": "Asia"
+                          },
                           "clade": {
                             "value": "7"
                           }
@@ -316,6 +355,12 @@
                           "div": 37.559441,
                           "num_date": {
                             "value": 2006.0
+                          },
+                          "country": {
+                            "value": "China"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           },
                           "clade": {
                             "value": "7.2"
@@ -392,6 +437,15 @@
                       "num_date": {
                         "value": 2004.0
                       },
+                      "passage_history": {
+                        "value": "X"
+                      },
+                      "country": {
+                        "value": "Vietnam"
+                      },
+                      "continent": {
+                        "value": "Asia"
+                      },
                       "clade": {
                         "value": "1"
                       }
@@ -446,6 +500,12 @@
                           "num_date": {
                             "value": 2004.0
                           },
+                          "country": {
+                            "value": "China"
+                          },
+                          "continent": {
+                            "value": "Asia"
+                          },
                           "clade": {
                             "value": "9"
                           }
@@ -472,6 +532,15 @@
                           "num_date": {
                             "value": 2003.0
                           },
+                          "passage_history": {
+                            "value": "IR"
+                          },
+                          "country": {
+                            "value": "Vietnam"
+                          },
+                          "continent": {
+                            "value": "Asia"
+                          },
                           "clade": {
                             "value": "5"
                           }
@@ -495,6 +564,12 @@
                           "div": 18.086223,
                           "num_date": {
                             "value": 2004.0
+                          },
+                          "country": {
+                            "value": "China"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           },
                           "clade": {
                             "value": "6"
@@ -543,6 +618,12 @@
                           "div": 14.071693,
                           "num_date": {
                             "value": 2002.0
+                          },
+                          "country": {
+                            "value": "Hong Kong"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           },
                           "clade": {
                             "value": "8"
@@ -598,6 +679,12 @@
                                   "num_date": {
                                     "value": 2002.0
                                   },
+                                  "country": {
+                                    "value": "China"
+                                  },
+                                  "continent": {
+                                    "value": "Asia"
+                                  },
                                   "clade": {
                                     "value": "2.1.1"
                                   }
@@ -643,6 +730,12 @@
                                       "num_date": {
                                         "value": 2003.0
                                       },
+                                      "country": {
+                                        "value": "Indonesia"
+                                      },
+                                      "continent": {
+                                        "value": "Asia"
+                                      },
                                       "clade": {
                                         "value": "2.1.1"
                                       }
@@ -675,6 +768,12 @@
                                           "div": 29.434047,
                                           "num_date": {
                                             "value": 2005.0
+                                          },
+                                          "country": {
+                                            "value": "Indonesia"
+                                          },
+                                          "continent": {
+                                            "value": "Asia"
                                           },
                                           "clade": {
                                             "value": "2.1.3"
@@ -728,6 +827,15 @@
                                               "num_date": {
                                                 "value": 2005.0
                                               },
+                                              "passage_history": {
+                                                "value": "E1+MDCK1"
+                                              },
+                                              "country": {
+                                                "value": "Indonesia"
+                                              },
+                                              "continent": {
+                                                "value": "Asia"
+                                              },
                                               "clade": {
                                                 "value": "2.1.3.2"
                                               }
@@ -771,6 +879,12 @@
                                                   "num_date": {
                                                     "value": 2005.0
                                                   },
+                                                  "country": {
+                                                    "value": "Indonesia"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
+                                                  },
                                                   "clade": {
                                                     "value": "2.1.3.1"
                                                   }
@@ -795,6 +909,12 @@
                                                   "div": 32.365721,
                                                   "num_date": {
                                                     "value": 2005.0
+                                                  },
+                                                  "country": {
+                                                    "value": "Indonesia"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
                                                   },
                                                   "clade": {
                                                     "value": "2.1.3.1"
@@ -852,6 +972,12 @@
                                   "num_date": {
                                     "value": 2004.0
                                   },
+                                  "country": {
+                                    "value": "Japan"
+                                  },
+                                  "continent": {
+                                    "value": "Asia"
+                                  },
                                   "clade": {
                                     "value": "2.5"
                                   }
@@ -906,6 +1032,12 @@
                                       "num_date": {
                                         "value": 2005.0
                                       },
+                                      "country": {
+                                        "value": "Russian Federation"
+                                      },
+                                      "continent": {
+                                        "value": "Europe"
+                                      },
                                       "clade": {
                                         "value": "2.2"
                                       }
@@ -927,6 +1059,12 @@
                                       "div": 33.176871,
                                       "num_date": {
                                         "value": 2006.0
+                                      },
+                                      "country": {
+                                        "value": "China"
+                                      },
+                                      "continent": {
+                                        "value": "Asia"
                                       },
                                       "clade": {
                                         "value": "2.2"
@@ -976,6 +1114,12 @@
                                           "div": 60.128082,
                                           "num_date": {
                                             "value": 2010.558
+                                          },
+                                          "country": {
+                                            "value": "Egypt"
+                                          },
+                                          "continent": {
+                                            "value": "Africa"
                                           },
                                           "clade": {
                                             "value": "2.2.1.1a"
@@ -1053,6 +1197,12 @@
                                               "num_date": {
                                                 "value": 2009.086
                                               },
+                                              "country": {
+                                                "value": "Egypt"
+                                              },
+                                              "continent": {
+                                                "value": "Africa"
+                                              },
                                               "clade": {
                                                 "value": "2.2.1"
                                               }
@@ -1105,6 +1255,15 @@
                                                   "num_date": {
                                                     "value": 2013.267
                                                   },
+                                                  "passage_history": {
+                                                    "value": "Original"
+                                                  },
+                                                  "country": {
+                                                    "value": "Egypt"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Africa"
+                                                  },
                                                   "clade": {
                                                     "value": "2.2.1.2"
                                                   }
@@ -1139,6 +1298,15 @@
                                                   "div": 43.151478,
                                                   "num_date": {
                                                     "value": 2017.179
+                                                  },
+                                                  "passage_history": {
+                                                    "value": "E1"
+                                                  },
+                                                  "country": {
+                                                    "value": "Egypt"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Africa"
                                                   },
                                                   "clade": {
                                                     "value": "2.2.1.2"
@@ -1228,6 +1396,12 @@
                                       "num_date": {
                                         "value": 2005.0
                                       },
+                                      "country": {
+                                        "value": "China"
+                                      },
+                                      "continent": {
+                                        "value": "Asia"
+                                      },
                                       "clade": {
                                         "value": "2.3.2"
                                       }
@@ -1283,6 +1457,12 @@
                                           "div": 40.290963,
                                           "num_date": {
                                             "value": 2008.0
+                                          },
+                                          "country": {
+                                            "value": "Lao, People's Democratic Republic"
+                                          },
+                                          "continent": {
+                                            "value": "Asia"
                                           },
                                           "clade": {
                                             "value": "2.3.2.1"
@@ -1340,6 +1520,12 @@
                                               "num_date": {
                                                 "value": 2013.122
                                               },
+                                              "country": {
+                                                "value": "Bangladesh"
+                                              },
+                                              "continent": {
+                                                "value": "Asia"
+                                              },
                                               "clade": {
                                                 "value": "2.3.2.1a"
                                               }
@@ -1396,6 +1582,15 @@
                                                   "num_date": {
                                                     "value": 2013.881
                                                   },
+                                                  "passage_history": {
+                                                    "value": "E1"
+                                                  },
+                                                  "country": {
+                                                    "value": "China"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
+                                                  },
                                                   "clade": {
                                                     "value": "2.3.2.1f"
                                                   }
@@ -1417,6 +1612,15 @@
                                                   "div": 54.792328,
                                                   "num_date": {
                                                     "value": 2012.865
+                                                  },
+                                                  "passage_history": {
+                                                    "value": "passage details: E1"
+                                                  },
+                                                  "country": {
+                                                    "value": "Indonesia"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
                                                   },
                                                   "clade": {
                                                     "value": "2.3.2.1g"
@@ -1461,6 +1665,15 @@
                                                       "num_date": {
                                                         "value": 2023.147
                                                       },
+                                                      "passage_history": {
+                                                        "value": "e1"
+                                                      },
+                                                      "country": {
+                                                        "value": "Cambodia"
+                                                      },
+                                                      "continent": {
+                                                        "value": "Asia"
+                                                      },
                                                       "clade": {
                                                         "value": "2.3.2.1a"
                                                       }
@@ -1500,6 +1713,12 @@
                                                       "div": 70.992823,
                                                       "num_date": {
                                                         "value": 2016.204
+                                                      },
+                                                      "country": {
+                                                        "value": "China"
+                                                      },
+                                                      "continent": {
+                                                        "value": "Asia"
                                                       },
                                                       "clade": {
                                                         "value": "2.3.2.1d"
@@ -1567,6 +1786,12 @@
                                       "num_date": {
                                         "value": 2004.0
                                       },
+                                      "country": {
+                                        "value": "China"
+                                      },
+                                      "continent": {
+                                        "value": "Asia"
+                                      },
                                       "clade": {
                                         "value": "2.3.1"
                                       }
@@ -1615,6 +1840,12 @@
                                           "div": 29.123331,
                                           "num_date": {
                                             "value": 2005.0
+                                          },
+                                          "country": {
+                                            "value": "China"
+                                          },
+                                          "continent": {
+                                            "value": "Asia"
                                           },
                                           "clade": {
                                             "value": "2.3.4"
@@ -1666,6 +1897,15 @@
                                               "num_date": {
                                                 "value": 2008.43
                                               },
+                                              "passage_history": {
+                                                "value": "E1"
+                                              },
+                                              "country": {
+                                                "value": "China"
+                                              },
+                                              "continent": {
+                                                "value": "Asia"
+                                              },
                                               "clade": {
                                                 "value": "2.3.4"
                                               }
@@ -1714,6 +1954,12 @@
                                                   "div": 54.467664,
                                                   "num_date": {
                                                     "value": 2011.001
+                                                  },
+                                                  "country": {
+                                                    "value": "China"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
                                                   },
                                                   "clade": {
                                                     "value": "2.3.4.4b"
@@ -1780,6 +2026,12 @@
                                                           "num_date": {
                                                             "value": 2025.87
                                                           },
+                                                          "country": {
+                                                            "value": "United States"
+                                                          },
+                                                          "continent": {
+                                                            "value": "North America"
+                                                          },
                                                           "clade": {
                                                             "value": "2.3.4.4b"
                                                           }
@@ -1809,6 +2061,15 @@
                                                           "div": 67.573075,
                                                           "num_date": {
                                                             "value": 2021.966
+                                                          },
+                                                          "passage_history": {
+                                                            "value": "E3"
+                                                          },
+                                                          "country": {
+                                                            "value": "Bangladesh"
+                                                          },
+                                                          "continent": {
+                                                            "value": "Asia"
                                                           },
                                                           "clade": {
                                                             "value": "2.3.4.4b"
@@ -1857,6 +2118,12 @@
                                                               "num_date": {
                                                                 "value": 2024.212
                                                               },
+                                                              "country": {
+                                                                "value": "United States"
+                                                              },
+                                                              "continent": {
+                                                                "value": "North America"
+                                                              },
                                                               "clade": {
                                                                 "value": "2.3.4.4b"
                                                               }
@@ -1878,6 +2145,12 @@
                                                               "div": 71.597018,
                                                               "num_date": {
                                                                 "value": 2024.261
+                                                              },
+                                                              "country": {
+                                                                "value": "United States"
+                                                              },
+                                                              "continent": {
+                                                                "value": "North America"
                                                               },
                                                               "clade": {
                                                                 "value": "2.3.4.4b"
@@ -1916,6 +2189,12 @@
                                                           "div": 69.583601,
                                                           "num_date": {
                                                             "value": 2014.936
+                                                          },
+                                                          "country": {
+                                                            "value": "United States"
+                                                          },
+                                                          "continent": {
+                                                            "value": "North America"
                                                           },
                                                           "clade": {
                                                             "value": "2.3.4.4c"
@@ -1971,6 +2250,15 @@
                                                               "div": 69.50819,
                                                               "num_date": {
                                                                 "value": 2014.319
+                                                              },
+                                                              "passage_history": {
+                                                                "value": "passage details: egg"
+                                                              },
+                                                              "country": {
+                                                                "value": "China"
+                                                              },
+                                                              "continent": {
+                                                                "value": "Asia"
                                                               },
                                                               "clade": {
                                                                 "value": "2.3.4.4"
@@ -2046,6 +2334,12 @@
                                                                       "num_date": {
                                                                         "value": 2014.782
                                                                       },
+                                                                      "country": {
+                                                                        "value": "Vietnam"
+                                                                      },
+                                                                      "continent": {
+                                                                        "value": "Asia"
+                                                                      },
                                                                       "clade": {
                                                                         "value": "2.3.4.4"
                                                                       }
@@ -2068,6 +2362,12 @@
                                                                       "div": 66.747013,
                                                                       "num_date": {
                                                                         "value": 2015.001
+                                                                      },
+                                                                      "country": {
+                                                                        "value": "China"
+                                                                      },
+                                                                      "continent": {
+                                                                        "value": "Asia"
                                                                       },
                                                                       "clade": {
                                                                         "value": "2.3.4.4"
@@ -2112,6 +2412,15 @@
                                                                       "num_date": {
                                                                         "value": 2015.018
                                                                       },
+                                                                      "passage_history": {
+                                                                        "value": "Original"
+                                                                      },
+                                                                      "country": {
+                                                                        "value": "China"
+                                                                      },
+                                                                      "continent": {
+                                                                        "value": "Asia"
+                                                                      },
                                                                       "clade": {
                                                                         "value": "2.3.4.4e"
                                                                       }
@@ -2140,6 +2449,12 @@
                                                                       "div": 90.664321,
                                                                       "num_date": {
                                                                         "value": 2020.072
+                                                                      },
+                                                                      "country": {
+                                                                        "value": "Bangladesh"
+                                                                      },
+                                                                      "continent": {
+                                                                        "value": "Asia"
                                                                       },
                                                                       "clade": {
                                                                         "value": "2.3.4.4h"
