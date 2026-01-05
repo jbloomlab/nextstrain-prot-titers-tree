@@ -17,8 +17,10 @@ site_numbering_map: data/example-flu-seqneut-2025/site_numbering_map.tsv
 
 # TSV file with metadata on strains in alignment (not outgroup).
 # Must have column "strain" matching the sequence names in alignment,
-# and a column "date" with the numerical date (eg, 2025.5). Must also have
-# the additional columns specified in `color_by_metadata`.
+# and a column "date" with the numerical date (eg, 2025.5) or a YYYY[-MM-DD]
+# format date (the MM and DD are optional).
+# The strain cannot contain whitespace.
+# Must also have the additional columns specified in `color_by_metadata`.
 metadata: data/example-flu-seqneut-2025/metadata.tsv
 
 # Columns in `metadata` that we include in the tree to enable it to

@@ -26,12 +26,23 @@ assert not req_metadata_cols.intersection(color_by_metadata)
 if not set(color_by_metadata).issubset(metadata.columns):
     raise ValueError(f"{metadata.columns=} lacks {color_by_metadata=}")
 
-# make sure dates all numeric
-dates = pd.to_numeric(metadata["date"], errors="raise")
-assert dates.notnull().all(), "date not all non-null"
+# make sure dates all valid
+for strain, date in metadata[["strain", "date"]].itertuples(index=False):
+    if not (
+        isinstance(date, (float, int))
+        or (
+            isinstance(date, str)
+            and re.fullmatch(r"\d\.?\d*|\d{4}(?:\-(?:\d{2}|XX)){0,2}", date)
+        )
+    ):
+        raise ValueError(f"Invalid {date=} for {strain=}")
 
 assert len(metadata) == len(alignment)
 assert len(metadata) == metadata["strain"].nunique()
+
+strains_w_space = metadata[metadata["strain"].str.contains(r"\s", regex=True)]["strain"]
+if len(strains_w_space):
+    raise ValueError(f"following strain names contain whitespace:\n{strains_w_space}")
 
 strain_renames = {
     orig: re.sub(r"[^A-Za-z0-9._\-/]", "_", orig.replace("'", ""))
