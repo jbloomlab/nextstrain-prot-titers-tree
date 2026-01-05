@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ### version 1.2.0
-+ Rename *example* to *example-flu-seqneut-2025* in the configuration, results, data, etc to allow multiple examples to be added.
++ Rename *example* to *example-flu-seqneut-2025* in the configuration, results, data, etc to allow multiple examples to be added; then added the second example *example-H5NX-seqneutVSVdG*.
 + Eliminate `ruff.toml` in favor of `pyproject.toml`
 + Update `conda` environment to use latest software versions.
 + Allow rooting of trees by date by allowing *outgroup* to be *null*.

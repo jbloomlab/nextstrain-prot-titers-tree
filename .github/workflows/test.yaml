@@ -64,6 +64,12 @@ jobs:
           rm -rf auspice example_results
           && snakemake --software-deployment-method conda -j 1 --configfile config_example-flu-seqneut-2025.yaml --config outgroup=null 
 
+      - name: run pipeline on example-H5NX-seqneutVSVdG
+        shell: bash -el {0}
+        run: >
+          rm -rf auspice results
+          && snakemake --software-deployment-method conda -j 1 --configfile config_example-H5NX-seqneutVSVdG.yaml
+
       - name: upload results in case of error
         uses: actions/upload-artifact@v4
         if: failure()

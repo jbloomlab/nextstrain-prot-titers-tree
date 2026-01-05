@@ -1,0 +1,2223 @@
+{
+  "version": "v2",
+  "meta": {
+    "title": "Example tree of with H5NX HA protein sequences",
+    "updated": "2026-01-04",
+    "build_url": "https://github.com/jbloomlab/nextstrain-prot-titers-tree",
+    "maintainers": [
+      {
+        "name": "Jesse Bloom",
+        "url": "https://jbloomlab.org/"
+      }
+    ],
+    "display_defaults": {
+      "color_by": "clade",
+      "distance_measure": "num_date",
+      "branch_label": "aa"
+    },
+    "genome_annotations": {
+      "nuc": {
+        "start": 1,
+        "end": 1701,
+        "strand": "+",
+        "type": "source"
+      },
+      "HA1": {
+        "start": 49,
+        "end": 1035,
+        "strand": "+",
+        "type": "gene"
+      },
+      "HA2": {
+        "start": 1036,
+        "end": 1701,
+        "strand": "+",
+        "type": "gene"
+      },
+      "SigPep": {
+        "start": 1,
+        "end": 48,
+        "strand": "+",
+        "type": "gene"
+      }
+    },
+    "colorings": [
+      {
+        "key": "num_date",
+        "title": "Sampling date",
+        "type": "continuous"
+      },
+      {
+        "key": "gt",
+        "title": "Genotype",
+        "type": "categorical"
+      },
+      {
+        "key": "clade",
+        "title": "clade",
+        "type": "categorical"
+      }
+    ],
+    "filters": [
+      "clade"
+    ],
+    "panels": [
+      "tree",
+      "entropy"
+    ]
+  },
+  "tree": {
+    "name": "NODE_0000002",
+    "node_attrs": {
+      "div": 0,
+      "num_date": {
+        "value": 1993.934
+      }
+    },
+    "branch_attrs": {},
+    "children": [
+      {
+        "name": "A/Hong_Kong/483/1997",
+        "node_attrs": {
+          "div": 7.089995,
+          "num_date": {
+            "value": 1997.0
+          },
+          "clade": {
+            "value": "0"
+          }
+        },
+        "branch_attrs": {
+          "mutations": {
+            "SigPep": [
+              "I10T"
+            ],
+            "HA1": [
+              "K35R",
+              "D94N",
+              "N109S",
+              "A156T"
+            ],
+            "HA2": [
+              "K38Q",
+              "D57N",
+              "I189L"
+            ]
+          },
+          "labels": {
+            "aa": "SigPep: I10T; HA1: K35R, D94N, N109S, A156T; HA2: K38Q, D57N, I189L"
+          }
+        }
+      },
+      {
+        "name": "NODE_0000000",
+        "node_attrs": {
+          "div": 4.03086,
+          "num_date": {
+            "value": 1995.182
+          }
+        },
+        "branch_attrs": {
+          "mutations": {
+            "HA1": [
+              "I226M",
+              "T263A"
+            ]
+          },
+          "labels": {
+            "aa": "HA1: I226M, T263A"
+          }
+        },
+        "children": [
+          {
+            "name": "A/Goose/Guangdong/1/96",
+            "node_attrs": {
+              "div": 8.047318,
+              "num_date": {
+                "value": 1996.0
+              },
+              "clade": {
+                "value": "0"
+              }
+            },
+            "branch_attrs": {
+              "mutations": {
+                "HA1": [
+                  "I108T",
+                  "L138H",
+                  "K140R",
+                  "A320T"
+                ],
+                "HA2": [
+                  "K83Q"
+                ]
+              },
+              "labels": {
+                "aa": "HA1: I108T, L138H, K140R, A320T; HA2: K83Q"
+              }
+            }
+          },
+          {
+            "name": "NODE_0000001",
+            "node_attrs": {
+              "div": 8.047261,
+              "num_date": {
+                "value": 1998.801
+              }
+            },
+            "branch_attrs": {
+              "mutations": {
+                "HA1": [
+                  "N45D",
+                  "D126E",
+                  "E212K",
+                  "P217S"
+                ]
+              },
+              "labels": {
+                "aa": "HA1: N45D, D126E, E212K, P217S"
+              }
+            },
+            "children": [
+              {
+                "name": "A/duck/Guangdong/01/2001",
+                "node_attrs": {
+                  "div": 8.047828,
+                  "num_date": {
+                    "value": 2001.0
+                  },
+                  "clade": {
+                    "value": "3"
+                  }
+                },
+                "branch_attrs": {
+                  "mutations": {
+                    "HA1": [
+                      "A320T"
+                    ]
+                  },
+                  "labels": {
+                    "aa": "HA1: A320T"
+                  }
+                }
+              },
+              {
+                "name": "NODE_0000003",
+                "node_attrs": {
+                  "div": 11.052928,
+                  "num_date": {
+                    "value": 1999.526
+                  }
+                },
+                "branch_attrs": {
+                  "mutations": {
+                    "HA1": [
+                      "S155N",
+                      "T188I"
+                    ]
+                  },
+                  "labels": {
+                    "aa": "HA1: S155N, T188I"
+                  }
+                },
+                "children": [
+                  {
+                    "name": "A/goose/Fujian/bb/2003",
+                    "node_attrs": {
+                      "div": 20.136665,
+                      "num_date": {
+                        "value": 2003.0
+                      },
+                      "clade": {
+                        "value": "4"
+                      }
+                    },
+                    "branch_attrs": {
+                      "mutations": {
+                        "HA1": [
+                          "E14V",
+                          "L89I",
+                          "S123P",
+                          "S129L",
+                          "L138Q",
+                          "R162K",
+                          "T195N",
+                          "L297I"
+                        ],
+                        "HA2": [
+                          "N146D"
+                        ]
+                      },
+                      "labels": {
+                        "aa": "HA1: E14V, L89I, S123P, S129L, L138Q, R162K, T195N, L297I; HA2: N146D"
+                      }
+                    }
+                  },
+                  {
+                    "name": "NODE_0000004",
+                    "node_attrs": {
+                      "div": 16.07944,
+                      "num_date": {
+                        "value": 2000.686
+                      }
+                    },
+                    "branch_attrs": {
+                      "mutations": {
+                        "SigPep": [
+                          "V11I"
+                        ],
+                        "HA1": [
+                          "S141P",
+                          "A156T",
+                          "A184E"
+                        ],
+                        "HA2": [
+                          "D120E"
+                        ]
+                      },
+                      "labels": {
+                        "aa": "SigPep: V11I; HA1: S141P, A156T, A184E; HA2: D120E"
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "A/Beijing/01/2003",
+                        "node_attrs": {
+                          "div": 23.136719,
+                          "num_date": {
+                            "value": 2003.0
+                          },
+                          "clade": {
+                            "value": "7"
+                          }
+                        },
+                        "branch_attrs": {
+                          "mutations": {
+                            "HA1": [
+                              "Y7S",
+                              "K140R",
+                              "T231A",
+                              "R327K"
+                            ],
+                            "HA2": [
+                              "V66I",
+                              "E132G",
+                              "R167T"
+                            ]
+                          },
+                          "labels": {
+                            "aa": "HA1: Y7S, K140R, T231A, R327K; HA2: V66I, E132G, R167T"
+                          }
+                        }
+                      },
+                      {
+                        "name": "A/chicken/Shanxi/2/2006",
+                        "node_attrs": {
+                          "div": 37.559441,
+                          "num_date": {
+                            "value": 2006.0
+                          },
+                          "clade": {
+                            "value": "7.2"
+                          }
+                        },
+                        "branch_attrs": {
+                          "mutations": {
+                            "SigPep": [
+                              "S12G"
+                            ],
+                            "HA1": [
+                              "I5V",
+                              "D43N",
+                              "R53K",
+                              "I71L",
+                              "P74S",
+                              "D88G",
+                              "Q115K",
+                              "P136S",
+                              "V147L",
+                              "T159P",
+                              "R162V",
+                              "S163N",
+                              "N165T",
+                              "A185T",
+                              "I188V",
+                              "L190I",
+                              "E242D",
+                              "R325G"
+                            ],
+                            "HA2": [
+                              "V48I",
+                              "G182V"
+                            ]
+                          },
+                          "labels": {
+                            "aa": "SigPep: S12G; HA1: I5V, D43N, R53K, I71L, P74S, D88G, Q115K, P136S, V147L, T159P, R162V, S163N, N165T, A185T, I188V, L190I, E242D, R325G; HA2: V48I, G182V"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "NODE_0000005",
+                "node_attrs": {
+                  "div": 13.0702,
+                  "num_date": {
+                    "value": 2000.806
+                  }
+                },
+                "branch_attrs": {
+                  "mutations": {
+                    "HA1": [
+                      "L138Q",
+                      "A320S"
+                    ],
+                    "HA2": [
+                      "K153R",
+                      "N169K",
+                      "M181I"
+                    ]
+                  },
+                  "labels": {
+                    "aa": "HA1: L138Q, A320S; HA2: K153R, N169K, M181I"
+                  }
+                },
+                "children": [
+                  {
+                    "name": "A/Vietnam/1203/2004",
+                    "node_attrs": {
+                      "div": 23.164218,
+                      "num_date": {
+                        "value": 2004.0
+                      },
+                      "clade": {
+                        "value": "1"
+                      }
+                    },
+                    "branch_attrs": {
+                      "mutations": {
+                        "SigPep": [
+                          "L8F"
+                        ],
+                        "HA1": [
+                          "T36K",
+                          "S84N",
+                          "A86V",
+                          "N124S",
+                          "S129L",
+                          "A156T",
+                          "K212R",
+                          "A263T"
+                        ],
+                        "HA2": [
+                          "T183I"
+                        ]
+                      },
+                      "labels": {
+                        "aa": "SigPep: L8F; HA1: T36K, S84N, A86V, N124S, S129L, A156T, K212R, A263T; HA2: T183I"
+                      }
+                    }
+                  },
+                  {
+                    "name": "NODE_0000006",
+                    "node_attrs": {
+                      "div": 14.071352,
+                      "num_date": {
+                        "value": 2001.968
+                      }
+                    },
+                    "branch_attrs": {
+                      "mutations": {
+                        "HA1": [
+                          "S141P"
+                        ]
+                      },
+                      "labels": {
+                        "aa": "HA1: S141P"
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "A/goose/Guangdong/72/2004",
+                        "node_attrs": {
+                          "div": 17.079798,
+                          "num_date": {
+                            "value": 2004.0
+                          },
+                          "clade": {
+                            "value": "9"
+                          }
+                        },
+                        "branch_attrs": {
+                          "mutations": {
+                            "HA1": [
+                              "Q138L",
+                              "F228C"
+                            ],
+                            "HA2": [
+                              "E147D"
+                            ]
+                          },
+                          "labels": {
+                            "aa": "HA1: Q138L, F228C; HA2: E147D"
+                          }
+                        }
+                      },
+                      {
+                        "name": "A/chicken/Viet_Nam/Ncvd8/2003",
+                        "node_attrs": {
+                          "div": 17.080025,
+                          "num_date": {
+                            "value": 2003.0
+                          },
+                          "clade": {
+                            "value": "5"
+                          }
+                        },
+                        "branch_attrs": {
+                          "mutations": {
+                            "HA1": [
+                              "K140R",
+                              "K153R",
+                              "R327K"
+                            ]
+                          },
+                          "labels": {
+                            "aa": "HA1: K140R, K153R, R327K"
+                          }
+                        }
+                      },
+                      {
+                        "name": "A/swine/Anhui/ca/2004",
+                        "node_attrs": {
+                          "div": 18.086223,
+                          "num_date": {
+                            "value": 2004.0
+                          },
+                          "clade": {
+                            "value": "6"
+                          }
+                        },
+                        "branch_attrs": {
+                          "mutations": {
+                            "HA1": [
+                              "S133A",
+                              "K140S"
+                            ],
+                            "HA2": [
+                              "K169N",
+                              "A204S"
+                            ]
+                          },
+                          "labels": {
+                            "aa": "HA1: S133A, K140S; HA2: K169N, A204S"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "NODE_0000009",
+                    "node_attrs": {
+                      "div": 14.071126,
+                      "num_date": {
+                        "value": 2001.04
+                      }
+                    },
+                    "branch_attrs": {
+                      "mutations": {
+                        "HA1": [
+                          "K189R"
+                        ]
+                      },
+                      "labels": {
+                        "aa": "HA1: K189R"
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "A/Ck/HK/61.9/02",
+                        "node_attrs": {
+                          "div": 14.071693,
+                          "num_date": {
+                            "value": 2002.0
+                          },
+                          "clade": {
+                            "value": "8"
+                          }
+                        },
+                        "branch_attrs": {}
+                      },
+                      {
+                        "name": "NODE_0000010",
+                        "node_attrs": {
+                          "div": 17.080195,
+                          "num_date": {
+                            "value": 2001.473
+                          }
+                        },
+                        "branch_attrs": {
+                          "mutations": {
+                            "HA1": [
+                              "S84N",
+                              "D94N",
+                              "N124D"
+                            ]
+                          },
+                          "labels": {
+                            "aa": "HA1: S84N, D94N, N124D"
+                          }
+                        },
+                        "children": [
+                          {
+                            "name": "NODE_0000011",
+                            "node_attrs": {
+                              "div": 19.084483,
+                              "num_date": {
+                                "value": 2001.827
+                              }
+                            },
+                            "branch_attrs": {
+                              "mutations": {
+                                "HA2": [
+                                  "V152I",
+                                  "D158N"
+                                ]
+                              },
+                              "labels": {
+                                "aa": "HA2: V152I, D158N"
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "A/duck/Hunan/795/2002",
+                                "node_attrs": {
+                                  "div": 20.085862,
+                                  "num_date": {
+                                    "value": 2002.0
+                                  },
+                                  "clade": {
+                                    "value": "2.1.1"
+                                  }
+                                },
+                                "branch_attrs": {
+                                  "mutations": {
+                                    "HA1": [
+                                      "P321L"
+                                    ]
+                                  },
+                                  "labels": {
+                                    "aa": "HA1: P321L"
+                                  }
+                                }
+                              },
+                              {
+                                "name": "NODE_0000012",
+                                "node_attrs": {
+                                  "div": 22.093495,
+                                  "num_date": {
+                                    "value": 2002.931
+                                  }
+                                },
+                                "branch_attrs": {
+                                  "mutations": {
+                                    "HA1": [
+                                      "A156T"
+                                    ],
+                                    "HA2": [
+                                      "T183I",
+                                      "V203M"
+                                    ]
+                                  },
+                                  "labels": {
+                                    "aa": "HA1: A156T; HA2: T183I, V203M"
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "A/chicken/Legok/2003",
+                                    "node_attrs": {
+                                      "div": 22.094062,
+                                      "num_date": {
+                                        "value": 2003.0
+                                      },
+                                      "clade": {
+                                        "value": "2.1.1"
+                                      }
+                                    },
+                                    "branch_attrs": {}
+                                  },
+                                  {
+                                    "name": "NODE_0000013",
+                                    "node_attrs": {
+                                      "div": 24.650949,
+                                      "num_date": {
+                                        "value": 2003.402
+                                      }
+                                    },
+                                    "branch_attrs": {
+                                      "mutations": {
+                                        "HA1": [
+                                          "Q138L",
+                                          "S141P"
+                                        ]
+                                      },
+                                      "labels": {
+                                        "aa": "HA1: Q138L, S141P"
+                                      }
+                                    },
+                                    "children": [
+                                      {
+                                        "name": "A/chicken/Central_Java/UT3091/2005",
+                                        "node_attrs": {
+                                          "div": 29.434047,
+                                          "num_date": {
+                                            "value": 2005.0
+                                          },
+                                          "clade": {
+                                            "value": "2.1.3"
+                                          }
+                                        },
+                                        "branch_attrs": {
+                                          "mutations": {
+                                            "HA1": [
+                                              "K140T",
+                                              "R327K"
+                                            ],
+                                            "HA2": [
+                                              "R127K",
+                                              "N146D",
+                                              "I152V"
+                                            ]
+                                          },
+                                          "labels": {
+                                            "aa": "HA1: K140T, R327K; HA2: R127K, N146D, I152V"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "name": "NODE_0000014",
+                                        "node_attrs": {
+                                          "div": 28.356294,
+                                          "num_date": {
+                                            "value": 2004.114
+                                          }
+                                        },
+                                        "branch_attrs": {
+                                          "mutations": {
+                                            "HA1": [
+                                              "N94S",
+                                              "K140S",
+                                              "R162K"
+                                            ],
+                                            "HA2": [
+                                              "I183T"
+                                            ]
+                                          },
+                                          "labels": {
+                                            "aa": "HA1: N94S, K140S, R162K; HA2: I183T"
+                                          }
+                                        },
+                                        "children": [
+                                          {
+                                            "name": "A/Indonesia/5/2005",
+                                            "node_attrs": {
+                                              "div": 31.365646,
+                                              "num_date": {
+                                                "value": 2005.0
+                                              },
+                                              "clade": {
+                                                "value": "2.1.3.2"
+                                              }
+                                            },
+                                            "branch_attrs": {
+                                              "mutations": {
+                                                "HA1": [
+                                                  "A86T",
+                                                  "V200I",
+                                                  "R325S"
+                                                ]
+                                              },
+                                              "labels": {
+                                                "aa": "HA1: A86T, V200I, R325S"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "name": "NODE_0000015",
+                                            "node_attrs": {
+                                              "div": 29.356708,
+                                              "num_date": {
+                                                "value": 2004.332
+                                              }
+                                            },
+                                            "branch_attrs": {
+                                              "mutations": {
+                                                "HA1": [
+                                                  "L209S"
+                                                ]
+                                              },
+                                              "labels": {
+                                                "aa": "HA1: L209S"
+                                              }
+                                            },
+                                            "children": [
+                                              {
+                                                "name": "A/chicken/Bali/UT2091/2005",
+                                                "node_attrs": {
+                                                  "div": 31.360883,
+                                                  "num_date": {
+                                                    "value": 2005.0
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.1.3.1"
+                                                  }
+                                                },
+                                                "branch_attrs": {
+                                                  "mutations": {
+                                                    "SigPep": [
+                                                      "I10T"
+                                                    ],
+                                                    "HA1": [
+                                                      "L150I"
+                                                    ]
+                                                  },
+                                                  "labels": {
+                                                    "aa": "SigPep: I10T; HA1: L150I"
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "name": "A/Chicken/Indonesia/Wates130/2005",
+                                                "node_attrs": {
+                                                  "div": 32.365721,
+                                                  "num_date": {
+                                                    "value": 2005.0
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.1.3.1"
+                                                  }
+                                                },
+                                                "branch_attrs": {
+                                                  "mutations": {
+                                                    "HA1": [
+                                                      "N84S",
+                                                      "K234E",
+                                                      "I264V"
+                                                    ]
+                                                  },
+                                                  "labels": {
+                                                    "aa": "HA1: N84S, K234E, I264V"
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "NODE_0000017",
+                            "node_attrs": {
+                              "div": 19.081421,
+                              "num_date": {
+                                "value": 2002.064
+                              }
+                            },
+                            "branch_attrs": {
+                              "mutations": {
+                                "HA1": [
+                                  "K140R"
+                                ],
+                                "HA2": [
+                                  "K143R"
+                                ]
+                              },
+                              "labels": {
+                                "aa": "HA1: K140R; HA2: K143R"
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "A/crow/Osaka/102/2004",
+                                "node_attrs": {
+                                  "div": 25.119234,
+                                  "num_date": {
+                                    "value": 2004.0
+                                  },
+                                  "clade": {
+                                    "value": "2.5"
+                                  }
+                                },
+                                "branch_attrs": {
+                                  "mutations": {
+                                    "HA1": [
+                                      "A86S",
+                                      "S123P",
+                                      "N240S",
+                                      "N309S",
+                                      "R327K"
+                                    ],
+                                    "HA2": [
+                                      "M149I"
+                                    ]
+                                  },
+                                  "labels": {
+                                    "aa": "HA1: A86S, S123P, N240S, N309S, R327K; HA2: M149I"
+                                  }
+                                }
+                              },
+                              {
+                                "name": "NODE_0000018",
+                                "node_attrs": {
+                                  "div": 26.131272,
+                                  "num_date": {
+                                    "value": 2004.41
+                                  }
+                                },
+                                "branch_attrs": {
+                                  "mutations": {
+                                    "HA1": [
+                                      "I71L",
+                                      "A83I",
+                                      "S155N",
+                                      "Y252N",
+                                      "A263T",
+                                      "M282I",
+                                      "R323G"
+                                    ]
+                                  },
+                                  "labels": {
+                                    "aa": "HA1: I71L, A83I, S155N, Y252N, A263T, M282I, R323G"
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "A/chicken/Omsk/14/05",
+                                    "node_attrs": {
+                                      "div": 27.132197,
+                                      "num_date": {
+                                        "value": 2005.0
+                                      },
+                                      "clade": {
+                                        "value": "2.2"
+                                      }
+                                    },
+                                    "branch_attrs": {
+                                      "mutations": {
+                                        "HA2": [
+                                          "T183I"
+                                        ]
+                                      },
+                                      "labels": {
+                                        "aa": "HA2: T183I"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "A/bar-headed_goose/Tibet/8/2006",
+                                    "node_attrs": {
+                                      "div": 33.176871,
+                                      "num_date": {
+                                        "value": 2006.0
+                                      },
+                                      "clade": {
+                                        "value": "2.2"
+                                      }
+                                    },
+                                    "branch_attrs": {
+                                      "mutations": {
+                                        "SigPep": [
+                                          "L8F"
+                                        ],
+                                        "HA1": [
+                                          "N154D",
+                                          "R189K",
+                                          "V210I",
+                                          "S217T",
+                                          "S223G",
+                                          "E227D"
+                                        ]
+                                      },
+                                      "labels": {
+                                        "aa": "SigPep: L8F; HA1: N154D, R189K, V210I, S217T, S223G, E227D"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "NODE_0000020",
+                                    "node_attrs": {
+                                      "div": 27.178294,
+                                      "num_date": {
+                                        "value": 2004.844
+                                      }
+                                    },
+                                    "branch_attrs": {
+                                      "mutations": {
+                                        "HA1": [
+                                          "P235S"
+                                        ]
+                                      },
+                                      "labels": {
+                                        "aa": "HA1: P235S"
+                                      }
+                                    },
+                                    "children": [
+                                      {
+                                        "name": "A/chicken/Egypt/Q1995D/2010",
+                                        "node_attrs": {
+                                          "div": 60.128082,
+                                          "num_date": {
+                                            "value": 2010.558
+                                          },
+                                          "clade": {
+                                            "value": "2.2.1.1a"
+                                          }
+                                        },
+                                        "branch_attrs": {
+                                          "mutations": {
+                                            "HA1": [
+                                              "L71P",
+                                              "P74S",
+                                              "K82R",
+                                              "I83T",
+                                              "D97N",
+                                              "N109K",
+                                              "H110R",
+                                              "Q115K",
+                                              "S123P",
+                                              "S129L",
+                                              "R140G",
+                                              "S141P",
+                                              "F144Y",
+                                              "A156T",
+                                              "R162E",
+                                              "N165H",
+                                              "A184E",
+                                              "A185E",
+                                              "L190I",
+                                              "Q192K",
+                                              "M226V",
+                                              "A238T",
+                                              "G272S",
+                                              "N275S",
+                                              "I282V",
+                                              "R327K"
+                                            ],
+                                            "HA2": [
+                                              "K38R",
+                                              "D57G",
+                                              "R75K",
+                                              "M202I",
+                                              "V203M",
+                                              "S207F"
+                                            ]
+                                          },
+                                          "labels": {
+                                            "aa": "HA1: L71P, P74S, K82R, I83T, D97N, N109K, H110R, Q115K, S123P, S129L, R140G, S141P, F144Y, A156T, R162E, N165H, A184E, A185E, L190I, Q192K, M226V, A238T, G272S, N275S, I282V, R327K; HA2: K38R, D57G, R75K, M202I, V203M, S207F"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "name": "NODE_0000021",
+                                        "node_attrs": {
+                                          "div": 29.671564,
+                                          "num_date": {
+                                            "value": 2007.147
+                                          }
+                                        },
+                                        "branch_attrs": {
+                                          "mutations": {
+                                            "HA1": [
+                                              "D43N",
+                                              "S120N",
+                                              "I151T"
+                                            ]
+                                          },
+                                          "labels": {
+                                            "aa": "HA1: D43N, S120N, I151T"
+                                          }
+                                        },
+                                        "children": [
+                                          {
+                                            "name": "A/duck/Egypt/0926-NLQP/2009",
+                                            "node_attrs": {
+                                              "div": 33.357631,
+                                              "num_date": {
+                                                "value": 2009.086
+                                              },
+                                              "clade": {
+                                                "value": "2.2.1"
+                                              }
+                                            },
+                                            "branch_attrs": {
+                                              "mutations": {
+                                                "SigPep": [
+                                                  "E2K",
+                                                  "S12T"
+                                                ],
+                                                "HA1": [
+                                                  "N154D"
+                                                ]
+                                              },
+                                              "labels": {
+                                                "aa": "SigPep: E2K, S12T; HA1: N154D"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "name": "NODE_0000022",
+                                            "node_attrs": {
+                                              "div": 35.804292,
+                                              "num_date": {
+                                                "value": 2010.332
+                                              }
+                                            },
+                                            "branch_attrs": {
+                                              "mutations": {
+                                                "SigPep": [
+                                                  "L13I"
+                                                ],
+                                                "HA1": [
+                                                  "N120D",
+                                                  "N155D",
+                                                  "R162K",
+                                                  "G272S",
+                                                  "R325K"
+                                                ]
+                                              },
+                                              "labels": {
+                                                "aa": "SigPep: L13I; HA1: N120D, N155D, R162K, G272S, R325K"
+                                              }
+                                            },
+                                            "children": [
+                                              {
+                                                "name": "A/chicken/Egypt/Q7630D/2013",
+                                                "node_attrs": {
+                                                  "div": 46.438321,
+                                                  "num_date": {
+                                                    "value": 2013.267
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.2.1.2"
+                                                  }
+                                                },
+                                                "branch_attrs": {
+                                                  "mutations": {
+                                                    "SigPep": [
+                                                      "K3N",
+                                                      "I10V"
+                                                    ],
+                                                    "HA1": [
+                                                      "V16I",
+                                                      "S123P",
+                                                      "P136S",
+                                                      "R140I",
+                                                      "T188A",
+                                                      "E301K"
+                                                    ],
+                                                    "HA2": [
+                                                      "S174N",
+                                                      "S207F"
+                                                    ]
+                                                  },
+                                                  "labels": {
+                                                    "aa": "SigPep: K3N, I10V; HA1: V16I, S123P, P136S, R140I, T188A, E301K; HA2: S174N, S207F"
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "name": "A/chicken/Egypt/B13826C/2017",
+                                                "node_attrs": {
+                                                  "div": 43.151478,
+                                                  "num_date": {
+                                                    "value": 2017.179
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.2.1.2"
+                                                  }
+                                                },
+                                                "branch_attrs": {
+                                                  "mutations": {
+                                                    "HA1": [
+                                                      "D120E",
+                                                      "E126D",
+                                                      "R140K",
+                                                      "R189K",
+                                                      "T195N",
+                                                      "K307R"
+                                                    ],
+                                                    "HA2": [
+                                                      "K43R",
+                                                      "R153K"
+                                                    ]
+                                                  },
+                                                  "labels": {
+                                                    "aa": "HA1: D120E, E126D, R140K, R189K, T195N, K307R; HA2: K43R, R153K"
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "NODE_0000023",
+                            "node_attrs": {
+                              "div": 22.099052,
+                              "num_date": {
+                                "value": 2002.839
+                              }
+                            },
+                            "branch_attrs": {
+                              "mutations": {
+                                "HA1": [
+                                  "K140N",
+                                  "S155N",
+                                  "E227D",
+                                  "L269V",
+                                  "R310K"
+                                ]
+                              },
+                              "labels": {
+                                "aa": "HA1: K140N, S155N, E227D, L269V, R310K"
+                              }
+                            },
+                            "children": [
+                              {
+                                "name": "NODE_0000024",
+                                "node_attrs": {
+                                  "div": 26.12719,
+                                  "num_date": {
+                                    "value": 2004.352
+                                  }
+                                },
+                                "branch_attrs": {
+                                  "mutations": {
+                                    "HA1": [
+                                      "S129L",
+                                      "A184E",
+                                      "V200I"
+                                    ],
+                                    "HA2": [
+                                      "A198V"
+                                    ]
+                                  },
+                                  "labels": {
+                                    "aa": "HA1: S129L, A184E, V200I; HA2: A198V"
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "A/goose/Guangxi/345/2005",
+                                    "node_attrs": {
+                                      "div": 27.112749,
+                                      "num_date": {
+                                        "value": 2005.0
+                                      },
+                                      "clade": {
+                                        "value": "2.3.2"
+                                      }
+                                    },
+                                    "branch_attrs": {
+                                      "mutations": {
+                                        "HA1": [
+                                          "N140S"
+                                        ]
+                                      },
+                                      "labels": {
+                                        "aa": "HA1: N140S"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "NODE_0000025",
+                                    "node_attrs": {
+                                      "div": 38.293649,
+                                      "num_date": {
+                                        "value": 2007.46
+                                      }
+                                    },
+                                    "branch_attrs": {
+                                      "mutations": {
+                                        "SigPep": [
+                                          "L8F",
+                                          "V11I"
+                                        ],
+                                        "HA1": [
+                                          "Q2H",
+                                          "D45N",
+                                          "R53K",
+                                          "S120D",
+                                          "N154D",
+                                          "R162K",
+                                          "M226I",
+                                          "A263T",
+                                          "K277R"
+                                        ],
+                                        "HA2": [
+                                          "V203M"
+                                        ]
+                                      },
+                                      "labels": {
+                                        "aa": "SigPep: L8F, V11I; HA1: Q2H, D45N, R53K, S120D, N154D, R162K, M226I, A263T, K277R; HA2: V203M"
+                                      }
+                                    },
+                                    "children": [
+                                      {
+                                        "name": "A/chicken/Laos/XDM006/2008",
+                                        "node_attrs": {
+                                          "div": 40.290963,
+                                          "num_date": {
+                                            "value": 2008.0
+                                          },
+                                          "clade": {
+                                            "value": "2.3.2.1"
+                                          }
+                                        },
+                                        "branch_attrs": {
+                                          "mutations": {
+                                            "SigPep": [
+                                              "K3R"
+                                            ],
+                                            "HA1": [
+                                              "K40R"
+                                            ]
+                                          },
+                                          "labels": {
+                                            "aa": "SigPep: K3R; HA1: K40R"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "name": "NODE_0000026",
+                                        "node_attrs": {
+                                          "div": 47.107607,
+                                          "num_date": {
+                                            "value": 2010.482
+                                          }
+                                        },
+                                        "branch_attrs": {
+                                          "mutations": {
+                                            "SigPep": [
+                                              "I10T"
+                                            ],
+                                            "HA1": [
+                                              "S133A",
+                                              "V174I",
+                                              "V219I",
+                                              "N240H",
+                                              "M282I"
+                                            ],
+                                            "HA2": [
+                                              "R127K",
+                                              "D145N",
+                                              "T183I"
+                                            ]
+                                          },
+                                          "labels": {
+                                            "aa": "SigPep: I10T; HA1: S133A, V174I, V219I, N240H, M282I; HA2: R127K, D145N, T183I"
+                                          }
+                                        },
+                                        "children": [
+                                          {
+                                            "name": "A/duck/Bangladesh/19097/2013",
+                                            "node_attrs": {
+                                              "div": 53.79146,
+                                              "num_date": {
+                                                "value": 2013.122
+                                              },
+                                              "clade": {
+                                                "value": "2.3.2.1a"
+                                              }
+                                            },
+                                            "branch_attrs": {
+                                              "mutations": {
+                                                "SigPep": [
+                                                  "T10A"
+                                                ],
+                                                "HA1": [
+                                                  "E14K",
+                                                  "D88G",
+                                                  "Q115R",
+                                                  "A156T"
+                                                ],
+                                                "HA2": [
+                                                  "K116R",
+                                                  "K169R"
+                                                ]
+                                              },
+                                              "labels": {
+                                                "aa": "SigPep: T10A; HA1: E14K, D88G, Q115R, A156T; HA2: K116R, K169R"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "name": "NODE_0000027",
+                                            "node_attrs": {
+                                              "div": 53.79129,
+                                              "num_date": {
+                                                "value": 2012.616
+                                              }
+                                            },
+                                            "branch_attrs": {
+                                              "mutations": {
+                                                "HA1": [
+                                                  "M66L",
+                                                  "I71T",
+                                                  "P136S",
+                                                  "S163G",
+                                                  "Q169R",
+                                                  "K266R"
+                                                ]
+                                              },
+                                              "labels": {
+                                                "aa": "HA1: M66L, I71T, P136S, S163G, Q169R, K266R"
+                                              }
+                                            },
+                                            "children": [
+                                              {
+                                                "name": "A/environment/Chongqing/20363/2013",
+                                                "node_attrs": {
+                                                  "div": 54.792328,
+                                                  "num_date": {
+                                                    "value": 2013.881
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.3.2.1f"
+                                                  }
+                                                },
+                                                "branch_attrs": {
+                                                  "mutations": {
+                                                    "SigPep": [
+                                                      "L13I"
+                                                    ]
+                                                  },
+                                                  "labels": {
+                                                    "aa": "SigPep: L13I"
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "name": "A/duck/Tegal/BBVW-1727-11/2012",
+                                                "node_attrs": {
+                                                  "div": 54.792328,
+                                                  "num_date": {
+                                                    "value": 2012.865
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.3.2.1g"
+                                                  }
+                                                },
+                                                "branch_attrs": {
+                                                  "mutations": {
+                                                    "SigPep": [
+                                                      "V5I"
+                                                    ]
+                                                  },
+                                                  "labels": {
+                                                    "aa": "SigPep: V5I"
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "name": "NODE_0000028",
+                                                "node_attrs": {
+                                                  "div": 56.786864,
+                                                  "num_date": {
+                                                    "value": 2013.411
+                                                  }
+                                                },
+                                                "branch_attrs": {
+                                                  "mutations": {
+                                                    "HA1": [
+                                                      "A86V",
+                                                      "D154N",
+                                                      "G163D"
+                                                    ]
+                                                  },
+                                                  "labels": {
+                                                    "aa": "HA1: A86V, D154N, G163D"
+                                                  }
+                                                },
+                                                "children": [
+                                                  {
+                                                    "name": "A/Cambodia/2302009/2023",
+                                                    "node_attrs": {
+                                                      "div": 72.021417,
+                                                      "num_date": {
+                                                        "value": 2023.147
+                                                      },
+                                                      "clade": {
+                                                        "value": "2.3.2.1a"
+                                                      }
+                                                    },
+                                                    "branch_attrs": {
+                                                      "mutations": {
+                                                        "SigPep": [
+                                                          "E2K"
+                                                        ],
+                                                        "HA1": [
+                                                          "Q15K",
+                                                          "H28Q",
+                                                          "N94S",
+                                                          "D120N",
+                                                          "A134T",
+                                                          "K212R",
+                                                          "S217P",
+                                                          "V257I",
+                                                          "E270K",
+                                                          "N309S",
+                                                          "R323K"
+                                                        ],
+                                                        "HA2": [
+                                                          "K43R",
+                                                          "K116R",
+                                                          "I181M"
+                                                        ]
+                                                      },
+                                                      "labels": {
+                                                        "aa": "SigPep: E2K; HA1: Q15K, H28Q, N94S, D120N, A134T, K212R, S217P, V257I, E270K, N309S, R323K; HA2: K43R, K116R, I181M"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "A/chicken/Guizhou/1153/2016",
+                                                    "node_attrs": {
+                                                      "div": 70.992823,
+                                                      "num_date": {
+                                                        "value": 2016.204
+                                                      },
+                                                      "clade": {
+                                                        "value": "2.3.2.1d"
+                                                      }
+                                                    },
+                                                    "branch_attrs": {
+                                                      "mutations": {
+                                                        "HA1": [
+                                                          "L66W",
+                                                          "T71I",
+                                                          "D88G",
+                                                          "L129M",
+                                                          "N140K",
+                                                          "N155D",
+                                                          "A156T",
+                                                          "I174V",
+                                                          "D183N",
+                                                          "E184K",
+                                                          "T188I",
+                                                          "R189T",
+                                                          "I282V"
+                                                        ],
+                                                        "HA2": [
+                                                          "I183V"
+                                                        ]
+                                                      },
+                                                      "labels": {
+                                                        "aa": "HA1: L66W, T71I, D88G, L129M, N140K, N155D, A156T, I174V, D183N, E184K, T188I, R189T, I282V; HA2: I183V"
+                                                      }
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "NODE_0000030",
+                                "node_attrs": {
+                                  "div": 23.102018,
+                                  "num_date": {
+                                    "value": 2003.102
+                                  }
+                                },
+                                "branch_attrs": {
+                                  "mutations": {
+                                    "HA1": [
+                                      "P181S"
+                                    ]
+                                  },
+                                  "labels": {
+                                    "aa": "HA1: P181S"
+                                  }
+                                },
+                                "children": [
+                                  {
+                                    "name": "A/duck/Hunan/70/2004",
+                                    "node_attrs": {
+                                      "div": 26.123901,
+                                      "num_date": {
+                                        "value": 2004.0
+                                      },
+                                      "clade": {
+                                        "value": "2.3.1"
+                                      }
+                                    },
+                                    "branch_attrs": {
+                                      "mutations": {
+                                        "HA1": [
+                                          "R216K"
+                                        ],
+                                        "HA2": [
+                                          "G8S",
+                                          "E11K"
+                                        ]
+                                      },
+                                      "labels": {
+                                        "aa": "HA1: R216K; HA2: G8S, E11K"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "NODE_0000031",
+                                    "node_attrs": {
+                                      "div": 28.125695,
+                                      "num_date": {
+                                        "value": 2004.68
+                                      }
+                                    },
+                                    "branch_attrs": {
+                                      "mutations": {
+                                        "HA1": [
+                                          "N140T",
+                                          "S141P",
+                                          "R189K",
+                                          "M282I",
+                                          "Q322L"
+                                        ]
+                                      },
+                                      "labels": {
+                                        "aa": "HA1: N140T, S141P, R189K, M282I, Q322L"
+                                      }
+                                    },
+                                    "children": [
+                                      {
+                                        "name": "A/chicken/Sichuan/81/2005",
+                                        "node_attrs": {
+                                          "div": 29.123331,
+                                          "num_date": {
+                                            "value": 2005.0
+                                          },
+                                          "clade": {
+                                            "value": "2.3.4"
+                                          }
+                                        },
+                                        "branch_attrs": {
+                                          "mutations": {
+                                            "HA1": [
+                                              "A156T"
+                                            ]
+                                          },
+                                          "labels": {
+                                            "aa": "HA1: A156T"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "name": "NODE_0000032",
+                                        "node_attrs": {
+                                          "div": 38.224929,
+                                          "num_date": {
+                                            "value": 2008.191
+                                          }
+                                        },
+                                        "branch_attrs": {
+                                          "mutations": {
+                                            "HA1": [
+                                              "K82R",
+                                              "S123P",
+                                              "Q169H",
+                                              "V174I",
+                                              "D183N",
+                                              "K218Q",
+                                              "S223R",
+                                              "N240H",
+                                              "A263T",
+                                              "R325K"
+                                            ]
+                                          },
+                                          "labels": {
+                                            "aa": "HA1: K82R, S123P, Q169H, V174I, D183N, K218Q, S223R, N240H, A263T, R325K"
+                                          }
+                                        },
+                                        "children": [
+                                          {
+                                            "name": "A/duck/Guangdong/wy24/2008",
+                                            "node_attrs": {
+                                              "div": 38.22646,
+                                              "num_date": {
+                                                "value": 2008.43
+                                              },
+                                              "clade": {
+                                                "value": "2.3.4"
+                                              }
+                                            },
+                                            "branch_attrs": {}
+                                          },
+                                          {
+                                            "name": "NODE_0000033",
+                                            "node_attrs": {
+                                              "div": 54.467097,
+                                              "num_date": {
+                                                "value": 2011.001
+                                              }
+                                            },
+                                            "branch_attrs": {
+                                              "mutations": {
+                                                "HA1": [
+                                                  "D45N",
+                                                  "R53K",
+                                                  "N72R",
+                                                  "F95L",
+                                                  "Q115L",
+                                                  "A127T",
+                                                  "S129L",
+                                                  "S133A",
+                                                  "N155D",
+                                                  "R162I",
+                                                  "H169R",
+                                                  "K189N",
+                                                  "Q192K",
+                                                  "I198V",
+                                                  "N273H"
+                                                ],
+                                                "HA2": [
+                                                  "M202I"
+                                                ]
+                                              },
+                                              "labels": {
+                                                "aa": "HA1: D45N, R53K, N72R, F95L, Q115L, A127T, S129L, S133A, N155D, R162I, H169R, K189N, Q192K, I198V, N273H; HA2: M202I"
+                                              }
+                                            },
+                                            "children": [
+                                              {
+                                                "name": "A/duck/Eastern_China/1111/2011",
+                                                "node_attrs": {
+                                                  "div": 54.467664,
+                                                  "num_date": {
+                                                    "value": 2011.001
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.3.4.4b"
+                                                  }
+                                                },
+                                                "branch_attrs": {}
+                                              },
+                                              {
+                                                "name": "NODE_0000034",
+                                                "node_attrs": {
+                                                  "div": 56.457721,
+                                                  "num_date": {
+                                                    "value": 2011.532
+                                                  }
+                                                },
+                                                "branch_attrs": {
+                                                  "mutations": {
+                                                    "HA1": [
+                                                      "D124N",
+                                                      "T140A"
+                                                    ]
+                                                  },
+                                                  "labels": {
+                                                    "aa": "HA1: D124N, T140A"
+                                                  }
+                                                },
+                                                "children": [
+                                                  {
+                                                    "name": "NODE_0000035",
+                                                    "node_attrs": {
+                                                      "div": 66.572037,
+                                                      "num_date": {
+                                                        "value": 2021.614
+                                                      }
+                                                    },
+                                                    "branch_attrs": {
+                                                      "mutations": {
+                                                        "SigPep": [
+                                                          "K3N"
+                                                        ],
+                                                        "HA1": [
+                                                          "N94S",
+                                                          "A185E",
+                                                          "V198I",
+                                                          "N236D",
+                                                          "E268G",
+                                                          "I282V"
+                                                        ],
+                                                        "HA2": [
+                                                          "V193A",
+                                                          "I202M",
+                                                          "V203M"
+                                                        ]
+                                                      },
+                                                      "labels": {
+                                                        "aa": "SigPep: K3N; HA1: N94S, A185E, V198I, N236D, E268G, I282V; HA2: V193A, I202M, V203M"
+                                                      }
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "name": "A/Washington/2148/2025",
+                                                        "node_attrs": {
+                                                          "div": 73.617863,
+                                                          "num_date": {
+                                                            "value": 2025.87
+                                                          },
+                                                          "clade": {
+                                                            "value": "2.3.4.4b"
+                                                          }
+                                                        },
+                                                        "branch_attrs": {
+                                                          "mutations": {
+                                                            "SigPep": [
+                                                              "I10T"
+                                                            ],
+                                                            "HA1": [
+                                                              "S120G",
+                                                              "E126D",
+                                                              "A156T",
+                                                              "I174V",
+                                                              "D236G",
+                                                              "A238S"
+                                                            ]
+                                                          },
+                                                          "labels": {
+                                                            "aa": "SigPep: I10T; HA1: S120G, E126D, A156T, I174V, D236G, A238S"
+                                                          }
+                                                        }
+                                                      },
+                                                      {
+                                                        "name": "A/duck/Bangladesh/51601/2021",
+                                                        "node_attrs": {
+                                                          "div": 67.573075,
+                                                          "num_date": {
+                                                            "value": 2021.966
+                                                          },
+                                                          "clade": {
+                                                            "value": "2.3.4.4b"
+                                                          }
+                                                        },
+                                                        "branch_attrs": {
+                                                          "mutations": {
+                                                            "HA1": [
+                                                              "N154D"
+                                                            ]
+                                                          },
+                                                          "labels": {
+                                                            "aa": "HA1: N154D"
+                                                          }
+                                                        }
+                                                      },
+                                                      {
+                                                        "name": "NODE_0000037",
+                                                        "node_attrs": {
+                                                          "div": 71.595487,
+                                                          "num_date": {
+                                                            "value": 2024.004
+                                                          }
+                                                        },
+                                                        "branch_attrs": {
+                                                          "mutations": {
+                                                            "HA1": [
+                                                              "L104M",
+                                                              "L115Q",
+                                                              "T195I",
+                                                              "V210A"
+                                                            ],
+                                                            "HA2": [
+                                                              "I181V"
+                                                            ]
+                                                          },
+                                                          "labels": {
+                                                            "aa": "HA1: L104M, L115Q, T195I, V210A; HA2: I181V"
+                                                          }
+                                                        },
+                                                        "children": [
+                                                          {
+                                                            "name": "A/bovine/Texas/43134/2024",
+                                                            "node_attrs": {
+                                                              "div": 72.596412,
+                                                              "num_date": {
+                                                                "value": 2024.212
+                                                              },
+                                                              "clade": {
+                                                                "value": "2.3.4.4b"
+                                                              }
+                                                            },
+                                                            "branch_attrs": {
+                                                              "mutations": {
+                                                                "HA1": [
+                                                                  "A156T"
+                                                                ]
+                                                              },
+                                                              "labels": {
+                                                                "aa": "HA1: A156T"
+                                                              }
+                                                            }
+                                                          },
+                                                          {
+                                                            "name": "A/bovine/Ohio/B24OSU439/2024",
+                                                            "node_attrs": {
+                                                              "div": 71.597018,
+                                                              "num_date": {
+                                                                "value": 2024.261
+                                                              },
+                                                              "clade": {
+                                                                "value": "2.3.4.4b"
+                                                              }
+                                                            },
+                                                            "branch_attrs": {}
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "NODE_0000038",
+                                                    "node_attrs": {
+                                                      "div": 60.105402,
+                                                      "num_date": {
+                                                        "value": 2012.211
+                                                      }
+                                                    },
+                                                    "branch_attrs": {
+                                                      "mutations": {
+                                                        "HA1": [
+                                                          "I114T",
+                                                          "V269M",
+                                                          "K325R"
+                                                        ]
+                                                      },
+                                                      "labels": {
+                                                        "aa": "HA1: I114T, V269M, K325R"
+                                                      }
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "name": "A/gyrfalcon/Washington/410886/2014",
+                                                        "node_attrs": {
+                                                          "div": 69.583601,
+                                                          "num_date": {
+                                                            "value": 2014.936
+                                                          },
+                                                          "clade": {
+                                                            "value": "2.3.4.4c"
+                                                          }
+                                                        },
+                                                        "branch_attrs": {
+                                                          "mutations": {
+                                                            "SigPep": [
+                                                              "I10V",
+                                                              "V11I"
+                                                            ],
+                                                            "HA1": [
+                                                              "E14K",
+                                                              "N94T",
+                                                              "K119R",
+                                                              "P141S",
+                                                              "T195D",
+                                                              "R223S"
+                                                            ],
+                                                            "HA2": [
+                                                              "Q161K",
+                                                              "R167I"
+                                                            ]
+                                                          },
+                                                          "labels": {
+                                                            "aa": "SigPep: I10V, V11I; HA1: E14K, N94T, K119R, P141S, T195D, R223S; HA2: Q161K, R167I"
+                                                          }
+                                                        }
+                                                      },
+                                                      {
+                                                        "name": "NODE_0000039",
+                                                        "node_attrs": {
+                                                          "div": 62.779034,
+                                                          "num_date": {
+                                                            "value": 2012.776
+                                                          }
+                                                        },
+                                                        "branch_attrs": {
+                                                          "mutations": {
+                                                            "HA1": [
+                                                              "A140M",
+                                                              "I162M"
+                                                            ]
+                                                          },
+                                                          "labels": {
+                                                            "aa": "HA1: A140M, I162M"
+                                                          }
+                                                        },
+                                                        "children": [
+                                                          {
+                                                            "name": "A/duck/Sichuan/NCXN11/2014",
+                                                            "node_attrs": {
+                                                              "div": 69.50819,
+                                                              "num_date": {
+                                                                "value": 2014.319
+                                                              },
+                                                              "clade": {
+                                                                "value": "2.3.4.4"
+                                                              }
+                                                            },
+                                                            "branch_attrs": {
+                                                              "mutations": {
+                                                                "SigPep": [
+                                                                  "V11I",
+                                                                  "V14T"
+                                                                ],
+                                                                "HA1": [
+                                                                  "K40R",
+                                                                  "A86S",
+                                                                  "N124D",
+                                                                  "A156T",
+                                                                  "S320N"
+                                                                ]
+                                                              },
+                                                              "labels": {
+                                                                "aa": "SigPep: V11I, V14T; HA1: K40R, A86S, N124D, A156T, S320N"
+                                                              }
+                                                            }
+                                                          },
+                                                          {
+                                                            "name": "NODE_0000040",
+                                                            "node_attrs": {
+                                                              "div": 65.425109,
+                                                              "num_date": {
+                                                                "value": 2013.635
+                                                              }
+                                                            },
+                                                            "branch_attrs": {
+                                                              "mutations": {
+                                                                "SigPep": [
+                                                                  "I10V"
+                                                                ],
+                                                                "HA1": [
+                                                                  "I151T"
+                                                                ],
+                                                                "HA2": [
+                                                                  "K38R"
+                                                                ]
+                                                              },
+                                                              "labels": {
+                                                                "aa": "SigPep: I10V; HA1: I151T; HA2: K38R"
+                                                              }
+                                                            },
+                                                            "children": [
+                                                              {
+                                                                "name": "NODE_0000041",
+                                                                "node_attrs": {
+                                                                  "div": 65.745918,
+                                                                  "num_date": {
+                                                                    "value": 2014.017
+                                                                  }
+                                                                },
+                                                                "branch_attrs": {
+                                                                  "mutations": {
+                                                                    "HA1": [
+                                                                      "K40R"
+                                                                    ]
+                                                                  },
+                                                                  "labels": {
+                                                                    "aa": "HA1: K40R"
+                                                                  }
+                                                                },
+                                                                "children": [
+                                                                  {
+                                                                    "name": "A/duck/Vietnam/LBM758/2014",
+                                                                    "node_attrs": {
+                                                                      "div": 67.749809,
+                                                                      "num_date": {
+                                                                        "value": 2014.782
+                                                                      },
+                                                                      "clade": {
+                                                                        "value": "2.3.4.4"
+                                                                      }
+                                                                    },
+                                                                    "branch_attrs": {
+                                                                      "mutations": {
+                                                                        "HA2": [
+                                                                          "N72K",
+                                                                          "A166S"
+                                                                        ]
+                                                                      },
+                                                                      "labels": {
+                                                                        "aa": "HA2: N72K, A166S"
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  {
+                                                                    "name": "A/turtledove/Wuhan/HKBJ43/2015",
+                                                                    "node_attrs": {
+                                                                      "div": 66.747013,
+                                                                      "num_date": {
+                                                                        "value": 2015.001
+                                                                      },
+                                                                      "clade": {
+                                                                        "value": "2.3.4.4"
+                                                                      }
+                                                                    },
+                                                                    "branch_attrs": {
+                                                                      "mutations": {
+                                                                        "HA2": [
+                                                                          "A198T"
+                                                                        ]
+                                                                      },
+                                                                      "labels": {
+                                                                        "aa": "HA2: A198T"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "name": "NODE_0000042",
+                                                                "node_attrs": {
+                                                                  "div": 67.103656,
+                                                                  "num_date": {
+                                                                    "value": 2013.977
+                                                                  }
+                                                                },
+                                                                "branch_attrs": {
+                                                                  "mutations": {
+                                                                    "HA1": [
+                                                                      "L129S"
+                                                                    ]
+                                                                  },
+                                                                  "labels": {
+                                                                    "aa": "HA1: L129S"
+                                                                  }
+                                                                },
+                                                                "children": [
+                                                                  {
+                                                                    "name": "A/wild_bird/Jiangxi/P237/2015",
+                                                                    "node_attrs": {
+                                                                      "div": 71.131114,
+                                                                      "num_date": {
+                                                                        "value": 2015.018
+                                                                      },
+                                                                      "clade": {
+                                                                        "value": "2.3.4.4e"
+                                                                      }
+                                                                    },
+                                                                    "branch_attrs": {
+                                                                      "mutations": {
+                                                                        "SigPep": [
+                                                                          "S16G"
+                                                                        ],
+                                                                        "HA1": [
+                                                                          "H37Y",
+                                                                          "R223S"
+                                                                        ],
+                                                                        "HA2": [
+                                                                          "S195G"
+                                                                        ]
+                                                                      },
+                                                                      "labels": {
+                                                                        "aa": "SigPep: S16G; HA1: H37Y, R223S; HA2: S195G"
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  {
+                                                                    "name": "A/duck/Bangladesh/43127/2020",
+                                                                    "node_attrs": {
+                                                                      "div": 90.664321,
+                                                                      "num_date": {
+                                                                        "value": 2020.072
+                                                                      },
+                                                                      "clade": {
+                                                                        "value": "2.3.4.4h"
+                                                                      }
+                                                                    },
+                                                                    "branch_attrs": {
+                                                                      "mutations": {
+                                                                        "SigPep": [
+                                                                          "I4T",
+                                                                          "V5I",
+                                                                          "L8F",
+                                                                          "A9S"
+                                                                        ],
+                                                                        "HA1": [
+                                                                          "R72S",
+                                                                          "L115Q",
+                                                                          "S120R",
+                                                                          "P123S",
+                                                                          "M140V",
+                                                                          "P141A",
+                                                                          "R169K",
+                                                                          "N183S",
+                                                                          "A185E",
+                                                                          "T188I",
+                                                                          "N189S",
+                                                                          "K234R",
+                                                                          "N236S",
+                                                                          "V257I",
+                                                                          "K259T",
+                                                                          "M269L",
+                                                                          "H273N"
+                                                                        ],
+                                                                        "HA2": [
+                                                                          "N72S",
+                                                                          "A198V"
+                                                                        ]
+                                                                      },
+                                                                      "labels": {
+                                                                        "aa": "SigPep: I4T, V5I, L8F, A9S; HA1: R72S, L115Q, S120R, P123S, M140V, P141A, R169K, N183S, A185E, T188I, N189S, K234R, N236S, V257I, K259T, M269L, H273N; HA2: N72S, A198V"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "root_sequence": {
+    "nuc": "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN",
+    "HA1": "DQICIGYHANNSTEQVDTIMEKNVTVTHAQDILEKTHNGKLCDLNGVKPLILRDCSVAGWLLGNPMCDEFINVPEWSYIVEKASPANDLCYPGDFNDYEELKHLLSRINHFEKIQIIPKSSWSNHDASSGVSSACPYLGKSSFFRNVVWLIKKNSAYPTIKRSYNNTNQEDLLVLWGIHHPNDAAEQTKLYQNPTTYISVGTSTLNQRLVPEIATRPKVNGQSGRIEFFWTILKPNDAINFESNGNFIAPEYAYKIVKKGDSTIMKSELEYGNCNTKCQTPMGAINSSMPFHNIHPLTIGECPKYVKSNRLVLATGLRNAPQRERRRKR",
+    "HA2": "GLFGAIAGFIEGGWQGMVDGWYGYHHSNEQGSGYAADKESTQKAIDGVTNKVNSIIDKMNTQFEAVGREFNNLERRIENLNKKMEDGFLDVWTYNAELLVLMENERTLDFHDSNVKNLYDKVRLQLRDNAKELGNGCFEFYHKCDNECMESVKNGTYDYPQYSEEARLNREEISGVKLESMGTYQILSIYSTVASSLALAIMVAGLSLWMCSNGSLQCRICI",
+    "SigPep": "MEKIVLLLAIVSLVKS"
+  }
+}
