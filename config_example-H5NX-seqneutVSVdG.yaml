@@ -1,0 +1,26 @@
+alignment: data/example-H5NX-seqneutVSVdG/alignment.fa
+
+outgroup: null
+
+site_numbering_map: data/example-H5NX-seqneutVSVdG/site_numbering_map.tsv
+
+metadata: data/example-H5NX-seqneutVSVdG/metadata.tsv
+
+color_by_metadata:
+  clade: {}
+
+titers: null
+
+display_defaults:
+  color_by: clade
+  distance_measure: num_date
+  branch_label: aa
+
+results_subdir: results/example-H5NX-seqneutVSVdG
+
+auspice_json: auspice/nextstrain-prot-titers-tree_example-H5NX-seqneutVSVdG.json
+
+addtl_export_args:
+  title: Example tree of with H5NX HA protein sequences
+  maintainers: Jesse Bloom <https://jbloomlab.org/>
+  build-url: https://github.com/jbloomlab/nextstrain-prot-titers-tree

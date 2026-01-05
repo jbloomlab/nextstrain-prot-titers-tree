@@ -20,8 +20,9 @@ To run the pipeline, you need to build a configuration pipeline that has the con
 
 Here are the configuration files for the examples included in this repository:
   - [config_example-flu-seqneut-2025.yaml](config_example-flu-seqneut-2025.yaml) which has an example configuration using the H3N2 data from [Kikawa et al (2025)](https://doi.org/10.1093/ve/veaf086) (which s stored in [data/example-flu-seqneut-2025/](data/example-flu-seqneut-2025/)).
+  - [config_example-H5NX-seqneutVSVdG.yaml](config_example-H5NX-seqneutVSVdG.yaml) which has an example configuration for a H5NX phylogenetic tree.
 
-You should build your own configuration file for your data mirroring those examples (the configuration files should be self-explanatory).
+You should build your own configuration file for your data mirroring those examples (the configuration files should be self-explanatory; particularly see the comments documenting [config_example-flu-seqneut-2025.yaml](config_example-flu-seqneut-2025.yaml)).
 
 Then run the pipeline with:
 
@@ -33,7 +34,8 @@ The tree-building step using IQ-TREE will use multiple threads (up to a maximum 
 
 The result of this is an auspice JSON file with the tree suitable for viewing either by uploading to [https://auspice.us/](https://auspice.us/) or via a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html).
 The auspice JSON trees for the examples are in [./auspice](auspice) and can be viewed as a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html) at:
-  - [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-flu-seqneut-2025](https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-flu-seqneut-2025).
+  - [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-flu-seqneut-2025](https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-flu-seqneut-2025)
+  - [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-H5NX-seqneutVSVdG](https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-H5NX-seqneutVSVdG).
 
 If the *metadata* in the configuration file has titers, they are displayed on the tree. 
 You can also show all amino-acid identities on the tree, color by amino-acid identity at a site, and show branch lengths either based on amino-acid mutations per site or time.

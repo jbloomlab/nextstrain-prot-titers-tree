@@ -1,0 +1,46 @@
+strain	clade	date	host	continent	country	passage_history	notes
+A/Goose/Guangdong/1/96	0	1996	Goose	Asia	China		
+A/Hong_Kong/483/1997	0	1997	Human	Asia	Hong Kong (SAR)	passaged in allantoic fluid	
+A/Vietnam/1203/2004	1	2004	Human	Asia	Vietnam	X	ferret sera strain
+A/duck/Hunan/795/2002	2.1.1	2002	Duck	Asia	China		
+A/chicken/Legok/2003	2.1.1	2003	Chicken	Asia	Indonesia		
+A/chicken/Central_Java/UT3091/2005	2.1.3	2005	Chicken	Asia	Indonesia		
+A/chicken/Bali/UT2091/2005	2.1.3.1	2005	Chicken	Asia	Indonesia		
+A/Chicken/Indonesia/Wates130/2005	2.1.3.1	2005	Chicken	Asia	Indonesia		
+A/Indonesia/5/2005	2.1.3.2	2005	Human	Asia	Indonesia	E1+MDCK1	ferret sera strain
+A/chicken/Omsk/14/05	2.2	2005	Chicken	Europe	Russian Federation		
+A/bar-headed_goose/Tibet/8/2006	2.2	2006	Goose	Asia	China		
+A/duck/Egypt/0926-NLQP/2009	2.2.1	2009-02	Duck	Africa	Egypt		
+A/chicken/Egypt/Q1995D/2010	2.2.1.1a	2010-07-23	Chicken	Africa	Egypt		ferret sera strain
+A/chicken/Egypt/Q7630D/2013	2.2.1.2	2013-04-08	Chicken	Africa	Egypt	Original	ferret sera strain
+A/chicken/Egypt/B13826C/2017	2.2.1.2	2017-03-07	Gallus gallus	Africa	Egypt	E1	ferret sera strain
+A/duck/Hunan/70/2004	2.3.1	2004	Duck	Asia	China		
+A/goose/Guangxi/345/2005	2.3.2	2005	Goose	Asia	China		
+A/chicken/Laos/XDM006/2008	2.3.2.1	2008	Chicken	Asia	Lao, People's Democratic Republic		
+A/duck/Bangladesh/19097/2013	2.3.2.1a	2013-02-14	Duck	Asia	Bangladesh		ferret sera strain
+A/Cambodia/2302009/2023	2.3.2.1a	2023-02-23	Human	Asia	Cambodia	e1	ferret sera strain
+A/chicken/Guizhou/1153/2016	2.3.2.1d	2016-03-15	Chicken	Asia	China		ferret sera strain
+A/environment/Chongqing/20363/2013	2.3.2.1f	2013-11-18	Environment	Asia	China	E1	
+A/duck/Tegal/BBVW-1727-11/2012	2.3.2.1g	2012-11-12	Duck	Asia	Indonesia	passage details: E1	
+A/chicken/Sichuan/81/2005	2.3.4	2005	Chicken	Asia	China		
+A/duck/Guangdong/wy24/2008	2.3.4	2008-06-06	Duck	Asia	China	E1	
+A/duck/Sichuan/NCXN11/2014	2.3.4.4	2014-04-27	Duck	Asia	China	passage details: egg	
+A/duck/Vietnam/LBM758/2014	2.3.4.4	2014-10-13	Anas platyrhynchos	Asia	Vietnam		
+A/turtledove/Wuhan/HKBJ43/2015	2.3.4.4	2015-01	Avian	Asia	China		
+A/duck/Eastern_China/1111/2011	2.3.4.4b	2011-01	Duck	Asia	China		
+A/duck/Bangladesh/51601/2021	2.3.4.4b	2021-12-19	Anas sp.	Asia	Bangladesh	E3	ferret sera strain
+A/bovine/Texas/43134/2024	2.3.4.4b	2024-03-18	Dairy cattle	North America	United States		ferret sera strain
+A/bovine/Ohio/B24OSU439/2024	2.3.4.4b	2024-04-05	Dairy cattle	North America	United States		ferret sera strain
+A/Washington/2148/2025	2.3.4.4b	2025-11-14	Human	North America	United States		
+A/gyrfalcon/Washington/410886/2014	2.3.4.4c	2014-12-08	FALCON	North America	United States		ferret sera strain
+A/wild_bird/Jiangxi/P237/2015	2.3.4.4e	2015-01-07	Other avian	Asia	China	Original	
+A/duck/Bangladesh/43127/2020	2.3.4.4h	2020-01-27	Anas sp.	Asia	Bangladesh		ferret sera strain
+A/crow/Osaka/102/2004	2.5	2004	Other avian	Asia	Japan		
+A/duck/Guangdong/01/2001	3	2001	Duck	Asia	China		
+A/goose/Fujian/bb/2003	4	2003	Goose	Asia	China		
+A/chicken/Viet_Nam/Ncvd8/2003	5	2003	Chicken	Asia	Vietnam	IR	
+A/swine/Anhui/ca/2004	6	2004	Swine	Asia	China		
+A/Beijing/01/2003	7	2003	Human	Asia	China		
+A/chicken/Shanxi/2/2006	7.2	2006	Chicken	Asia	China		
+A/Ck/HK/61.9/02	8	2002	Chicken	Asia	Hong Kong		
+A/goose/Guangdong/72/2004	9	2004	Goose	Asia	China		
