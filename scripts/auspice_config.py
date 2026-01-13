@@ -14,7 +14,9 @@ sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 n_scale_points = 8  # use this many points to define the color scale
 hex_colors = {
     cmap: [
-        matplotlib.colors.to_hex(matplotlib.colormaps[cmap].resampled(n_scale_points)(i))
+        matplotlib.colors.to_hex(
+            matplotlib.colormaps[cmap].resampled(n_scale_points)(i)
+        )
         for i in range(n_scale_points)
     ]
     for cmap in ["viridis", "viridis_r"]
@@ -46,8 +48,12 @@ for col, col_d in color_by_metadata.items():
         else:
             for_lims = metadata
         try:
-            minval = col_d["fixed_min"] if ("fixed_min" in col_d) else for_lims[col].min()
-            maxval = col_d["fixed_max"] if ("fixed_max" in col_d) else for_lims[col].max()
+            minval = (
+                col_d["fixed_min"] if ("fixed_min" in col_d) else for_lims[col].min()
+            )
+            maxval = (
+                col_d["fixed_max"] if ("fixed_max" in col_d) else for_lims[col].max()
+            )
         except TypeError as e:
             # Check for mixed types
             value_types = metadata[col].dropna().apply(type).unique()
