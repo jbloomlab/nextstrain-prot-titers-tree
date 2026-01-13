@@ -56,6 +56,23 @@ if n_metadata_strains != n_unique_strains:
         f"Duplicated strains:\n{dup_str}"
     )
 
+# Check strain names do not contain whitespace
+strains_w_space = metadata[metadata["strain"].str.contains(r"\s", regex=True)][
+    "strain"
+].tolist()
+if strains_w_space:
+    n_show = 10
+    shown = strains_w_space[:n_show]
+    more_msg = (
+        f" (showing first {n_show} of {len(strains_w_space)})"
+        if len(strains_w_space) > n_show
+        else ""
+    )
+    raise ValueError(
+        f"Found {len(strains_w_space)} strain names containing whitespace{more_msg}:\n  "
+        + "\n  ".join(shown)
+    )
+
 # Check metadata and alignment have same length and same strain names
 alignment_strains = {seq.id for seq in alignment}
 metadata_strains = set(metadata["strain"])
@@ -119,10 +136,6 @@ if metadata_strains != alignment_strains:
             f"Strains in alignment but not metadata{more_msg}:\n  " + "\n  ".join(shown)
         )
     raise ValueError("\n".join(err_parts))
-
-strains_w_space = metadata[metadata["strain"].str.contains(r"\s", regex=True)]["strain"]
-if len(strains_w_space):
-    raise ValueError(f"following strain names contain whitespace:\n{strains_w_space}")
 
 strain_renames = {
     orig: re.sub(r"[^A-Za-z0-9._\-/]", "_", orig.replace("'", ""))
