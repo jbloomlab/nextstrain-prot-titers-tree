@@ -145,7 +145,9 @@ for clade in trees["divtree"].find_clades(order="preorder"):
         if m:
             assert len(mut_pat.findall(comment)) == 1, comment
             muts = {}
-            for mut_str in m.group("mutations").split(","):
+            for mut_str in (
+                m.group("mutations").split(",") if m.group("mutations") else []
+            ):
                 m_match = re.fullmatch(
                     r"(?P<parent>[A-Z\-])(?P<site>\d+)(?P<mut>[A-Z\-])", mut_str
                 )
