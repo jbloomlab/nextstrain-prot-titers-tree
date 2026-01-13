@@ -33,32 +33,52 @@ if missing_cols:
 
 colorings = []
 for col, col_d in color_by_metadata.items():
-    if "exclude_auto_scale" in col_d:
-        if not isinstance(col_d["exclude_auto_scale"], list):
-            raise ValueError(
-                f"For column '{col}', 'exclude_auto_scale' must be a list, "
-                f"but got type {type(col_d['exclude_auto_scale']).__name__}: "
-                f"{col_d['exclude_auto_scale']}"
-            )
-        for_lims = metadata[~metadata["strain"].isin(col_d["exclude_auto_scale"])]
-    else:
-        for_lims = metadata
-    minval = col_d["fixed_min"] if ("fixed_min" in col_d) else for_lims[col].min()
-    maxval = col_d["fixed_max"] if ("fixed_max" in col_d) else for_lims[col].max()
-    if minval > metadata[col].min():
-        minprefix = "<="
-    else:
-        minprefix = ""
-    if maxval < metadata[col].max():
-        maxprefix = ">="
-    else:
-        maxprefix = ""
-    if maxval < minval:
-        raise ValueError(
-            f"For column '{col}', maximum value ({maxval}) is less than minimum value ({minval}). "
-            f"Check 'fixed_min' and 'fixed_max' settings or the data values in this column."
-        )
     if "scale_type" in col_d:
+        # Compute min/max for continuous color scales
+        if "exclude_auto_scale" in col_d:
+            if not isinstance(col_d["exclude_auto_scale"], list):
+                raise ValueError(
+                    f"For column '{col}', 'exclude_auto_scale' must be a list, "
+                    f"but got type {type(col_d['exclude_auto_scale']).__name__}: "
+                    f"{col_d['exclude_auto_scale']}"
+                )
+            for_lims = metadata[~metadata["strain"].isin(col_d["exclude_auto_scale"])]
+        else:
+            for_lims = metadata
+        try:
+            minval = col_d["fixed_min"] if ("fixed_min" in col_d) else for_lims[col].min()
+            maxval = col_d["fixed_max"] if ("fixed_max" in col_d) else for_lims[col].max()
+        except TypeError as e:
+            # Check for mixed types
+            value_types = metadata[col].dropna().apply(type).unique()
+            sample_values = metadata[col].dropna().head(10).tolist()
+            raise ValueError(
+                f"Failed to compute min/max for column '{col}' with scale_type '{col_d['scale_type']}'. "
+                f"The column contains mixed data types: {[t.__name__ for t in value_types]}. "
+                f"Columns with continuous scale_type must contain only numeric values. "
+                f"Sample values from column: {sample_values}. "
+                f"Check your data to ensure '{col}' contains only numeric values, not a mix of numbers and strings."
+            ) from e
+        except ValueError as e:
+            # Other value errors (e.g., empty column)
+            raise ValueError(
+                f"Failed to compute min/max for column '{col}' with scale_type '{col_d['scale_type']}'. "
+                f"Original error: {e}"
+            ) from e
+        if minval > metadata[col].min():
+            minprefix = "<="
+        else:
+            minprefix = ""
+        if maxval < metadata[col].max():
+            maxprefix = ">="
+        else:
+            maxprefix = ""
+        if maxval < minval:
+            raise ValueError(
+                f"For column '{col}', maximum value ({maxval}) is less than minimum value ({minval}). "
+                f"Check 'fixed_min' and 'fixed_max' settings or the data values in this column."
+            )
+
         scale_type = col_d["scale_type"]
         if scale_type.endswith(("_linear", "_log")):
             scale = scale_type.split("_")[-1]
