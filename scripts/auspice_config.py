@@ -14,7 +14,7 @@ sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 n_scale_points = 8  # use this many points to define the color scale
 hex_colors = {
     cmap: [
-        matplotlib.colors.to_hex(matplotlib.cm.get_cmap(cmap, n_scale_points)(i))
+        matplotlib.colors.to_hex(matplotlib.colormaps[cmap].resampled(n_scale_points)(i))
         for i in range(n_scale_points)
     ]
     for cmap in ["viridis", "viridis_r"]
