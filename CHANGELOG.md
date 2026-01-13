@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### version 1.3.0
++ The package is intended to allow multiple identical protein sequences (as long as they have identical strain names), but in practice that throw an error during parsing of branches with no mutations in `scripts/process_treetime_output.py`. Fixed this so now no error is thrown.
+
 ### version 1.2.0
 + Rename *example* to *example-flu-seqneut-2025* in the configuration, results, data, etc to allow multiple examples to be added; then added the second example *example-H5NX-seqneutVSVdG*.
 + Eliminate `ruff.toml` in favor of `pyproject.toml`
