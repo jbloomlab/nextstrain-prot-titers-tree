@@ -23,14 +23,23 @@ hex_colors = {
 
 metadata = pd.read_csv(snakemake.input.metadata, sep="\t")
 color_by_metadata = snakemake.params.color_by_metadata
-assert set(color_by_metadata).issubset(metadata.columns)
+missing_cols = set(color_by_metadata) - set(metadata.columns)
+if missing_cols:
+    raise ValueError(
+        f"The following columns from 'color_by_metadata' are not present in metadata: "
+        f"{sorted(missing_cols)}. "
+        f"Available metadata columns: {sorted(metadata.columns.tolist())}"
+    )
 
 colorings = []
 for col, col_d in color_by_metadata.items():
     if "exclude_auto_scale" in col_d:
-        assert isinstance(col_d["exclude_auto_scale"], list), col_d[
-            "exclude_auto_scale"
-        ]
+        if not isinstance(col_d["exclude_auto_scale"], list):
+            raise ValueError(
+                f"For column '{col}', 'exclude_auto_scale' must be a list, "
+                f"but got type {type(col_d['exclude_auto_scale']).__name__}: "
+                f"{col_d['exclude_auto_scale']}"
+            )
         for_lims = metadata[~metadata["strain"].isin(col_d["exclude_auto_scale"])]
     else:
         for_lims = metadata
@@ -44,7 +53,11 @@ for col, col_d in color_by_metadata.items():
         maxprefix = ">="
     else:
         maxprefix = ""
-    assert maxval >= minval, f"{maxval=}, {minval=}"
+    if maxval < minval:
+        raise ValueError(
+            f"For column '{col}', maximum value ({maxval}) is less than minimum value ({minval}). "
+            f"Check 'fixed_min' and 'fixed_max' settings or the data values in this column."
+        )
     if "scale_type" in col_d:
         scale_type = col_d["scale_type"]
         if scale_type.endswith(("_linear", "_log")):
@@ -67,12 +80,17 @@ for col, col_d in color_by_metadata.items():
             )
         else:
             raise ValueError(f"{scale=}")
-        assert scale_type in [
+        valid_scale_types = [
             "viridis_linear",
             "viridis_log",
             "viridis_r_linear",
             "viridis_r_log",
         ]
+        if scale_type not in valid_scale_types:
+            raise ValueError(
+                f"For column '{col}', scale_type '{scale_type}' is not valid. "
+                f"Valid options: {valid_scale_types}"
+            )
         legendlabels = [f"{v:.3g}" for v in scalevals]
         legendlabels[0] = minprefix + legendlabels[0]
         legendlabels[-1] = maxprefix + legendlabels[-1]

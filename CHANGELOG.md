@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### version 1.3.1
++ Make error messages in Python scripts more informative.
+
 ### version 1.3.0
 + The package is intended to allow multiple identical protein sequences (as long as they have identical strain names), but in practice that throw an error during parsing of branches with no mutations in `scripts/process_treetime_output.py`. Fixed this so now no error is thrown.
 

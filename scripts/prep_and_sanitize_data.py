@@ -12,7 +12,8 @@ import pandas as pd
 sys.stdout = sys.stderr = open(snakemake.log[0], "w")
 
 alignment = list(Bio.SeqIO.parse(snakemake.input.alignment, format="fasta"))
-assert len(alignment), "empty alignment in {snakemake.input.alignment=}"
+if not len(alignment):
+    raise ValueError(f"Empty alignment in {snakemake.input.alignment}")
 
 req_metadata_cols = {"strain", "date"}
 metadata = pd.read_csv(snakemake.input.metadata, sep="\t")
@@ -40,8 +41,84 @@ for strain, date in metadata[["strain", "date"]].itertuples(index=False):
     ):
         raise ValueError(f"Invalid {date=} for {strain=}")
 
-assert len(metadata) == len(alignment)
-assert len(metadata) == metadata["strain"].nunique()
+# Check metadata has unique strains
+n_metadata_strains = len(metadata)
+n_unique_strains = metadata["strain"].nunique()
+if n_metadata_strains != n_unique_strains:
+    duplicated = (
+        metadata[metadata["strain"].duplicated(keep=False)].groupby("strain").size()
+    )
+    dup_str = "\n".join(
+        f"  {strain}: {count} occurrences" for strain, count in duplicated.items()
+    )
+    raise ValueError(
+        f"Metadata has {n_metadata_strains} rows but only {n_unique_strains} unique strains.\n"
+        f"Duplicated strains:\n{dup_str}"
+    )
+
+# Check metadata and alignment have same length and same strain names
+alignment_strains = {seq.id for seq in alignment}
+metadata_strains = set(metadata["strain"])
+
+if len(metadata) != len(alignment):
+    only_metadata = metadata_strains - alignment_strains
+    only_alignment = alignment_strains - metadata_strains
+    err_parts = [
+        f"Metadata has {len(metadata)} strains but alignment has {len(alignment)} sequences."
+    ]
+    if only_metadata:
+        n_show = 10
+        shown = list(only_metadata)[:n_show]
+        more_msg = (
+            f" (showing first {n_show} of {len(only_metadata)})"
+            if len(only_metadata) > n_show
+            else ""
+        )
+        err_parts.append(
+            f"Strains in metadata but not alignment{more_msg}:\n  " + "\n  ".join(shown)
+        )
+    if only_alignment:
+        n_show = 10
+        shown = list(only_alignment)[:n_show]
+        more_msg = (
+            f" (showing first {n_show} of {len(only_alignment)})"
+            if len(only_alignment) > n_show
+            else ""
+        )
+        err_parts.append(
+            f"Strains in alignment but not metadata{more_msg}:\n  " + "\n  ".join(shown)
+        )
+    raise ValueError("\n".join(err_parts))
+
+if metadata_strains != alignment_strains:
+    only_metadata = metadata_strains - alignment_strains
+    only_alignment = alignment_strains - metadata_strains
+    err_parts = [
+        f"Metadata and alignment both have {len(metadata)} entries, but strain names differ."
+    ]
+    if only_metadata:
+        n_show = 10
+        shown = list(only_metadata)[:n_show]
+        more_msg = (
+            f" (showing first {n_show} of {len(only_metadata)})"
+            if len(only_metadata) > n_show
+            else ""
+        )
+        err_parts.append(
+            f"Strains in metadata but not alignment{more_msg}:\n  " + "\n  ".join(shown)
+        )
+    if only_alignment:
+        n_show = 10
+        shown = list(only_alignment)[:n_show]
+        more_msg = (
+            f" (showing first {n_show} of {len(only_alignment)})"
+            if len(only_alignment) > n_show
+            else ""
+        )
+        err_parts.append(
+            f"Strains in alignment but not metadata{more_msg}:\n  " + "\n  ".join(shown)
+        )
+    raise ValueError("\n".join(err_parts))
 
 strains_w_space = metadata[metadata["strain"].str.contains(r"\s", regex=True)]["strain"]
 if len(strains_w_space):
@@ -60,13 +137,23 @@ metadata.to_csv(snakemake.output.metadata, sep="\t", index=False)
 no_outgroup = snakemake.params.no_outgroup
 if not no_outgroup:
     outgroup = Bio.SeqIO.read(snakemake.input.outgroup, "fasta")
-    assert "outgroup" not in set(strain_renames.values())
+    if "outgroup" in set(strain_renames.values()):
+        raise ValueError(
+            'Strain name "outgroup" is reserved for the tree root. '
+            "One of your strains is being renamed to 'outgroup', which conflicts with this reserved name. "
+            f"Original strain names that map to 'outgroup': "
+            f"{[k for k, v in strain_renames.items() if v == 'outgroup']}"
+        )
 
 seqlengths = collections.defaultdict(int)
 with open(snakemake.output.alignment, "w") as f:
     for seq in alignment:
         strain = seq.id
-        assert strain in strain_renames, strain
+        if strain not in strain_renames:
+            raise ValueError(
+                f"Strain '{strain}' found in alignment but not in metadata. "
+                "This should not happen as earlier validation checked metadata and alignment have matching strains."
+            )
         strain = strain_renames[strain]
         seq = str(seq.seq)
         seqlengths[len(seq)] += 1
@@ -76,7 +163,14 @@ with open(snakemake.output.alignment, "w") as f:
         raise ValueError(f"Not all sequences same length in alignment:\n{seqlengths=}")
 
     if not no_outgroup:
-        assert len(outgroup) == list(seqlengths)[0], f"{seqlengths=}, {len(outgroup)=}"
+        alignment_length = list(seqlengths)[0]
+        outgroup_length = len(outgroup)
+        if outgroup_length != alignment_length:
+            raise ValueError(
+                f"Outgroup sequence length ({outgroup_length}) does not match "
+                f"alignment sequence length ({alignment_length}). "
+                f"All sequences must be the same length."
+            )
         f.write(f">outgroup\n{str(outgroup.seq)}\n")
 
 if snakemake.params.have_titers:
@@ -90,7 +184,19 @@ if snakemake.params.have_titers:
             f"strains w titers but not specified as part of tree: {extra_strains}"
         )
     titers = titers[titer_cols].assign(strain=lambda x: x["strain"].map(strain_renames))
-    assert set(titers["strain"]).issubset(metadata["strain"])
+    titers_not_in_metadata = set(titers["strain"]) - set(metadata["strain"])
+    if titers_not_in_metadata:
+        n_show = 10
+        shown = list(titers_not_in_metadata)[:n_show]
+        more_msg = (
+            f" (showing first {n_show} of {len(titers_not_in_metadata)})"
+            if len(titers_not_in_metadata) > n_show
+            else ""
+        )
+        raise ValueError(
+            f"Found {len(titers_not_in_metadata)} strains with titers that are not in metadata{more_msg}:\n  "
+            + "\n  ".join(shown)
+        )
     titers_per_strain_serum = (
         titers.groupby(["strain", "serum"])
         .aggregate(
