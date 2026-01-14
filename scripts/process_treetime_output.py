@@ -33,12 +33,23 @@ for treetype in ["timetree", "divtree"]:
     if not snakemake.params.no_outgroup:
         print("Removing outgroup")
         outgroup = [c for c in tree_w_outgroup.find_clades() if c.name == "outgroup"]
-        assert len(outgroup) == 1, "not one sequence called outgroup"
+        if len(outgroup) != 1:
+            raise ValueError(
+                f"Expected exactly 1 sequence named 'outgroup' in the tree, "
+                f"but found {len(outgroup)}. "
+                f"Check that the outgroup was correctly added to the alignment."
+            )
         # get common ancestor of all non-outgroup tips
         other_tips = [
             t for t in tree_w_outgroup.get_terminals() if t.name != "outgroup"
         ]
-        assert len(other_tips) + 1 == len(tree_w_outgroup.get_terminals())
+        n_total_tips = len(tree_w_outgroup.get_terminals())
+        n_other_tips = len(other_tips)
+        if n_other_tips + 1 != n_total_tips:
+            raise ValueError(
+                f"Expected {n_total_tips} total tips to equal {n_other_tips} non-outgroup tips + 1 outgroup tip. "
+                f"This indicates the tree structure is invalid or there are multiple sequences named 'outgroup'."
+            )
         root = tree_w_outgroup.common_ancestor(other_tips)
         root.branch_length = 0
         root.comment = None
@@ -49,7 +60,11 @@ for treetype in ["timetree", "divtree"]:
         tree = tree_w_outgroup
         root = tree.root
 
-    assert root.name, f"{root=} has no name"
+    if not root.name:
+        raise ValueError(
+            f"Tree root has no name. All clades (nodes and tips) in the tree must have names. "
+            f"Root object: {root}"
+        )
     if root_name:
         if root.name != root_name:
             raise ValueError("inconsistent root names between timetree and divtree")
@@ -73,7 +88,12 @@ root_seqs = [
     for s in Bio.SeqIO.parse(snakemake.input.ancestral_sequences, "fasta")
     if s.id == root_name
 ]
-assert len(root_seqs) == 1, f"{len(root_seqs)=} for {root.name=}"
+if len(root_seqs) != 1:
+    raise ValueError(
+        f"Expected exactly 1 ancestral sequence for root '{root_name}', "
+        f"but found {len(root_seqs)}. "
+        f"Each node in the tree must have exactly one corresponding ancestral sequence."
+    )
 refseq = str(root_seqs[0].seq)
 print(f"Using as the reference sequence {root_name}; {len(refseq)=}")
 
@@ -115,7 +135,12 @@ for protein, protein_df in site_numbering_map.groupby("protein"):
     protein_coords[protein] = {"start": 3 * protein_start - 2, "end": protein_end * 3}
     if protein_end - protein_start + 1 != len(protein_df):
         raise ValueError(f"{protein=} in site_numbering_map not sequential consecutive")
-    assert protein_start >= 1 and protein_end <= len(refseq)
+    if not (protein_start >= 1 and protein_end <= len(refseq)):
+        raise ValueError(
+            f"Protein '{protein}' has invalid coordinates in site_numbering_map. "
+            f"Start site: {protein_start}, End site: {protein_end}. "
+            f"Must be in range [1, {len(refseq)}] (reference sequence length)."
+        )
     refseq_proteins[protein] = refseq[protein_start - 1 : protein_end]
     if not (
         (protein_df["protein_site"].min() == 1)
@@ -137,13 +162,23 @@ aa_muts_nodes = {}
 mut_pat = re.compile(r'mutations="(?P<mutations>[^"]*)"')
 
 for clade in trees["divtree"].find_clades(order="preorder"):
-    assert clade.name, f"{clade=} has no name"
+    if not clade.name:
+        raise ValueError(
+            f"Tree contains a clade without a name. All clades (nodes and tips) in the tree "
+            f"must have names. Clade object: {clade}"
+        )
     # Biopython puts comment text on .comment for Nexus
     comment = getattr(clade, "comment", None)
     if comment:
         m = mut_pat.search(comment)
         if m:
-            assert len(mut_pat.findall(comment)) == 1, comment
+            mutation_annotations = mut_pat.findall(comment)
+            if len(mutation_annotations) != 1:
+                raise ValueError(
+                    f"Expected exactly one mutation annotation per clade, "
+                    f"but found {len(mutation_annotations)} in clade '{clade.name}'. "
+                    f"Comment: {comment}"
+                )
             muts = {}
             for mut_str in (
                 m.group("mutations").split(",") if m.group("mutations") else []
@@ -151,7 +186,13 @@ for clade in trees["divtree"].find_clades(order="preorder"):
                 m_match = re.fullmatch(
                     r"(?P<parent>[A-Z\-])(?P<site>\d+)(?P<mut>[A-Z\-])", mut_str
                 )
-                assert m_match, f"{mut_str=}\n{comment=}"
+                if not m_match:
+                    raise ValueError(
+                        f"Invalid mutation format '{mut_str}' in clade '{clade.name}'. "
+                        f"Expected format: single capital letter or '-', followed by digits, "
+                        f"followed by single capital letter or '-' (e.g., 'A123B' or 'A123-'). "
+                        f"Full comment: {comment}"
+                    )
                 site = int(m_match.group("site"))
                 if site not in site_numbering_map:
                     raise ValueError(
@@ -194,7 +235,12 @@ dates = (
     .to_dict(orient="index")
 )
 for clade in trees["divtree"].find_clades(order="preorder"):
-    assert clade.branch_length is not None, clade
+    if clade.branch_length is None:
+        raise ValueError(
+            f"Clade '{clade.name}' has no branch length. "
+            f"All clades in the tree must have branch lengths assigned by treetime. "
+            f"Clade object: {clade}"
+        )
     # Handle '--' values from treetime (dates that couldn't be inferred)
     num_date = dates[clade.name]["num_date"]
     if num_date == "--":

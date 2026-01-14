@@ -24,28 +24,53 @@ for clade in tree.find_clades(order="preorder"):
         name = str(clade.confidence)  # Nexus wrapper can parse names as confidence
     else:
         name = clade.name
-    assert name, f"{clade=} has no name"
+    if not name:
+        raise ValueError(
+            f"Tree contains a clade without a name. All clades (nodes and tips) in the tree "
+            f"must have names. Clade object: {clade}"
+        )
     muts = []
     # Biopython puts comment text on .comment for Nexus
     comment = getattr(clade, "comment", None)
     if comment:
         m = mut_pat.search(comment)
         if m:
-            assert len(mut_pat.findall(comment)) == 1
+            mutation_annotations = mut_pat.findall(comment)
+            if len(mutation_annotations) != 1:
+                raise ValueError(
+                    f"Expected exactly one mutation annotation per clade, "
+                    f"but found {len(mutation_annotations)} in clade '{name}'. "
+                    f"Comment: {comment}"
+                )
             muts = []
             for mut_str in m.group("mutations").split(","):
-                assert re.fullmatch(
-                    r"[A-Z]\d+[A-Z]", mut_str
-                ), f"{mut_str=}\n{comment=}"
+                if not re.fullmatch(r"[A-Z]\d+[A-Z]", mut_str):
+                    raise ValueError(
+                        f"Invalid mutation format '{mut_str}' in clade '{name}'. "
+                        f"Expected format: single capital letter, followed by digits, followed by single capital letter "
+                        f"(e.g., 'A123B'). Full comment: {comment}"
+                    )
                 muts.append(mut_str)
             if muts:
                 nodes.setdefault(name, {})["aa_muts"] = {gene: muts}
 
 # Get the root (reference) sequence
 root = tree.root
-assert tree.root == tree.common_ancestor(tree.get_terminals())
+common_anc = tree.common_ancestor(tree.get_terminals())
+if tree.root != common_anc:
+    raise ValueError(
+        f"Tree root is not the common ancestor of all terminal nodes. "
+        f"This indicates the tree structure is invalid. "
+        f"Root: {tree.root.name if tree.root.name else tree.root}, "
+        f"Common ancestor: {common_anc.name if common_anc.name else common_anc}"
+    )
 root_seqs = [s for s in ancestral_sequences if s.id == root.name]
-assert len(root_seqs) == 1, f"{len(root_seqs)=} for {root.name=}"
+if len(root_seqs) != 1:
+    raise ValueError(
+        f"Expected exactly 1 ancestral sequence for root '{root.name}', "
+        f"but found {len(root_seqs)}. "
+        f"Each node in the tree must have exactly one corresponding ancestral sequence."
+    )
 out = {"nodes": nodes, "reference": {gene: str(root_seqs[0].seq)}}
 
 with open(aa_muts, "w") as f:

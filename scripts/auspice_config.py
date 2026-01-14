@@ -14,7 +14,9 @@ sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 n_scale_points = 8  # use this many points to define the color scale
 hex_colors = {
     cmap: [
-        matplotlib.colors.to_hex(matplotlib.cm.get_cmap(cmap, n_scale_points)(i))
+        matplotlib.colors.to_hex(
+            matplotlib.colormaps[cmap].resampled(n_scale_points)(i)
+        )
         for i in range(n_scale_points)
     ]
     for cmap in ["viridis", "viridis_r"]
@@ -23,29 +25,66 @@ hex_colors = {
 
 metadata = pd.read_csv(snakemake.input.metadata, sep="\t")
 color_by_metadata = snakemake.params.color_by_metadata
-assert set(color_by_metadata).issubset(metadata.columns)
+missing_cols = set(color_by_metadata) - set(metadata.columns)
+if missing_cols:
+    raise ValueError(
+        f"The following columns from 'color_by_metadata' are not present in metadata: "
+        f"{sorted(missing_cols)}. "
+        f"Available metadata columns: {sorted(metadata.columns.tolist())}"
+    )
 
 colorings = []
 for col, col_d in color_by_metadata.items():
-    if "exclude_auto_scale" in col_d:
-        assert isinstance(col_d["exclude_auto_scale"], list), col_d[
-            "exclude_auto_scale"
-        ]
-        for_lims = metadata[~metadata["strain"].isin(col_d["exclude_auto_scale"])]
-    else:
-        for_lims = metadata
-    minval = col_d["fixed_min"] if ("fixed_min" in col_d) else for_lims[col].min()
-    maxval = col_d["fixed_max"] if ("fixed_max" in col_d) else for_lims[col].max()
-    if minval > metadata[col].min():
-        minprefix = "<="
-    else:
-        minprefix = ""
-    if maxval < metadata[col].max():
-        maxprefix = ">="
-    else:
-        maxprefix = ""
-    assert maxval >= minval, f"{maxval=}, {minval=}"
     if "scale_type" in col_d:
+        # Compute min/max for continuous color scales
+        if "exclude_auto_scale" in col_d:
+            if not isinstance(col_d["exclude_auto_scale"], list):
+                raise ValueError(
+                    f"For column '{col}', 'exclude_auto_scale' must be a list, "
+                    f"but got type {type(col_d['exclude_auto_scale']).__name__}: "
+                    f"{col_d['exclude_auto_scale']}"
+                )
+            for_lims = metadata[~metadata["strain"].isin(col_d["exclude_auto_scale"])]
+        else:
+            for_lims = metadata
+        try:
+            minval = (
+                col_d["fixed_min"] if ("fixed_min" in col_d) else for_lims[col].min()
+            )
+            maxval = (
+                col_d["fixed_max"] if ("fixed_max" in col_d) else for_lims[col].max()
+            )
+        except TypeError as e:
+            # Check for mixed types
+            value_types = metadata[col].dropna().apply(type).unique()
+            sample_values = metadata[col].dropna().head(10).tolist()
+            raise ValueError(
+                f"Failed to compute min/max for column '{col}' with scale_type '{col_d['scale_type']}'. "
+                f"The column contains mixed data types: {[t.__name__ for t in value_types]}. "
+                f"Columns with continuous scale_type must contain only numeric values. "
+                f"Sample values from column: {sample_values}. "
+                f"Check your data to ensure '{col}' contains only numeric values, not a mix of numbers and strings."
+            ) from e
+        except ValueError as e:
+            # Other value errors (e.g., empty column)
+            raise ValueError(
+                f"Failed to compute min/max for column '{col}' with scale_type '{col_d['scale_type']}'. "
+                f"Original error: {e}"
+            ) from e
+        if minval > metadata[col].min():
+            minprefix = "<="
+        else:
+            minprefix = ""
+        if maxval < metadata[col].max():
+            maxprefix = ">="
+        else:
+            maxprefix = ""
+        if maxval < minval:
+            raise ValueError(
+                f"For column '{col}', maximum value ({maxval}) is less than minimum value ({minval}). "
+                f"Check 'fixed_min' and 'fixed_max' settings or the data values in this column."
+            )
+
         scale_type = col_d["scale_type"]
         if scale_type.endswith(("_linear", "_log")):
             scale = scale_type.split("_")[-1]
@@ -67,12 +106,17 @@ for col, col_d in color_by_metadata.items():
             )
         else:
             raise ValueError(f"{scale=}")
-        assert scale_type in [
+        valid_scale_types = [
             "viridis_linear",
             "viridis_log",
             "viridis_r_linear",
             "viridis_r_log",
         ]
+        if scale_type not in valid_scale_types:
+            raise ValueError(
+                f"For column '{col}', scale_type '{scale_type}' is not valid. "
+                f"Valid options: {valid_scale_types}"
+            )
         legendlabels = [f"{v:.3g}" for v in scalevals]
         legendlabels[0] = minprefix + legendlabels[0]
         legendlabels[-1] = maxprefix + legendlabels[-1]
