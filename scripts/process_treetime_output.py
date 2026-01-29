@@ -13,14 +13,15 @@ import pandas as pd
 
 sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 
+set_branch_lengths_to_n_mutations = snakemake.params.set_branch_lengths_to_n_mutations
+
 print("Reading the trees.")
 trees = {}
 root_name = None
 for treetype in ["timetree", "divtree"]:
     intree = getattr(snakemake.input, f"{treetype}_w_outgroup")
-    outtree = getattr(snakemake.output, treetype)
 
-    print(f"Reading tree from {intree}, pruning outgroup, writing to {outtree}")
+    print(f"Reading tree from {intree}, pruning outgroup")
     tree_w_outgroup = Bio.Phylo.read(intree, "nexus")
 
     # Bio.Phylo can incorrectly parse names as confidence; fix that.
@@ -70,14 +71,6 @@ for treetype in ["timetree", "divtree"]:
             raise ValueError("inconsistent root names between timetree and divtree")
     else:
         root_name = root.name
-
-    # Remove comments from a version of tree to write.
-    tree_nocomments = copy.deepcopy(tree)
-    for clade in tree_nocomments.find_clades(order="preorder"):
-        clade.comment = None
-
-    # write tree without comments to Newick
-    Bio.Phylo.write(tree_nocomments, outtree, format="newick")
 
     # save tree w comments for later use
     trees[treetype] = tree
@@ -156,8 +149,11 @@ site_numbering_map = (
     .to_dict(orient="index")
 )
 
-# Get amino-acid mutations in JSON node format
+# Get amino-acid mutations in JSON node format and count mutations per node
+# This must be done BEFORE writing trees so we can optionally reset branch lengths
+print("Parsing mutations from divtree")
 aa_muts_nodes = {}
+node_mutation_counts = {}
 
 mut_pat = re.compile(r'mutations="(?P<mutations>[^"]*)"')
 
@@ -169,6 +165,7 @@ for clade in trees["divtree"].find_clades(order="preorder"):
         )
     # Biopython puts comment text on .comment for Nexus
     comment = getattr(clade, "comment", None)
+    n_mutations = 0
     if comment:
         m = mut_pat.search(comment)
         if m:
@@ -205,8 +202,31 @@ for clade in trees["divtree"].find_clades(order="preorder"):
                 muts[prot].append(
                     f"{m_match.group('parent')}{prot_site}{m_match.group('mut')}"
                 )
+                n_mutations += 1
             if muts:
                 aa_muts_nodes.setdefault(clade.name, {})["aa_muts"] = muts
+    node_mutation_counts[clade.name] = n_mutations
+
+# Now write the trees with optionally reset branch lengths
+print("Writing trees")
+for treetype in ["timetree", "divtree"]:
+    outtree = getattr(snakemake.output, treetype)
+    tree_nocomments = copy.deepcopy(trees[treetype])
+
+    # Remove comments
+    for clade in tree_nocomments.find_clades(order="preorder"):
+        clade.comment = None
+
+    # Optionally reset branch lengths to n_mutations / len(refseq) for divtree
+    if treetype == "divtree" and set_branch_lengths_to_n_mutations:
+        print(f"Resetting branch lengths to mutation counts for {treetype}")
+        for clade in tree_nocomments.find_clades(order="preorder"):
+            n_muts = node_mutation_counts.get(clade.name, 0)
+            clade.branch_length = n_muts / len(refseq) if len(refseq) > 0 else 0
+
+    # Write tree to Newick
+    print(f"Writing {treetype} to {outtree}")
+    Bio.Phylo.write(tree_nocomments, outtree, format="newick")
 
 
 # Write the amino-acid mutations and reference sequence
@@ -248,8 +268,15 @@ for clade in trees["divtree"].find_clades(order="preorder"):
     else:
         num_date = float(num_date)
 
+    # Use integer mutation count if set_branch_lengths_to_n_mutations is True,
+    # otherwise use the ML-optimized branch length from TreeTime
+    if set_branch_lengths_to_n_mutations:
+        mutation_length = node_mutation_counts.get(clade.name, 0)
+    else:
+        mutation_length = clade.branch_length * len(refseq)
+
     brlens_nodes[clade.name] = {
-        "mutation_length": clade.branch_length * len(refseq),
+        "mutation_length": mutation_length,
         "date": dates[clade.name]["date"],
         "num_date": num_date,
     }

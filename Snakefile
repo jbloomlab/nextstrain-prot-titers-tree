@@ -12,6 +12,9 @@ if titers == "null":
     titers = None
 outgroup = config["outgroup"]
 no_outgroup = (outgroup is None) or (outgroup == "null")
+set_branch_lengths_to_n_mutations = config.get(
+    "set_branch_lengths_to_n_mutations", True
+)
 color_by_metadata = config.get("color_by_metadata", {})
 metadata_columns = [
     c for c in config.get("metadata_columns", []) if c not in color_by_metadata
@@ -157,6 +160,7 @@ rule process_treetime_output:
         aa_muts=os.path.join(results_subdir, "aa_muts.json"),
     params:
         no_outgroup=no_outgroup,
+        set_branch_lengths_to_n_mutations=set_branch_lengths_to_n_mutations,
     log:
         os.path.join(log_subdir, "process_treetime_output.txt"),
     conda:
