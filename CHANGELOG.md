@@ -2,6 +2,7 @@
 
 ### version 1.5.0
 + Update `snakemake` to version 9.19 and `augur` to version 33.0.1.
++ Set `black` target version in `pyproject.toml`
 
 ### version 1.4.0
 + Set branch lengths to be exactly equal to number of amino-acid substitutions by rescaling IQ-TREE output to match `timetree` inferred number of mutation to (addresses [this issue](https://github.com/jbloomlab/nextstrain-prot-titers-tree/issues/12)). This behavior is implemented if the `set_branch_lengths_to_n_mutations` flag is either set to true in the configuration YAML or just excluded altogether. To get the old behavior, you must add to config: `set_branch_lengths_to_n_mutations: false`.

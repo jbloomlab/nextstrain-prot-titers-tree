@@ -8,7 +8,6 @@ import Bio.SeqIO
 
 import pandas as pd
 
-
 sys.stdout = sys.stderr = open(snakemake.log[0], "w")
 
 alignment = list(Bio.SeqIO.parse(snakemake.input.alignment, format="fasta"))

@@ -7,7 +7,6 @@ import numpy
 
 import pandas as pd
 
-
 sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 
 # get discrete colors spaced across color map

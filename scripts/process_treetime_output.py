@@ -10,7 +10,6 @@ import Bio.SeqIO
 
 import pandas as pd
 
-
 sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 
 set_branch_lengths_to_n_mutations = snakemake.params.set_branch_lengths_to_n_mutations
