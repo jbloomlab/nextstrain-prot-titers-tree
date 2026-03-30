@@ -7,7 +7,6 @@ import sys
 import Bio.Phylo
 import Bio.SeqIO
 
-
 sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 
 tree = Bio.Phylo.read(snakemake.input.annotated_tree, "nexus")

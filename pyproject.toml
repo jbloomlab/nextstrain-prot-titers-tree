@@ -1,6 +1,6 @@
 [project]
 name = "nextstrain-prot-titers-tree"
-version = "1.4.0"
+version = "1.5.0"
 description = "Build interactive nextstrain trees on protein sequences designed to display neutralization titer values"
 readme = "README.md"
 license = {text = "MIT"}
@@ -11,6 +11,9 @@ requires-python = ">=3.9"
 
 [project.urls]
 Repository = "https://github.com/jbloomlab/nextstrain-prot-titers-tree"
+
+[tool.black]
+target-version = ["py313"]
 
 [tool.ruff]
 builtins = [

@@ -3,7 +3,6 @@
 import os.path
 import shlex
 
-
 # get some variables from config
 results_subdir = config["results_subdir"]
 log_subdir = os.path.join(results_subdir, "logs")
@@ -42,6 +41,10 @@ rule prep_and_sanitize_data:
         **({"titers": os.path.join(results_subdir, "titers.tsv")} if titers else {}),
         alignment=os.path.join(results_subdir, "alignment_w_outgroup.fa"),
         metadata=os.path.join(results_subdir, "metadata.tsv"),
+    log:
+        os.path.join(log_subdir, "prep_and_sanitize_data.txt"),
+    conda:
+        "environment.yml"
     params:
         **(
             {
@@ -63,10 +66,6 @@ rule prep_and_sanitize_data:
         metadata_columns=metadata_columns,
         have_titers=bool(titers),
         no_outgroup=no_outgroup,
-    log:
-        os.path.join(log_subdir, "prep_and_sanitize_data.txt"),
-    conda:
-        "environment.yml"
     script:
         "scripts/prep_and_sanitize_data.py"
 
@@ -78,13 +77,13 @@ rule tree:
     output:
         outdir=directory(os.path.join(results_subdir, "iqtree")),
         raw_tree=os.path.join(results_subdir, "raw_tree.nwk"),
-    params:
-        prefix=lambda _, output: os.path.join(output.outdir, "tree"),
-    threads: 8
     log:
         os.path.join(log_subdir, "tree.txt"),
     conda:
         "environment.yml"
+    threads: 8
+    params:
+        prefix=lambda _, output: os.path.join(output.outdir, "tree"),
     shell:
         """
         mkdir -p {output.outdir} &> {log}
@@ -103,10 +102,10 @@ rule tree:
 
 rule treetime:
     """Use `treetime` to refine tree and get ancestral states / inferred mutations.
-    
-    We use `treetime` directly rather than `augur refine` and `augur ancestral`
-    in order to be able to process amino-acid sequences.
-    """
+
+We use `treetime` directly rather than `augur refine` and `augur ancestral`
+in order to be able to process amino-acid sequences.
+"""
     input:
         raw_tree=rules.tree.output.raw_tree,
         metadata=rules.prep_and_sanitize_data.output.metadata,
@@ -120,13 +119,13 @@ rule treetime:
             results_subdir, "treetime/ancestral_sequences.fasta"
         ),
         dates=os.path.join(results_subdir, "treetime/dates.tsv"),
-    params:
-        outdir=lambda _, output: os.path.dirname(output.timetree_w_outgroup),
-        reroot="least-squares" if no_outgroup else "outgroup",
     log:
         os.path.join(log_subdir, "treetime.txt"),
     conda:
         "environment.yml"
+    params:
+        outdir=lambda _, output: os.path.dirname(output.timetree_w_outgroup),
+        reroot="least-squares" if no_outgroup else "outgroup",
     shell:
         """
         treetime \
@@ -158,13 +157,13 @@ rule process_treetime_output:
         divtree=os.path.join(results_subdir, "divergence_tree.nwk"),
         brlens=os.path.join(results_subdir, "brlens.json"),
         aa_muts=os.path.join(results_subdir, "aa_muts.json"),
-    params:
-        no_outgroup=no_outgroup,
-        set_branch_lengths_to_n_mutations=set_branch_lengths_to_n_mutations,
     log:
         os.path.join(log_subdir, "process_treetime_output.txt"),
     conda:
         "environment.yml"
+    params:
+        no_outgroup=no_outgroup,
+        set_branch_lengths_to_n_mutations=set_branch_lengths_to_n_mutations,
     script:
         "scripts/process_treetime_output.py"
 
@@ -175,14 +174,14 @@ rule auspice_config:
         metadata=rules.prep_and_sanitize_data.output.metadata,
     output:
         auspice_config=os.path.join(results_subdir, "auspice_config.json"),
-    params:
-        display_defaults=config["display_defaults"],
-        color_by_metadata=color_by_metadata,
-        has_titers=bool(titers),
     log:
         os.path.join(log_subdir, "auspice_config.txt"),
     conda:
         "environment.yml"
+    params:
+        display_defaults=config["display_defaults"],
+        color_by_metadata=color_by_metadata,
+        has_titers=bool(titers),
     script:
         "scripts/auspice_config.py"
 
@@ -197,6 +196,10 @@ rule export:
         auspice_config=rules.auspice_config.output.auspice_config,
     output:
         auspice_json=auspice_json,
+    log:
+        os.path.join(log_subdir, "export.txt"),
+    conda:
+        "environment.yml"
     params:
         color_by_metadata_args=(
             "--color-by-metadata "
@@ -213,10 +216,6 @@ rule export:
         addtl_export_args=" ".join(
             f"--{k} {shlex.quote(v)}" for k, v in config["addtl_export_args"].items()
         ),
-    log:
-        os.path.join(log_subdir, "export.txt"),
-    conda:
-        "environment.yml"
     shell:
         """
         augur export v2 \
@@ -241,16 +240,16 @@ if titers:
             titers=rules.prep_and_sanitize_data.output.titers,
         output:
             auspice_titers_json=auspice_titers_json,
+        log:
+            os.path.join(log_subdir, "export_measurements.txt"),
+        conda:
+            "environment.yml"
         params:
             titer_col=titers["titer_col"],
             grouping_columns=titers["grouping_columns"],
             addtl_args=" ".join(
                 f"--{k} {shlex.quote(v)}" for k, v in titers["addtl_args"].items()
             ),
-        log:
-            os.path.join(log_subdir, "export_measurements.txt"),
-        conda:
-            "environment.yml"
         shell:
             """
             augur measurements export \

@@ -6,10 +6,10 @@ channels:
 
 dependencies:
   - black
-  - augur=32.1.0
+  - augur=33.0.1
   - pandas=2.3
   - pyarrow
   - python=3.13
   - snakefmt
-  - snakemake=9.14
+  - snakemake=9.19
   - ruff
