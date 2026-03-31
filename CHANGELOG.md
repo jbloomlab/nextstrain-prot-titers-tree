@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### version 1.5.1
++ Avoid bug that causes crashes for deep trees via a recursion limit for `copy.deepcopy` in a script; instead just make copy by writing and reading tree as new object.
+
 ### version 1.5.0
 + Update `snakemake` to version 9.19 and `augur` to version 33.0.1.
 + Set `black` target version in `pyproject.toml`
