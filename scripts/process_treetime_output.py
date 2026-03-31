@@ -1,9 +1,9 @@
 """Process results of ``treetime`` output to formats used by ``augur``."""
 
-import copy
 import json
 import re
 import sys
+from io import StringIO
 
 import Bio.Phylo
 import Bio.SeqIO
@@ -210,7 +210,13 @@ for clade in trees["divtree"].find_clades(order="preorder"):
 print("Writing trees")
 for treetype in ["timetree", "divtree"]:
     outtree = getattr(snakemake.output, treetype)
-    tree_nocomments = copy.deepcopy(trees[treetype])
+    # Copy the tree by writing to a string buffer and re-reading, rather than using
+    # copy.deepcopy, which hits RecursionError on large trees due to the deeply
+    # nested Biopython Clade structure exceeding Python's recursion limit.
+    buf = StringIO()
+    Bio.Phylo.write(trees[treetype], buf, format="newick")
+    buf.seek(0)
+    tree_nocomments = Bio.Phylo.read(buf, format="newick")
 
     # Remove comments
     for clade in tree_nocomments.find_clades(order="preorder"):
