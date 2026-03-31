@@ -189,6 +189,7 @@ rule auspice_config:
 rule export:
     """Export the JSON for visualization with `auspice`."""
     input:
+        config["addtl_export_args"].get("description", []),
         tree=rules.process_treetime_output.output.divtree,
         brlens=rules.process_treetime_output.output.brlens,
         aa_muts=rules.process_treetime_output.output.aa_muts,
