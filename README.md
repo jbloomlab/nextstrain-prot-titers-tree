@@ -13,8 +13,10 @@ This repository contains a `snakemake` pipeline developed by the [Bloom lab](htt
 The pipeline was designed for the use case of displaying high-throughput neutralization titer data for many strains similar to that described in [Kikawa et al (2025)](https://doi.org/10.1093/ve/veaf086).
 
 This pipeline is specifically tailored for the case where you want to build **protein** sequence trees and have the divergence indicate the number of amino-acid mutations separating different proteins.
-More standard `nextstrain augur` pipelines may be more appropriate if you are using nucleotide sequences, or want a more sophisticated substitution model.
-You should use then when you have a densely sampled phylogeny and you care about how many mutations separate proteins.
+Note that the tree inference and ancestral reconstruction use a simple Poisson substitution model where all amino-acid mutations are equally likely, not a JTT92 or more sophisticated model--this works well for densely sampled phylogenies where there is minimal ambiguity in ancestral reconstructions and you care mostly about how many mutations separate proteins.
+If you want more accurate phylogenetic reconstructions or have deep branches, using nucleotide models or other protein substitution models should be preferred---do **not** blindly use this pipeline without understanding this limitation.
+Gaps (deletions) are treated as a distinct character state, not as missing data, so that shared deletions are correctly assigned to their common ancestor rather than independently to each descendant.
+This is achieved by using a custom Poisson GTR model ([data/poisson_gap_aa.txt](data/poisson_gap_aa.txt)) with TreeTime's 22-state amino-acid alphabet (20 amino acids + stop + gap) rather than a built-in model like JTT92 which uses a 20-state alphabet that treats gaps as ambiguous.
 
 ## Configuring the pipeline, running it, and viewing the results
 To run the pipeline, you need to build a configuration pipeline that has the configuration for the tree (input data, display options, etc).

@@ -2,7 +2,7 @@
   "version": "v2",
   "meta": {
     "title": "Example tree of with H5NX HA protein sequences",
-    "updated": "2026-01-05",
+    "updated": "2026-04-08",
     "build_url": "https://github.com/jbloomlab/nextstrain-prot-titers-tree",
     "maintainers": [
       {
@@ -64,8 +64,8 @@
       }
     ],
     "filters": [
-      "continent",
-      "clade"
+      "clade",
+      "continent"
     ],
     "panels": [
       "tree",
@@ -85,7 +85,7 @@
       {
         "name": "A/Hong_Kong/483/1997",
         "node_attrs": {
-          "div": 7.089995,
+          "div": 8,
           "num_date": {
             "value": 1997.0
           },
@@ -95,11 +95,11 @@
           "country": {
             "value": "Hong Kong (SAR)"
           },
-          "continent": {
-            "value": "Asia"
-          },
           "clade": {
             "value": "0"
+          },
+          "continent": {
+            "value": "Asia"
           }
         },
         "branch_attrs": {
@@ -127,7 +127,7 @@
       {
         "name": "NODE_0000000",
         "node_attrs": {
-          "div": 4.03086,
+          "div": 2,
           "num_date": {
             "value": 1995.182
           }
@@ -147,18 +147,18 @@
           {
             "name": "A/Goose/Guangdong/1/96",
             "node_attrs": {
-              "div": 8.047318,
+              "div": 7,
               "num_date": {
                 "value": 1996.0
               },
               "country": {
                 "value": "China"
               },
-              "continent": {
-                "value": "Asia"
-              },
               "clade": {
                 "value": "0"
+              },
+              "continent": {
+                "value": "Asia"
               }
             },
             "branch_attrs": {
@@ -181,7 +181,7 @@
           {
             "name": "NODE_0000001",
             "node_attrs": {
-              "div": 8.047261,
+              "div": 6,
               "num_date": {
                 "value": 1998.801
               }
@@ -203,18 +203,18 @@
               {
                 "name": "A/duck/Guangdong/01/2001",
                 "node_attrs": {
-                  "div": 8.047828,
+                  "div": 7,
                   "num_date": {
                     "value": 2001.0
                   },
                   "country": {
                     "value": "China"
                   },
-                  "continent": {
-                    "value": "Asia"
-                  },
                   "clade": {
                     "value": "3"
+                  },
+                  "continent": {
+                    "value": "Asia"
                   }
                 },
                 "branch_attrs": {
@@ -231,7 +231,7 @@
               {
                 "name": "NODE_0000003",
                 "node_attrs": {
-                  "div": 11.052928,
+                  "div": 8,
                   "num_date": {
                     "value": 1999.526
                   }
@@ -251,18 +251,18 @@
                   {
                     "name": "A/goose/Fujian/bb/2003",
                     "node_attrs": {
-                      "div": 20.136665,
+                      "div": 17,
                       "num_date": {
                         "value": 2003.0
                       },
                       "country": {
                         "value": "China"
                       },
-                      "continent": {
-                        "value": "Asia"
-                      },
                       "clade": {
                         "value": "4"
+                      },
+                      "continent": {
+                        "value": "Asia"
                       }
                     },
                     "branch_attrs": {
@@ -289,7 +289,7 @@
                   {
                     "name": "NODE_0000004",
                     "node_attrs": {
-                      "div": 16.07944,
+                      "div": 13,
                       "num_date": {
                         "value": 2000.686
                       }
@@ -316,18 +316,18 @@
                       {
                         "name": "A/Beijing/01/2003",
                         "node_attrs": {
-                          "div": 23.136719,
+                          "div": 20,
                           "num_date": {
                             "value": 2003.0
                           },
                           "country": {
                             "value": "China"
                           },
-                          "continent": {
-                            "value": "Asia"
-                          },
                           "clade": {
                             "value": "7"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           }
                         },
                         "branch_attrs": {
@@ -352,18 +352,18 @@
                       {
                         "name": "A/chicken/Shanxi/2/2006",
                         "node_attrs": {
-                          "div": 37.559441,
+                          "div": 35,
                           "num_date": {
                             "value": 2006.0
                           },
                           "country": {
                             "value": "China"
                           },
-                          "continent": {
-                            "value": "Asia"
-                          },
                           "clade": {
                             "value": "7.2"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           }
                         },
                         "branch_attrs": {
@@ -379,6 +379,7 @@
                               "P74S",
                               "D88G",
                               "Q115K",
+                              "S129-",
                               "P136S",
                               "V147L",
                               "T159P",
@@ -397,7 +398,7 @@
                             ]
                           },
                           "labels": {
-                            "aa": "SigPep: S12G; HA1: I5V, D43N, R53K, I71L, P74S, D88G, Q115K, P136S, V147L, T159P, R162V, S163N, N165T, A185T, I188V, L190I, E242D, R325G; HA2: V48I, G182V"
+                            "aa": "SigPep: S12G; HA1: I5V, D43N, R53K, I71L, P74S, D88G, Q115K, S129-, P136S, V147L, T159P, R162V, S163N, N165T, A185T, I188V, L190I, E242D, R325G; HA2: V48I, G182V"
                           }
                         }
                       }
@@ -408,7 +409,7 @@
               {
                 "name": "NODE_0000005",
                 "node_attrs": {
-                  "div": 13.0702,
+                  "div": 11,
                   "num_date": {
                     "value": 2000.806
                   }
@@ -433,7 +434,7 @@
                   {
                     "name": "A/Vietnam/1203/2004",
                     "node_attrs": {
-                      "div": 23.164218,
+                      "div": 21,
                       "num_date": {
                         "value": 2004.0
                       },
@@ -443,11 +444,11 @@
                       "country": {
                         "value": "Vietnam"
                       },
-                      "continent": {
-                        "value": "Asia"
-                      },
                       "clade": {
                         "value": "1"
+                      },
+                      "continent": {
+                        "value": "Asia"
                       }
                     },
                     "branch_attrs": {
@@ -477,7 +478,7 @@
                   {
                     "name": "NODE_0000006",
                     "node_attrs": {
-                      "div": 14.071352,
+                      "div": 12,
                       "num_date": {
                         "value": 2001.968
                       }
@@ -496,18 +497,18 @@
                       {
                         "name": "A/goose/Guangdong/72/2004",
                         "node_attrs": {
-                          "div": 17.079798,
+                          "div": 15,
                           "num_date": {
                             "value": 2004.0
                           },
                           "country": {
                             "value": "China"
                           },
-                          "continent": {
-                            "value": "Asia"
-                          },
                           "clade": {
                             "value": "9"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           }
                         },
                         "branch_attrs": {
@@ -528,7 +529,7 @@
                       {
                         "name": "A/chicken/Viet_Nam/Ncvd8/2003",
                         "node_attrs": {
-                          "div": 17.080025,
+                          "div": 15,
                           "num_date": {
                             "value": 2003.0
                           },
@@ -538,11 +539,11 @@
                           "country": {
                             "value": "Vietnam"
                           },
-                          "continent": {
-                            "value": "Asia"
-                          },
                           "clade": {
                             "value": "5"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           }
                         },
                         "branch_attrs": {
@@ -561,18 +562,18 @@
                       {
                         "name": "A/swine/Anhui/ca/2004",
                         "node_attrs": {
-                          "div": 18.086223,
+                          "div": 16,
                           "num_date": {
                             "value": 2004.0
                           },
                           "country": {
                             "value": "China"
                           },
-                          "continent": {
-                            "value": "Asia"
-                          },
                           "clade": {
                             "value": "6"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           }
                         },
                         "branch_attrs": {
@@ -596,7 +597,7 @@
                   {
                     "name": "NODE_0000009",
                     "node_attrs": {
-                      "div": 14.071126,
+                      "div": 12,
                       "num_date": {
                         "value": 2001.04
                       }
@@ -615,18 +616,18 @@
                       {
                         "name": "A/Ck/HK/61.9/02",
                         "node_attrs": {
-                          "div": 14.071693,
+                          "div": 12,
                           "num_date": {
                             "value": 2002.0
                           },
                           "country": {
                             "value": "Hong Kong"
                           },
-                          "continent": {
-                            "value": "Asia"
-                          },
                           "clade": {
                             "value": "8"
+                          },
+                          "continent": {
+                            "value": "Asia"
                           }
                         },
                         "branch_attrs": {}
@@ -634,7 +635,7 @@
                       {
                         "name": "NODE_0000010",
                         "node_attrs": {
-                          "div": 17.080195,
+                          "div": 15,
                           "num_date": {
                             "value": 2001.473
                           }
@@ -655,7 +656,7 @@
                           {
                             "name": "NODE_0000011",
                             "node_attrs": {
-                              "div": 19.084483,
+                              "div": 17,
                               "num_date": {
                                 "value": 2001.827
                               }
@@ -675,18 +676,18 @@
                               {
                                 "name": "A/duck/Hunan/795/2002",
                                 "node_attrs": {
-                                  "div": 20.085862,
+                                  "div": 18,
                                   "num_date": {
                                     "value": 2002.0
                                   },
                                   "country": {
                                     "value": "China"
                                   },
-                                  "continent": {
-                                    "value": "Asia"
-                                  },
                                   "clade": {
                                     "value": "2.1.1"
+                                  },
+                                  "continent": {
+                                    "value": "Asia"
                                   }
                                 },
                                 "branch_attrs": {
@@ -703,7 +704,7 @@
                               {
                                 "name": "NODE_0000012",
                                 "node_attrs": {
-                                  "div": 22.093495,
+                                  "div": 20,
                                   "num_date": {
                                     "value": 2002.931
                                   }
@@ -726,18 +727,18 @@
                                   {
                                     "name": "A/chicken/Legok/2003",
                                     "node_attrs": {
-                                      "div": 22.094062,
+                                      "div": 20,
                                       "num_date": {
                                         "value": 2003.0
                                       },
                                       "country": {
                                         "value": "Indonesia"
                                       },
-                                      "continent": {
-                                        "value": "Asia"
-                                      },
                                       "clade": {
                                         "value": "2.1.1"
+                                      },
+                                      "continent": {
+                                        "value": "Asia"
                                       }
                                     },
                                     "branch_attrs": {}
@@ -745,7 +746,7 @@
                                   {
                                     "name": "NODE_0000013",
                                     "node_attrs": {
-                                      "div": 24.650949,
+                                      "div": 22,
                                       "num_date": {
                                         "value": 2003.402
                                       }
@@ -765,18 +766,18 @@
                                       {
                                         "name": "A/chicken/Central_Java/UT3091/2005",
                                         "node_attrs": {
-                                          "div": 29.434047,
+                                          "div": 27,
                                           "num_date": {
                                             "value": 2005.0
                                           },
                                           "country": {
                                             "value": "Indonesia"
                                           },
-                                          "continent": {
-                                            "value": "Asia"
-                                          },
                                           "clade": {
                                             "value": "2.1.3"
+                                          },
+                                          "continent": {
+                                            "value": "Asia"
                                           }
                                         },
                                         "branch_attrs": {
@@ -799,7 +800,7 @@
                                       {
                                         "name": "NODE_0000014",
                                         "node_attrs": {
-                                          "div": 28.356294,
+                                          "div": 26,
                                           "num_date": {
                                             "value": 2004.114
                                           }
@@ -823,7 +824,7 @@
                                           {
                                             "name": "A/Indonesia/5/2005",
                                             "node_attrs": {
-                                              "div": 31.365646,
+                                              "div": 29,
                                               "num_date": {
                                                 "value": 2005.0
                                               },
@@ -833,11 +834,11 @@
                                               "country": {
                                                 "value": "Indonesia"
                                               },
-                                              "continent": {
-                                                "value": "Asia"
-                                              },
                                               "clade": {
                                                 "value": "2.1.3.2"
+                                              },
+                                              "continent": {
+                                                "value": "Asia"
                                               }
                                             },
                                             "branch_attrs": {
@@ -856,7 +857,7 @@
                                           {
                                             "name": "NODE_0000015",
                                             "node_attrs": {
-                                              "div": 29.356708,
+                                              "div": 27,
                                               "num_date": {
                                                 "value": 2004.332
                                               }
@@ -875,18 +876,18 @@
                                               {
                                                 "name": "A/chicken/Bali/UT2091/2005",
                                                 "node_attrs": {
-                                                  "div": 31.360883,
+                                                  "div": 29,
                                                   "num_date": {
                                                     "value": 2005.0
                                                   },
                                                   "country": {
                                                     "value": "Indonesia"
                                                   },
-                                                  "continent": {
-                                                    "value": "Asia"
-                                                  },
                                                   "clade": {
                                                     "value": "2.1.3.1"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -906,18 +907,18 @@
                                               {
                                                 "name": "A/Chicken/Indonesia/Wates130/2005",
                                                 "node_attrs": {
-                                                  "div": 32.365721,
+                                                  "div": 30,
                                                   "num_date": {
                                                     "value": 2005.0
                                                   },
                                                   "country": {
                                                     "value": "Indonesia"
                                                   },
-                                                  "continent": {
-                                                    "value": "Asia"
-                                                  },
                                                   "clade": {
                                                     "value": "2.1.3.1"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -946,7 +947,7 @@
                           {
                             "name": "NODE_0000017",
                             "node_attrs": {
-                              "div": 19.081421,
+                              "div": 17,
                               "num_date": {
                                 "value": 2002.064
                               }
@@ -968,18 +969,18 @@
                               {
                                 "name": "A/crow/Osaka/102/2004",
                                 "node_attrs": {
-                                  "div": 25.119234,
+                                  "div": 23,
                                   "num_date": {
                                     "value": 2004.0
                                   },
                                   "country": {
                                     "value": "Japan"
                                   },
-                                  "continent": {
-                                    "value": "Asia"
-                                  },
                                   "clade": {
                                     "value": "2.5"
+                                  },
+                                  "continent": {
+                                    "value": "Asia"
                                   }
                                 },
                                 "branch_attrs": {
@@ -1003,7 +1004,7 @@
                               {
                                 "name": "NODE_0000018",
                                 "node_attrs": {
-                                  "div": 26.131272,
+                                  "div": 24,
                                   "num_date": {
                                     "value": 2004.41
                                   }
@@ -1028,18 +1029,18 @@
                                   {
                                     "name": "A/chicken/Omsk/14/05",
                                     "node_attrs": {
-                                      "div": 27.132197,
+                                      "div": 25,
                                       "num_date": {
                                         "value": 2005.0
                                       },
                                       "country": {
                                         "value": "Russian Federation"
                                       },
-                                      "continent": {
-                                        "value": "Europe"
-                                      },
                                       "clade": {
                                         "value": "2.2"
+                                      },
+                                      "continent": {
+                                        "value": "Europe"
                                       }
                                     },
                                     "branch_attrs": {
@@ -1056,18 +1057,18 @@
                                   {
                                     "name": "A/bar-headed_goose/Tibet/8/2006",
                                     "node_attrs": {
-                                      "div": 33.176871,
+                                      "div": 31,
                                       "num_date": {
                                         "value": 2006.0
                                       },
                                       "country": {
                                         "value": "China"
                                       },
-                                      "continent": {
-                                        "value": "Asia"
-                                      },
                                       "clade": {
                                         "value": "2.2"
+                                      },
+                                      "continent": {
+                                        "value": "Asia"
                                       }
                                     },
                                     "branch_attrs": {
@@ -1092,7 +1093,7 @@
                                   {
                                     "name": "NODE_0000020",
                                     "node_attrs": {
-                                      "div": 27.178294,
+                                      "div": 25,
                                       "num_date": {
                                         "value": 2004.844
                                       }
@@ -1111,18 +1112,18 @@
                                       {
                                         "name": "A/chicken/Egypt/Q1995D/2010",
                                         "node_attrs": {
-                                          "div": 60.128082,
+                                          "div": 57,
                                           "num_date": {
                                             "value": 2010.558
                                           },
                                           "country": {
                                             "value": "Egypt"
                                           },
-                                          "continent": {
-                                            "value": "Africa"
-                                          },
                                           "clade": {
                                             "value": "2.2.1.1a"
+                                          },
+                                          "continent": {
+                                            "value": "Africa"
                                           }
                                         },
                                         "branch_attrs": {
@@ -1172,7 +1173,7 @@
                                       {
                                         "name": "NODE_0000021",
                                         "node_attrs": {
-                                          "div": 29.671564,
+                                          "div": 29,
                                           "num_date": {
                                             "value": 2007.147
                                           }
@@ -1182,29 +1183,30 @@
                                             "HA1": [
                                               "D43N",
                                               "S120N",
+                                              "S129-",
                                               "I151T"
                                             ]
                                           },
                                           "labels": {
-                                            "aa": "HA1: D43N, S120N, I151T"
+                                            "aa": "HA1: D43N, S120N, S129-, I151T"
                                           }
                                         },
                                         "children": [
                                           {
                                             "name": "A/duck/Egypt/0926-NLQP/2009",
                                             "node_attrs": {
-                                              "div": 33.357631,
+                                              "div": 32,
                                               "num_date": {
                                                 "value": 2009.086
                                               },
                                               "country": {
                                                 "value": "Egypt"
                                               },
-                                              "continent": {
-                                                "value": "Africa"
-                                              },
                                               "clade": {
                                                 "value": "2.2.1"
+                                              },
+                                              "continent": {
+                                                "value": "Africa"
                                               }
                                             },
                                             "branch_attrs": {
@@ -1225,7 +1227,7 @@
                                           {
                                             "name": "NODE_0000022",
                                             "node_attrs": {
-                                              "div": 35.804292,
+                                              "div": 35,
                                               "num_date": {
                                                 "value": 2010.332
                                               }
@@ -1251,7 +1253,7 @@
                                               {
                                                 "name": "A/chicken/Egypt/Q7630D/2013",
                                                 "node_attrs": {
-                                                  "div": 46.438321,
+                                                  "div": 45,
                                                   "num_date": {
                                                     "value": 2013.267
                                                   },
@@ -1261,11 +1263,11 @@
                                                   "country": {
                                                     "value": "Egypt"
                                                   },
-                                                  "continent": {
-                                                    "value": "Africa"
-                                                  },
                                                   "clade": {
                                                     "value": "2.2.1.2"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Africa"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -1295,7 +1297,7 @@
                                               {
                                                 "name": "A/chicken/Egypt/B13826C/2017",
                                                 "node_attrs": {
-                                                  "div": 43.151478,
+                                                  "div": 43,
                                                   "num_date": {
                                                     "value": 2017.179
                                                   },
@@ -1305,11 +1307,11 @@
                                                   "country": {
                                                     "value": "Egypt"
                                                   },
-                                                  "continent": {
-                                                    "value": "Africa"
-                                                  },
                                                   "clade": {
                                                     "value": "2.2.1.2"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Africa"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -1345,7 +1347,7 @@
                           {
                             "name": "NODE_0000023",
                             "node_attrs": {
-                              "div": 22.099052,
+                              "div": 20,
                               "num_date": {
                                 "value": 2002.839
                               }
@@ -1368,7 +1370,7 @@
                               {
                                 "name": "NODE_0000024",
                                 "node_attrs": {
-                                  "div": 26.12719,
+                                  "div": 24,
                                   "num_date": {
                                     "value": 2004.352
                                   }
@@ -1392,18 +1394,18 @@
                                   {
                                     "name": "A/goose/Guangxi/345/2005",
                                     "node_attrs": {
-                                      "div": 27.112749,
+                                      "div": 25,
                                       "num_date": {
                                         "value": 2005.0
                                       },
                                       "country": {
                                         "value": "China"
                                       },
-                                      "continent": {
-                                        "value": "Asia"
-                                      },
                                       "clade": {
                                         "value": "2.3.2"
+                                      },
+                                      "continent": {
+                                        "value": "Asia"
                                       }
                                     },
                                     "branch_attrs": {
@@ -1420,7 +1422,7 @@
                                   {
                                     "name": "NODE_0000025",
                                     "node_attrs": {
-                                      "div": 38.293649,
+                                      "div": 36,
                                       "num_date": {
                                         "value": 2007.46
                                       }
@@ -1454,18 +1456,18 @@
                                       {
                                         "name": "A/chicken/Laos/XDM006/2008",
                                         "node_attrs": {
-                                          "div": 40.290963,
+                                          "div": 38,
                                           "num_date": {
                                             "value": 2008.0
                                           },
                                           "country": {
                                             "value": "Lao, People's Democratic Republic"
                                           },
-                                          "continent": {
-                                            "value": "Asia"
-                                          },
                                           "clade": {
                                             "value": "2.3.2.1"
+                                          },
+                                          "continent": {
+                                            "value": "Asia"
                                           }
                                         },
                                         "branch_attrs": {
@@ -1485,7 +1487,7 @@
                                       {
                                         "name": "NODE_0000026",
                                         "node_attrs": {
-                                          "div": 47.107607,
+                                          "div": 45,
                                           "num_date": {
                                             "value": 2010.482
                                           }
@@ -1516,18 +1518,18 @@
                                           {
                                             "name": "A/duck/Bangladesh/19097/2013",
                                             "node_attrs": {
-                                              "div": 53.79146,
+                                              "div": 52,
                                               "num_date": {
                                                 "value": 2013.122
                                               },
                                               "country": {
                                                 "value": "Bangladesh"
                                               },
-                                              "continent": {
-                                                "value": "Asia"
-                                              },
                                               "clade": {
                                                 "value": "2.3.2.1a"
+                                              },
+                                              "continent": {
+                                                "value": "Asia"
                                               }
                                             },
                                             "branch_attrs": {
@@ -1554,7 +1556,7 @@
                                           {
                                             "name": "NODE_0000027",
                                             "node_attrs": {
-                                              "div": 53.79129,
+                                              "div": 51,
                                               "num_date": {
                                                 "value": 2012.616
                                               }
@@ -1578,7 +1580,7 @@
                                               {
                                                 "name": "A/environment/Chongqing/20363/2013",
                                                 "node_attrs": {
-                                                  "div": 54.792328,
+                                                  "div": 52,
                                                   "num_date": {
                                                     "value": 2013.881
                                                   },
@@ -1588,11 +1590,11 @@
                                                   "country": {
                                                     "value": "China"
                                                   },
-                                                  "continent": {
-                                                    "value": "Asia"
-                                                  },
                                                   "clade": {
                                                     "value": "2.3.2.1f"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -1609,7 +1611,7 @@
                                               {
                                                 "name": "A/duck/Tegal/BBVW-1727-11/2012",
                                                 "node_attrs": {
-                                                  "div": 54.792328,
+                                                  "div": 52,
                                                   "num_date": {
                                                     "value": 2012.865
                                                   },
@@ -1619,11 +1621,11 @@
                                                   "country": {
                                                     "value": "Indonesia"
                                                   },
-                                                  "continent": {
-                                                    "value": "Asia"
-                                                  },
                                                   "clade": {
                                                     "value": "2.3.2.1g"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -1640,7 +1642,7 @@
                                               {
                                                 "name": "NODE_0000028",
                                                 "node_attrs": {
-                                                  "div": 56.786864,
+                                                  "div": 54,
                                                   "num_date": {
                                                     "value": 2013.411
                                                   }
@@ -1661,7 +1663,7 @@
                                                   {
                                                     "name": "A/Cambodia/2302009/2023",
                                                     "node_attrs": {
-                                                      "div": 72.021417,
+                                                      "div": 69,
                                                       "num_date": {
                                                         "value": 2023.147
                                                       },
@@ -1671,11 +1673,11 @@
                                                       "country": {
                                                         "value": "Cambodia"
                                                       },
-                                                      "continent": {
-                                                        "value": "Asia"
-                                                      },
                                                       "clade": {
                                                         "value": "2.3.2.1a"
+                                                      },
+                                                      "continent": {
+                                                        "value": "Asia"
                                                       }
                                                     },
                                                     "branch_attrs": {
@@ -1710,18 +1712,18 @@
                                                   {
                                                     "name": "A/chicken/Guizhou/1153/2016",
                                                     "node_attrs": {
-                                                      "div": 70.992823,
+                                                      "div": 68,
                                                       "num_date": {
                                                         "value": 2016.204
                                                       },
                                                       "country": {
                                                         "value": "China"
                                                       },
-                                                      "continent": {
-                                                        "value": "Asia"
-                                                      },
                                                       "clade": {
                                                         "value": "2.3.2.1d"
+                                                      },
+                                                      "continent": {
+                                                        "value": "Asia"
                                                       }
                                                     },
                                                     "branch_attrs": {
@@ -1763,7 +1765,7 @@
                               {
                                 "name": "NODE_0000030",
                                 "node_attrs": {
-                                  "div": 23.102018,
+                                  "div": 21,
                                   "num_date": {
                                     "value": 2003.102
                                   }
@@ -1782,18 +1784,18 @@
                                   {
                                     "name": "A/duck/Hunan/70/2004",
                                     "node_attrs": {
-                                      "div": 26.123901,
+                                      "div": 24,
                                       "num_date": {
                                         "value": 2004.0
                                       },
                                       "country": {
                                         "value": "China"
                                       },
-                                      "continent": {
-                                        "value": "Asia"
-                                      },
                                       "clade": {
                                         "value": "2.3.1"
+                                      },
+                                      "continent": {
+                                        "value": "Asia"
                                       }
                                     },
                                     "branch_attrs": {
@@ -1814,7 +1816,7 @@
                                   {
                                     "name": "NODE_0000031",
                                     "node_attrs": {
-                                      "div": 28.125695,
+                                      "div": 26,
                                       "num_date": {
                                         "value": 2004.68
                                       }
@@ -1837,18 +1839,18 @@
                                       {
                                         "name": "A/chicken/Sichuan/81/2005",
                                         "node_attrs": {
-                                          "div": 29.123331,
+                                          "div": 27,
                                           "num_date": {
                                             "value": 2005.0
                                           },
                                           "country": {
                                             "value": "China"
                                           },
-                                          "continent": {
-                                            "value": "Asia"
-                                          },
                                           "clade": {
                                             "value": "2.3.4"
+                                          },
+                                          "continent": {
+                                            "value": "Asia"
                                           }
                                         },
                                         "branch_attrs": {
@@ -1865,7 +1867,7 @@
                                       {
                                         "name": "NODE_0000032",
                                         "node_attrs": {
-                                          "div": 38.224929,
+                                          "div": 36,
                                           "num_date": {
                                             "value": 2008.191
                                           }
@@ -1893,7 +1895,7 @@
                                           {
                                             "name": "A/duck/Guangdong/wy24/2008",
                                             "node_attrs": {
-                                              "div": 38.22646,
+                                              "div": 36,
                                               "num_date": {
                                                 "value": 2008.43
                                               },
@@ -1903,11 +1905,11 @@
                                               "country": {
                                                 "value": "China"
                                               },
-                                              "continent": {
-                                                "value": "Asia"
-                                              },
                                               "clade": {
                                                 "value": "2.3.4"
+                                              },
+                                              "continent": {
+                                                "value": "Asia"
                                               }
                                             },
                                             "branch_attrs": {}
@@ -1915,7 +1917,7 @@
                                           {
                                             "name": "NODE_0000033",
                                             "node_attrs": {
-                                              "div": 54.467097,
+                                              "div": 52,
                                               "num_date": {
                                                 "value": 2011.001
                                               }
@@ -1951,18 +1953,18 @@
                                               {
                                                 "name": "A/duck/Eastern_China/1111/2011",
                                                 "node_attrs": {
-                                                  "div": 54.467664,
+                                                  "div": 52,
                                                   "num_date": {
                                                     "value": 2011.001
                                                   },
                                                   "country": {
                                                     "value": "China"
                                                   },
-                                                  "continent": {
-                                                    "value": "Asia"
-                                                  },
                                                   "clade": {
                                                     "value": "2.3.4.4b"
+                                                  },
+                                                  "continent": {
+                                                    "value": "Asia"
                                                   }
                                                 },
                                                 "branch_attrs": {}
@@ -1970,7 +1972,7 @@
                                               {
                                                 "name": "NODE_0000034",
                                                 "node_attrs": {
-                                                  "div": 56.457721,
+                                                  "div": 54,
                                                   "num_date": {
                                                     "value": 2011.532
                                                   }
@@ -1990,7 +1992,7 @@
                                                   {
                                                     "name": "NODE_0000035",
                                                     "node_attrs": {
-                                                      "div": 66.572037,
+                                                      "div": 64,
                                                       "num_date": {
                                                         "value": 2021.614
                                                       }
@@ -2022,18 +2024,18 @@
                                                       {
                                                         "name": "A/Washington/2148/2025",
                                                         "node_attrs": {
-                                                          "div": 73.617863,
+                                                          "div": 71,
                                                           "num_date": {
                                                             "value": 2025.87
                                                           },
                                                           "country": {
                                                             "value": "United States"
                                                           },
-                                                          "continent": {
-                                                            "value": "North America"
-                                                          },
                                                           "clade": {
                                                             "value": "2.3.4.4b"
+                                                          },
+                                                          "continent": {
+                                                            "value": "North America"
                                                           }
                                                         },
                                                         "branch_attrs": {
@@ -2058,7 +2060,7 @@
                                                       {
                                                         "name": "A/duck/Bangladesh/51601/2021",
                                                         "node_attrs": {
-                                                          "div": 67.573075,
+                                                          "div": 65,
                                                           "num_date": {
                                                             "value": 2021.966
                                                           },
@@ -2068,11 +2070,11 @@
                                                           "country": {
                                                             "value": "Bangladesh"
                                                           },
-                                                          "continent": {
-                                                            "value": "Asia"
-                                                          },
                                                           "clade": {
                                                             "value": "2.3.4.4b"
+                                                          },
+                                                          "continent": {
+                                                            "value": "Asia"
                                                           }
                                                         },
                                                         "branch_attrs": {
@@ -2089,7 +2091,7 @@
                                                       {
                                                         "name": "NODE_0000037",
                                                         "node_attrs": {
-                                                          "div": 71.595487,
+                                                          "div": 69,
                                                           "num_date": {
                                                             "value": 2024.004
                                                           }
@@ -2114,18 +2116,18 @@
                                                           {
                                                             "name": "A/bovine/Texas/43134/2024",
                                                             "node_attrs": {
-                                                              "div": 72.596412,
+                                                              "div": 70,
                                                               "num_date": {
                                                                 "value": 2024.212
                                                               },
                                                               "country": {
                                                                 "value": "United States"
                                                               },
-                                                              "continent": {
-                                                                "value": "North America"
-                                                              },
                                                               "clade": {
                                                                 "value": "2.3.4.4b"
+                                                              },
+                                                              "continent": {
+                                                                "value": "North America"
                                                               }
                                                             },
                                                             "branch_attrs": {
@@ -2142,18 +2144,18 @@
                                                           {
                                                             "name": "A/bovine/Ohio/B24OSU439/2024",
                                                             "node_attrs": {
-                                                              "div": 71.597018,
+                                                              "div": 69,
                                                               "num_date": {
                                                                 "value": 2024.261
                                                               },
                                                               "country": {
                                                                 "value": "United States"
                                                               },
-                                                              "continent": {
-                                                                "value": "North America"
-                                                              },
                                                               "clade": {
                                                                 "value": "2.3.4.4b"
+                                                              },
+                                                              "continent": {
+                                                                "value": "North America"
                                                               }
                                                             },
                                                             "branch_attrs": {}
@@ -2165,7 +2167,7 @@
                                                   {
                                                     "name": "NODE_0000038",
                                                     "node_attrs": {
-                                                      "div": 60.105402,
+                                                      "div": 57,
                                                       "num_date": {
                                                         "value": 2012.211
                                                       }
@@ -2186,18 +2188,18 @@
                                                       {
                                                         "name": "A/gyrfalcon/Washington/410886/2014",
                                                         "node_attrs": {
-                                                          "div": 69.583601,
+                                                          "div": 67,
                                                           "num_date": {
                                                             "value": 2014.936
                                                           },
                                                           "country": {
                                                             "value": "United States"
                                                           },
-                                                          "continent": {
-                                                            "value": "North America"
-                                                          },
                                                           "clade": {
                                                             "value": "2.3.4.4c"
+                                                          },
+                                                          "continent": {
+                                                            "value": "North America"
                                                           }
                                                         },
                                                         "branch_attrs": {
@@ -2227,7 +2229,7 @@
                                                       {
                                                         "name": "NODE_0000039",
                                                         "node_attrs": {
-                                                          "div": 62.779034,
+                                                          "div": 59,
                                                           "num_date": {
                                                             "value": 2012.776
                                                           }
@@ -2247,7 +2249,7 @@
                                                           {
                                                             "name": "A/duck/Sichuan/NCXN11/2014",
                                                             "node_attrs": {
-                                                              "div": 69.50819,
+                                                              "div": 66,
                                                               "num_date": {
                                                                 "value": 2014.319
                                                               },
@@ -2257,11 +2259,11 @@
                                                               "country": {
                                                                 "value": "China"
                                                               },
-                                                              "continent": {
-                                                                "value": "Asia"
-                                                              },
                                                               "clade": {
                                                                 "value": "2.3.4.4"
+                                                              },
+                                                              "continent": {
+                                                                "value": "Asia"
                                                               }
                                                             },
                                                             "branch_attrs": {
@@ -2286,7 +2288,7 @@
                                                           {
                                                             "name": "NODE_0000040",
                                                             "node_attrs": {
-                                                              "div": 65.425109,
+                                                              "div": 62,
                                                               "num_date": {
                                                                 "value": 2013.635
                                                               }
@@ -2311,7 +2313,7 @@
                                                               {
                                                                 "name": "NODE_0000041",
                                                                 "node_attrs": {
-                                                                  "div": 65.745918,
+                                                                  "div": 63,
                                                                   "num_date": {
                                                                     "value": 2014.017
                                                                   }
@@ -2330,18 +2332,18 @@
                                                                   {
                                                                     "name": "A/duck/Vietnam/LBM758/2014",
                                                                     "node_attrs": {
-                                                                      "div": 67.749809,
+                                                                      "div": 65,
                                                                       "num_date": {
                                                                         "value": 2014.782
                                                                       },
                                                                       "country": {
                                                                         "value": "Vietnam"
                                                                       },
-                                                                      "continent": {
-                                                                        "value": "Asia"
-                                                                      },
                                                                       "clade": {
                                                                         "value": "2.3.4.4"
+                                                                      },
+                                                                      "continent": {
+                                                                        "value": "Asia"
                                                                       }
                                                                     },
                                                                     "branch_attrs": {
@@ -2359,18 +2361,18 @@
                                                                   {
                                                                     "name": "A/turtledove/Wuhan/HKBJ43/2015",
                                                                     "node_attrs": {
-                                                                      "div": 66.747013,
+                                                                      "div": 64,
                                                                       "num_date": {
                                                                         "value": 2015.001
                                                                       },
                                                                       "country": {
                                                                         "value": "China"
                                                                       },
-                                                                      "continent": {
-                                                                        "value": "Asia"
-                                                                      },
                                                                       "clade": {
                                                                         "value": "2.3.4.4"
+                                                                      },
+                                                                      "continent": {
+                                                                        "value": "Asia"
                                                                       }
                                                                     },
                                                                     "branch_attrs": {
@@ -2389,7 +2391,7 @@
                                                               {
                                                                 "name": "NODE_0000042",
                                                                 "node_attrs": {
-                                                                  "div": 67.103656,
+                                                                  "div": 64,
                                                                   "num_date": {
                                                                     "value": 2013.977
                                                                   }
@@ -2397,18 +2399,19 @@
                                                                 "branch_attrs": {
                                                                   "mutations": {
                                                                     "HA1": [
+                                                                      "E126-",
                                                                       "L129S"
                                                                     ]
                                                                   },
                                                                   "labels": {
-                                                                    "aa": "HA1: L129S"
+                                                                    "aa": "HA1: E126-, L129S"
                                                                   }
                                                                 },
                                                                 "children": [
                                                                   {
                                                                     "name": "A/wild_bird/Jiangxi/P237/2015",
                                                                     "node_attrs": {
-                                                                      "div": 71.131114,
+                                                                      "div": 68,
                                                                       "num_date": {
                                                                         "value": 2015.018
                                                                       },
@@ -2418,11 +2421,11 @@
                                                                       "country": {
                                                                         "value": "China"
                                                                       },
-                                                                      "continent": {
-                                                                        "value": "Asia"
-                                                                      },
                                                                       "clade": {
                                                                         "value": "2.3.4.4e"
+                                                                      },
+                                                                      "continent": {
+                                                                        "value": "Asia"
                                                                       }
                                                                     },
                                                                     "branch_attrs": {
@@ -2446,18 +2449,18 @@
                                                                   {
                                                                     "name": "A/duck/Bangladesh/43127/2020",
                                                                     "node_attrs": {
-                                                                      "div": 90.664321,
+                                                                      "div": 87,
                                                                       "num_date": {
                                                                         "value": 2020.072
                                                                       },
                                                                       "country": {
                                                                         "value": "Bangladesh"
                                                                       },
-                                                                      "continent": {
-                                                                        "value": "Asia"
-                                                                      },
                                                                       "clade": {
                                                                         "value": "2.3.4.4h"
+                                                                      },
+                                                                      "continent": {
+                                                                        "value": "Asia"
                                                                       }
                                                                     },
                                                                     "branch_attrs": {
