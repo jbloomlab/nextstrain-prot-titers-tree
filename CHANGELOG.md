@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### version 1.6.0
++ Previously gaps (deletions) were labeled and counted as mutations on tip nodes, but not inferred on ancestral nodes. Change from using `--gtr jtt92` for `treetime` to a custom model that includes gaps so that they are inferred and counted like amino-acid mutations.
+
 #### version 1.5.1
 + Avoid bug that causes crashes for deep trees via a recursion limit for `copy.deepcopy` in a script; instead just make copy by writing and reading tree as new object.
 + Make sure snakemake pipeline correctly tracks as input any `description` in `addtl_export_args`.
