@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### version 1.6.1
++ If using a log scale and there is a 0 value, set minimum value of scale to smallest nonzero value; otherwise this was creating invalid JSONs since the scale minimum was NaN.
+
 ### version 1.6.0
 + Previously gaps (deletions) were labeled and counted as mutations on tip nodes, but not inferred on ancestral nodes. Change from using `--gtr jtt92` for `treetime` to a custom model that includes gaps so that they are inferred and counted like amino-acid mutations.
 
