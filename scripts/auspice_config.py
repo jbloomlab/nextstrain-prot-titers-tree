@@ -97,6 +97,15 @@ for col, col_d in color_by_metadata.items():
         if scale == "linear":
             scalevals = numpy.linspace(minval, maxval, num=len(hexcols))
         elif scale == "log":
+            if minval <= 0:
+                positive_vals = for_lims[col][for_lims[col] > 0]
+                if positive_vals.empty:
+                    raise ValueError(
+                        f"For column '{col}' with log scale, all values are <= 0. "
+                        f"Cannot compute a log scale with no positive values."
+                    )
+                minval = positive_vals.min()
+                minprefix = "<="
             scalevals = numpy.logspace(
                 numpy.log(minval) / numpy.log(2),
                 numpy.log(maxval) / numpy.log(2),
