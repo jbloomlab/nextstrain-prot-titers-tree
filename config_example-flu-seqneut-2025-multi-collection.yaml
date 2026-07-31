@@ -1,0 +1,69 @@
+# Example configuration file for `nexstrain-prot-titers-tree` showing several
+# collections of titers in the measurements panel. It uses the same data as
+# `config_example-flu-seqneut-2025.yaml`, but specifies `titers` as a list rather than a
+# single mapping. Each collection gets its own value column, title, and x-axis label, and
+# only one is shown at a time (the panel has a selector), so collections are the way to
+# display titers that are not on a common scale (eg, serum dilutions and antibody
+# concentrations). Here the two collections are just the same titers logarithmically and
+# linearly scaled.
+
+alignment: data/example-flu-seqneut-2025/alignment.fa
+
+outgroup: data/example-flu-seqneut-2025/outgroup.fa
+
+site_numbering_map: data/example-flu-seqneut-2025/site_numbering_map.tsv
+
+metadata: data/example-flu-seqneut-2025/metadata.tsv
+
+color_by_metadata:
+  subclade: {}
+  median_titer_All_sera:
+    scale_type: viridis_r_log
+    title: median titer (all sera)
+
+color_by_metadata_file: null
+
+metadata_columns:
+  - strain_type
+
+# a list of collections rather than a single mapping. Each collection needs a unique
+# `key`, which names it in the panel, and at most one can be the `default` that is
+# displayed when the panel is opened (otherwise the first collection is displayed).
+titers:
+  - key: log2_titers
+    default: true
+    titers_tsv: data/example-flu-seqneut-2025/titers.tsv
+    titer_col: log2_titer
+    grouping_columns:
+      - serum
+      - group
+    addtl_args:
+      title: serum neutralizing titers (log2 scale)
+      x-axis-label: log2 titer
+      measurements-display: raw
+  - key: linear_titers
+    titers_tsv: data/example-flu-seqneut-2025/titers.tsv
+    titer_col: titer
+    grouping_columns:
+      - serum
+      - group
+    addtl_args:
+      title: serum neutralizing titers (linear scale)
+      x-axis-label: titer
+      measurements-display: raw
+
+display_defaults:
+  color_by: median_titer_All_sera
+  distance_measure: div
+  branch_label: aa
+
+results_subdir: results/example-flu-seqneut-2025-multi-collection
+
+# this example is only run as a test, so its JSON is not kept with the other examples in
+# ./auspice for viewing as a Nextstrain Community Build
+auspice_json: results/example-flu-seqneut-2025-multi-collection/auspice.json
+
+addtl_export_args:
+  title: Example tree for nextstrain-prot-titers-tree with several collections of titers
+  maintainers: Jesse Bloom <https://jbloomlab.org/>
+  build-url: https://github.com/jbloomlab/nextstrain-prot-titers-tree

@@ -7,6 +7,8 @@ import numpy
 
 import pandas as pd
 
+import yaml
+
 sys.stderr = sys.stdout = open(snakemake.log[0], "w")
 
 # get discrete colors spaced across color map
@@ -23,7 +25,8 @@ hex_colors = {
 
 
 metadata = pd.read_csv(snakemake.input.metadata, sep="\t")
-color_by_metadata = snakemake.params.color_by_metadata
+with open(snakemake.input.resolved_color_by_metadata) as f:
+    color_by_metadata = yaml.safe_load(f)["color_by_metadata"]
 missing_cols = set(color_by_metadata) - set(metadata.columns)
 if missing_cols:
     raise ValueError(
@@ -137,7 +140,9 @@ for col, col_d in color_by_metadata.items():
         }
     else:
         color_scale = {}
-    colorings.append({"key": col} | color_scale)
+    # without a 'title', auspice labels the coloring with the column name itself
+    title = {"title": col_d["title"]} if "title" in col_d else {}
+    colorings.append({"key": col} | title | color_scale)
 
 json_d = {
     "display_defaults": snakemake.params.display_defaults,
