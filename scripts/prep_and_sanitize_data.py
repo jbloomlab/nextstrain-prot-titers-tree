@@ -8,7 +8,12 @@ import Bio.SeqIO
 
 import pandas as pd
 
+import yaml
+
 sys.stdout = sys.stderr = open(snakemake.log[0], "w")
+
+with open(snakemake.input.resolved_color_by_metadata) as f:
+    resolved_color_by_metadata = yaml.safe_load(f)
 
 alignment = list(Bio.SeqIO.parse(snakemake.input.alignment, format="fasta"))
 if not len(alignment):
@@ -21,7 +26,7 @@ if not req_metadata_cols.issubset(metadata.columns):
     raise ValueError(f"{metadata.columns=} lacks {req_metadata_cols=}")
 
 for col_set in ["color_by_metadata", "metadata_columns"]:
-    cols = snakemake.params[col_set]
+    cols = list(resolved_color_by_metadata[col_set])
     if len(cols) != len(set(cols)):
         raise ValueError(f"Duplicate entries in `{col_set}`: {cols}")
     if req_metadata_cols.intersection(cols):
@@ -175,7 +180,7 @@ with open(snakemake.output.alignment, "w") as f:
         raise ValueError(f"Not all sequences same length in alignment:\n{seqlengths=}")
 
     if not no_outgroup:
-        alignment_length = list(seqlengths)[0]
+        alignment_length = next(iter(seqlengths))
         outgroup_length = len(outgroup)
         if outgroup_length != alignment_length:
             raise ValueError(
@@ -183,11 +188,12 @@ with open(snakemake.output.alignment, "w") as f:
                 f"alignment sequence length ({alignment_length}). "
                 f"All sequences must be the same length."
             )
-        f.write(f">outgroup\n{str(outgroup.seq)}\n")
+        f.write(f">outgroup\n{outgroup.seq!s}\n")
 
-if snakemake.params.have_titers:
-    titers = pd.read_csv(snakemake.input.titers, sep="\t")
-    titer_cols = snakemake.params.titer_cols
+for i, collection in enumerate(snakemake.params.titer_collection_keys):
+    print(f"\nProcessing titer collection {collection}")
+    titers = pd.read_csv(snakemake.input.titers[i], sep="\t")
+    titer_cols = snakemake.params.titer_cols[i]
     if not set(titer_cols).issubset(titers.columns):
         raise ValueError(f"{titer_cols=} not all in {titers.columns=}")
     extra_strains = set(titers["strain"]) - set(strain_renames)
@@ -222,4 +228,6 @@ if snakemake.params.have_titers:
         raise ValueError(
             f"multiple titers for some strains/sera:\n{titers_per_strain_serum}"
         )
-    titers.to_csv(snakemake.output.titers, sep="\t", float_format="%.5g", index=False)
+    titers.to_csv(
+        snakemake.output.titers[i], sep="\t", float_format="%.5g", index=False
+    )

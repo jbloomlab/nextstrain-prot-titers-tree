@@ -2,7 +2,7 @@
   "version": "v2",
   "meta": {
     "title": "Example tree of with H5NX HA protein sequences",
-    "updated": "2026-04-08",
+    "updated": "2026-07-31",
     "build_url": "https://github.com/jbloomlab/nextstrain-prot-titers-tree",
     "maintainers": [
       {
@@ -64,8 +64,8 @@
       }
     ],
     "filters": [
-      "clade",
-      "continent"
+      "continent",
+      "clade"
     ],
     "panels": [
       "tree",
@@ -95,11 +95,11 @@
           "country": {
             "value": "Hong Kong (SAR)"
           },
-          "clade": {
-            "value": "0"
-          },
           "continent": {
             "value": "Asia"
+          },
+          "clade": {
+            "value": "0"
           }
         },
         "branch_attrs": {
@@ -154,11 +154,11 @@
               "country": {
                 "value": "China"
               },
-              "clade": {
-                "value": "0"
-              },
               "continent": {
                 "value": "Asia"
+              },
+              "clade": {
+                "value": "0"
               }
             },
             "branch_attrs": {
@@ -210,11 +210,11 @@
                   "country": {
                     "value": "China"
                   },
-                  "clade": {
-                    "value": "3"
-                  },
                   "continent": {
                     "value": "Asia"
+                  },
+                  "clade": {
+                    "value": "3"
                   }
                 },
                 "branch_attrs": {
@@ -258,11 +258,11 @@
                       "country": {
                         "value": "China"
                       },
-                      "clade": {
-                        "value": "4"
-                      },
                       "continent": {
                         "value": "Asia"
+                      },
+                      "clade": {
+                        "value": "4"
                       }
                     },
                     "branch_attrs": {
@@ -323,11 +323,11 @@
                           "country": {
                             "value": "China"
                           },
-                          "clade": {
-                            "value": "7"
-                          },
                           "continent": {
                             "value": "Asia"
+                          },
+                          "clade": {
+                            "value": "7"
                           }
                         },
                         "branch_attrs": {
@@ -359,11 +359,11 @@
                           "country": {
                             "value": "China"
                           },
-                          "clade": {
-                            "value": "7.2"
-                          },
                           "continent": {
                             "value": "Asia"
+                          },
+                          "clade": {
+                            "value": "7.2"
                           }
                         },
                         "branch_attrs": {
@@ -444,11 +444,11 @@
                       "country": {
                         "value": "Vietnam"
                       },
-                      "clade": {
-                        "value": "1"
-                      },
                       "continent": {
                         "value": "Asia"
+                      },
+                      "clade": {
+                        "value": "1"
                       }
                     },
                     "branch_attrs": {
@@ -504,11 +504,11 @@
                           "country": {
                             "value": "China"
                           },
-                          "clade": {
-                            "value": "9"
-                          },
                           "continent": {
                             "value": "Asia"
+                          },
+                          "clade": {
+                            "value": "9"
                           }
                         },
                         "branch_attrs": {
@@ -539,11 +539,11 @@
                           "country": {
                             "value": "Vietnam"
                           },
-                          "clade": {
-                            "value": "5"
-                          },
                           "continent": {
                             "value": "Asia"
+                          },
+                          "clade": {
+                            "value": "5"
                           }
                         },
                         "branch_attrs": {
@@ -569,11 +569,11 @@
                           "country": {
                             "value": "China"
                           },
-                          "clade": {
-                            "value": "6"
-                          },
                           "continent": {
                             "value": "Asia"
+                          },
+                          "clade": {
+                            "value": "6"
                           }
                         },
                         "branch_attrs": {
@@ -623,11 +623,11 @@
                           "country": {
                             "value": "Hong Kong"
                           },
-                          "clade": {
-                            "value": "8"
-                          },
                           "continent": {
                             "value": "Asia"
+                          },
+                          "clade": {
+                            "value": "8"
                           }
                         },
                         "branch_attrs": {}
@@ -683,11 +683,11 @@
                                   "country": {
                                     "value": "China"
                                   },
-                                  "clade": {
-                                    "value": "2.1.1"
-                                  },
                                   "continent": {
                                     "value": "Asia"
+                                  },
+                                  "clade": {
+                                    "value": "2.1.1"
                                   }
                                 },
                                 "branch_attrs": {
@@ -734,11 +734,11 @@
                                       "country": {
                                         "value": "Indonesia"
                                       },
-                                      "clade": {
-                                        "value": "2.1.1"
-                                      },
                                       "continent": {
                                         "value": "Asia"
+                                      },
+                                      "clade": {
+                                        "value": "2.1.1"
                                       }
                                     },
                                     "branch_attrs": {}
@@ -773,11 +773,11 @@
                                           "country": {
                                             "value": "Indonesia"
                                           },
-                                          "clade": {
-                                            "value": "2.1.3"
-                                          },
                                           "continent": {
                                             "value": "Asia"
+                                          },
+                                          "clade": {
+                                            "value": "2.1.3"
                                           }
                                         },
                                         "branch_attrs": {
@@ -834,11 +834,11 @@
                                               "country": {
                                                 "value": "Indonesia"
                                               },
-                                              "clade": {
-                                                "value": "2.1.3.2"
-                                              },
                                               "continent": {
                                                 "value": "Asia"
+                                              },
+                                              "clade": {
+                                                "value": "2.1.3.2"
                                               }
                                             },
                                             "branch_attrs": {
@@ -883,11 +883,11 @@
                                                   "country": {
                                                     "value": "Indonesia"
                                                   },
-                                                  "clade": {
-                                                    "value": "2.1.3.1"
-                                                  },
                                                   "continent": {
                                                     "value": "Asia"
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.1.3.1"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -914,11 +914,11 @@
                                                   "country": {
                                                     "value": "Indonesia"
                                                   },
-                                                  "clade": {
-                                                    "value": "2.1.3.1"
-                                                  },
                                                   "continent": {
                                                     "value": "Asia"
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.1.3.1"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -976,11 +976,11 @@
                                   "country": {
                                     "value": "Japan"
                                   },
-                                  "clade": {
-                                    "value": "2.5"
-                                  },
                                   "continent": {
                                     "value": "Asia"
+                                  },
+                                  "clade": {
+                                    "value": "2.5"
                                   }
                                 },
                                 "branch_attrs": {
@@ -1036,11 +1036,11 @@
                                       "country": {
                                         "value": "Russian Federation"
                                       },
-                                      "clade": {
-                                        "value": "2.2"
-                                      },
                                       "continent": {
                                         "value": "Europe"
+                                      },
+                                      "clade": {
+                                        "value": "2.2"
                                       }
                                     },
                                     "branch_attrs": {
@@ -1064,11 +1064,11 @@
                                       "country": {
                                         "value": "China"
                                       },
-                                      "clade": {
-                                        "value": "2.2"
-                                      },
                                       "continent": {
                                         "value": "Asia"
+                                      },
+                                      "clade": {
+                                        "value": "2.2"
                                       }
                                     },
                                     "branch_attrs": {
@@ -1119,11 +1119,11 @@
                                           "country": {
                                             "value": "Egypt"
                                           },
-                                          "clade": {
-                                            "value": "2.2.1.1a"
-                                          },
                                           "continent": {
                                             "value": "Africa"
+                                          },
+                                          "clade": {
+                                            "value": "2.2.1.1a"
                                           }
                                         },
                                         "branch_attrs": {
@@ -1202,11 +1202,11 @@
                                               "country": {
                                                 "value": "Egypt"
                                               },
-                                              "clade": {
-                                                "value": "2.2.1"
-                                              },
                                               "continent": {
                                                 "value": "Africa"
+                                              },
+                                              "clade": {
+                                                "value": "2.2.1"
                                               }
                                             },
                                             "branch_attrs": {
@@ -1263,11 +1263,11 @@
                                                   "country": {
                                                     "value": "Egypt"
                                                   },
-                                                  "clade": {
-                                                    "value": "2.2.1.2"
-                                                  },
                                                   "continent": {
                                                     "value": "Africa"
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.2.1.2"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -1307,11 +1307,11 @@
                                                   "country": {
                                                     "value": "Egypt"
                                                   },
-                                                  "clade": {
-                                                    "value": "2.2.1.2"
-                                                  },
                                                   "continent": {
                                                     "value": "Africa"
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.2.1.2"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -1401,11 +1401,11 @@
                                       "country": {
                                         "value": "China"
                                       },
-                                      "clade": {
-                                        "value": "2.3.2"
-                                      },
                                       "continent": {
                                         "value": "Asia"
+                                      },
+                                      "clade": {
+                                        "value": "2.3.2"
                                       }
                                     },
                                     "branch_attrs": {
@@ -1463,11 +1463,11 @@
                                           "country": {
                                             "value": "Lao, People's Democratic Republic"
                                           },
-                                          "clade": {
-                                            "value": "2.3.2.1"
-                                          },
                                           "continent": {
                                             "value": "Asia"
+                                          },
+                                          "clade": {
+                                            "value": "2.3.2.1"
                                           }
                                         },
                                         "branch_attrs": {
@@ -1525,11 +1525,11 @@
                                               "country": {
                                                 "value": "Bangladesh"
                                               },
-                                              "clade": {
-                                                "value": "2.3.2.1a"
-                                              },
                                               "continent": {
                                                 "value": "Asia"
+                                              },
+                                              "clade": {
+                                                "value": "2.3.2.1a"
                                               }
                                             },
                                             "branch_attrs": {
@@ -1590,11 +1590,11 @@
                                                   "country": {
                                                     "value": "China"
                                                   },
-                                                  "clade": {
-                                                    "value": "2.3.2.1f"
-                                                  },
                                                   "continent": {
                                                     "value": "Asia"
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.3.2.1f"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -1621,11 +1621,11 @@
                                                   "country": {
                                                     "value": "Indonesia"
                                                   },
-                                                  "clade": {
-                                                    "value": "2.3.2.1g"
-                                                  },
                                                   "continent": {
                                                     "value": "Asia"
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.3.2.1g"
                                                   }
                                                 },
                                                 "branch_attrs": {
@@ -1673,11 +1673,11 @@
                                                       "country": {
                                                         "value": "Cambodia"
                                                       },
-                                                      "clade": {
-                                                        "value": "2.3.2.1a"
-                                                      },
                                                       "continent": {
                                                         "value": "Asia"
+                                                      },
+                                                      "clade": {
+                                                        "value": "2.3.2.1a"
                                                       }
                                                     },
                                                     "branch_attrs": {
@@ -1719,11 +1719,11 @@
                                                       "country": {
                                                         "value": "China"
                                                       },
-                                                      "clade": {
-                                                        "value": "2.3.2.1d"
-                                                      },
                                                       "continent": {
                                                         "value": "Asia"
+                                                      },
+                                                      "clade": {
+                                                        "value": "2.3.2.1d"
                                                       }
                                                     },
                                                     "branch_attrs": {
@@ -1791,11 +1791,11 @@
                                       "country": {
                                         "value": "China"
                                       },
-                                      "clade": {
-                                        "value": "2.3.1"
-                                      },
                                       "continent": {
                                         "value": "Asia"
+                                      },
+                                      "clade": {
+                                        "value": "2.3.1"
                                       }
                                     },
                                     "branch_attrs": {
@@ -1846,11 +1846,11 @@
                                           "country": {
                                             "value": "China"
                                           },
-                                          "clade": {
-                                            "value": "2.3.4"
-                                          },
                                           "continent": {
                                             "value": "Asia"
+                                          },
+                                          "clade": {
+                                            "value": "2.3.4"
                                           }
                                         },
                                         "branch_attrs": {
@@ -1905,11 +1905,11 @@
                                               "country": {
                                                 "value": "China"
                                               },
-                                              "clade": {
-                                                "value": "2.3.4"
-                                              },
                                               "continent": {
                                                 "value": "Asia"
+                                              },
+                                              "clade": {
+                                                "value": "2.3.4"
                                               }
                                             },
                                             "branch_attrs": {}
@@ -1960,11 +1960,11 @@
                                                   "country": {
                                                     "value": "China"
                                                   },
-                                                  "clade": {
-                                                    "value": "2.3.4.4b"
-                                                  },
                                                   "continent": {
                                                     "value": "Asia"
+                                                  },
+                                                  "clade": {
+                                                    "value": "2.3.4.4b"
                                                   }
                                                 },
                                                 "branch_attrs": {}
@@ -2031,11 +2031,11 @@
                                                           "country": {
                                                             "value": "United States"
                                                           },
-                                                          "clade": {
-                                                            "value": "2.3.4.4b"
-                                                          },
                                                           "continent": {
                                                             "value": "North America"
+                                                          },
+                                                          "clade": {
+                                                            "value": "2.3.4.4b"
                                                           }
                                                         },
                                                         "branch_attrs": {
@@ -2070,11 +2070,11 @@
                                                           "country": {
                                                             "value": "Bangladesh"
                                                           },
-                                                          "clade": {
-                                                            "value": "2.3.4.4b"
-                                                          },
                                                           "continent": {
                                                             "value": "Asia"
+                                                          },
+                                                          "clade": {
+                                                            "value": "2.3.4.4b"
                                                           }
                                                         },
                                                         "branch_attrs": {
@@ -2123,11 +2123,11 @@
                                                               "country": {
                                                                 "value": "United States"
                                                               },
-                                                              "clade": {
-                                                                "value": "2.3.4.4b"
-                                                              },
                                                               "continent": {
                                                                 "value": "North America"
+                                                              },
+                                                              "clade": {
+                                                                "value": "2.3.4.4b"
                                                               }
                                                             },
                                                             "branch_attrs": {
@@ -2151,11 +2151,11 @@
                                                               "country": {
                                                                 "value": "United States"
                                                               },
-                                                              "clade": {
-                                                                "value": "2.3.4.4b"
-                                                              },
                                                               "continent": {
                                                                 "value": "North America"
+                                                              },
+                                                              "clade": {
+                                                                "value": "2.3.4.4b"
                                                               }
                                                             },
                                                             "branch_attrs": {}
@@ -2195,11 +2195,11 @@
                                                           "country": {
                                                             "value": "United States"
                                                           },
-                                                          "clade": {
-                                                            "value": "2.3.4.4c"
-                                                          },
                                                           "continent": {
                                                             "value": "North America"
+                                                          },
+                                                          "clade": {
+                                                            "value": "2.3.4.4c"
                                                           }
                                                         },
                                                         "branch_attrs": {
@@ -2259,11 +2259,11 @@
                                                               "country": {
                                                                 "value": "China"
                                                               },
-                                                              "clade": {
-                                                                "value": "2.3.4.4"
-                                                              },
                                                               "continent": {
                                                                 "value": "Asia"
+                                                              },
+                                                              "clade": {
+                                                                "value": "2.3.4.4"
                                                               }
                                                             },
                                                             "branch_attrs": {
@@ -2339,11 +2339,11 @@
                                                                       "country": {
                                                                         "value": "Vietnam"
                                                                       },
-                                                                      "clade": {
-                                                                        "value": "2.3.4.4"
-                                                                      },
                                                                       "continent": {
                                                                         "value": "Asia"
+                                                                      },
+                                                                      "clade": {
+                                                                        "value": "2.3.4.4"
                                                                       }
                                                                     },
                                                                     "branch_attrs": {
@@ -2368,11 +2368,11 @@
                                                                       "country": {
                                                                         "value": "China"
                                                                       },
-                                                                      "clade": {
-                                                                        "value": "2.3.4.4"
-                                                                      },
                                                                       "continent": {
                                                                         "value": "Asia"
+                                                                      },
+                                                                      "clade": {
+                                                                        "value": "2.3.4.4"
                                                                       }
                                                                     },
                                                                     "branch_attrs": {
@@ -2421,11 +2421,11 @@
                                                                       "country": {
                                                                         "value": "China"
                                                                       },
-                                                                      "clade": {
-                                                                        "value": "2.3.4.4e"
-                                                                      },
                                                                       "continent": {
                                                                         "value": "Asia"
+                                                                      },
+                                                                      "clade": {
+                                                                        "value": "2.3.4.4e"
                                                                       }
                                                                     },
                                                                     "branch_attrs": {
@@ -2456,11 +2456,11 @@
                                                                       "country": {
                                                                         "value": "Bangladesh"
                                                                       },
-                                                                      "clade": {
-                                                                        "value": "2.3.4.4h"
-                                                                      },
                                                                       "continent": {
                                                                         "value": "Asia"
+                                                                      },
+                                                                      "clade": {
+                                                                        "value": "2.3.4.4h"
                                                                       }
                                                                     },
                                                                     "branch_attrs": {

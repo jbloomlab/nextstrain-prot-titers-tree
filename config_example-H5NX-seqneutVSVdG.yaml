@@ -10,6 +10,8 @@ color_by_metadata:
   clade: {}
   continent: {}
 
+color_by_metadata_file: null
+
 metadata_columns:
   - passage_history
   - country

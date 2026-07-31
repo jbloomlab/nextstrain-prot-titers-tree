@@ -6,10 +6,13 @@ channels:
 
 dependencies:
   - black
-  - augur=33.0.1
+  - augur=34.1.1
   - pandas=2.3
   - pyarrow
+  # python is 3.13 rather than the 3.14 used by `seqneut-pipeline` because `augur`
+  # depends (via `bcbio-gff`) on `bx-python`, which has no Python 3.14 build yet
   - python=3.13
+  - pyyaml
   - snakefmt
-  - snakemake=9.19
+  - snakemake=9.23
   - ruff
