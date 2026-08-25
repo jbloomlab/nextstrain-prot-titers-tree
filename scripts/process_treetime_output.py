@@ -92,13 +92,13 @@ print(f"Using as the reference sequence {root_name}; {len(refseq)=}")
 # Get the site numbering map and do some error checking on it
 print(f"Reading site numbering map from {snakemake.input.site_numbering_map}")
 site_numbering_map = pd.read_csv(snakemake.input.site_numbering_map, sep="\t")
-if len(refseq) != len(site_numbering_map):
-    raise ValueError(f"{len(refseq)=}, {len(site_numbering_map)=}")
 req_cols = {"sequential_site", "protein", "protein_site"}
-if "nuc" in set(site_numbering_map["protein"]):
-    raise ValueError("Cannot have a protein called 'nuc' in site_numbering_map")
 if not req_cols.issubset(site_numbering_map.columns):
     raise ValueError(f"{site_numbering_map.columns=} lacks {req_cols=}")
+if len(refseq) != len(site_numbering_map):
+    raise ValueError(f"{len(refseq)=}, {len(site_numbering_map)=}")
+if "nuc" in set(site_numbering_map["protein"]):
+    raise ValueError("Cannot have a protein called 'nuc' in site_numbering_map")
 for col in ["sequential_site", "protein_site"]:
     if not pd.api.types.is_integer_dtype(site_numbering_map[col]):
         raise ValueError(f"{col=} in site_numbering_map not integer")
