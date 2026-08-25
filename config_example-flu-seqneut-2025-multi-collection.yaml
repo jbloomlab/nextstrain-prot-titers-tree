@@ -11,6 +11,8 @@ alignment: data/example-flu-seqneut-2025/alignment.fa
 
 outgroup: data/example-flu-seqneut-2025/outgroup.fa
 
+set_branch_lengths_to_n_mutations: true
+
 site_numbering_map: data/example-flu-seqneut-2025/site_numbering_map.tsv
 
 metadata: data/example-flu-seqneut-2025/metadata.tsv

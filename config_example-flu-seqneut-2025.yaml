@@ -8,6 +8,11 @@ alignment: data/example-flu-seqneut-2025/alignment.fa
 # tree is instead rooted by the dates using the least-squares method of treetime.
 outgroup: data/example-flu-seqneut-2025/outgroup.fa
 
+# Set branch lengths on the divergence tree to the number of amino-acid mutations
+# rather than the maximum-likelihood lengths inferred by `treetime`. This key is
+# optional and defaults to true.
+set_branch_lengths_to_n_mutations: true
+
 # Map sites in alignment to numbering used in mutation naming. Should be a TSV
 # with three columns:
 #  - sequential_site: sequential 1, 2, ... numbering of alignment

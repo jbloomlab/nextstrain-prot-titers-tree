@@ -42,6 +42,7 @@ The auspice JSON trees for the examples are in [./auspice](auspice) and can be v
   - [https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-H5NX-seqneutVSVdG](https://nextstrain.org/community/jbloomlab/nextstrain-prot-titers-tree@main/example-H5NX-seqneutVSVdG).
 
 You can also show all amino-acid identities on the tree, color by amino-acid identity at a site, and show branch lengths either based on amino-acid mutations per site or time.
+Whether the divergence branch lengths are the number of amino-acid mutations or the maximum-likelihood lengths inferred by `treetime` is set by `set_branch_lengths_to_n_mutations` in the configuration file.
 
 ### Coloring the tree
 Each column of the *metadata* named in `color_by_metadata` becomes a coloring you can select in auspice, so a column holding a titer (eg, a median titer for a group of sera) lets you color the tree by that titer.
