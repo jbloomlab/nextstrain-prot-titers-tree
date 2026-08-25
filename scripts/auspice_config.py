@@ -117,17 +117,6 @@ for col, col_d in color_by_metadata.items():
             )
         else:
             raise ValueError(f"{scale=}")
-        valid_scale_types = [
-            "viridis_linear",
-            "viridis_log",
-            "viridis_r_linear",
-            "viridis_r_log",
-        ]
-        if scale_type not in valid_scale_types:
-            raise ValueError(
-                f"For column '{col}', scale_type '{scale_type}' is not valid. "
-                f"Valid options: {valid_scale_types}"
-            )
         legendlabels = [f"{v:.3g}" for v in scalevals]
         legendlabels[0] = minprefix + legendlabels[0]
         legendlabels[-1] = maxprefix + legendlabels[-1]
