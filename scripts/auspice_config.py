@@ -46,6 +46,18 @@ for col, col_d in color_by_metadata.items():
                     f"but got type {type(col_d['exclude_auto_scale']).__name__}: "
                     f"{col_d['exclude_auto_scale']}"
                 )
+            # strain names here have had special characters replaced by
+            # `prep_and_sanitize_data.py`, so a name that does not match is either a
+            # typo or written in its original form
+            unmatched = sorted(
+                set(col_d["exclude_auto_scale"]) - set(metadata["strain"])
+            )
+            if unmatched:
+                raise ValueError(
+                    f"For column '{col}', these 'exclude_auto_scale' strains are not "
+                    f"in the metadata: {unmatched}. Names must match the metadata "
+                    "strain names with special characters replaced by '_'."
+                )
             for_lims = metadata[~metadata["strain"].isin(col_d["exclude_auto_scale"])]
         else:
             for_lims = metadata

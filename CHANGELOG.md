@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ### version 1.8.0
++ A strain in `exclude_auto_scale` that is not in the metadata is now an error. Such a name was previously ignored, so the color scale was computed over the strain it was meant to exclude. Note that names must match the metadata strain names after special characters have been replaced by `_`.
 + Pin `iqtree`, `treetime`, `biopython`, and `matplotlib-base` in [environment.yml](environment.yml). The pipeline runs all four directly, but they were installed only as dependencies of `augur`, which constrains `iqtree` not at all and `treetime` only to a range, so the versions building the trees could change without notice. Also add the `nodefaults` channel, and update `augur` to 34.1.3 and `snakemake` to 9.25.
 + Add the [bloomlab-coding-standards](https://github.com/jbloomlab/bloomlab-coding-standards) as a submodule at [./bloomlab-coding-standards](bloomlab-coding-standards), pinned at a commit and updated with `git submodule update --remote bloomlab-coding-standards`, along with a `CLAUDE.md` that imports the standards. Clone with `--recurse-submodules` (or run `git submodule update --init`) to get them. There is no change to the pipeline itself.
 
