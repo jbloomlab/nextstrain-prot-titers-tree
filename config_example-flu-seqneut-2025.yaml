@@ -1,4 +1,4 @@
-# Example configuration file for `nexstrain-prot-titers-tree`
+# Example configuration file for `nextstrain-prot-titers-tree`
 
 # FASTA file with aligned protein sequences with titer measurements
 alignment: data/example-flu-seqneut-2025/alignment.fa
@@ -7,6 +7,11 @@ alignment: data/example-flu-seqneut-2025/alignment.fa
 # be aligned to rest of alignment. If you set outgroup to null then the
 # tree is instead rooted by the dates using the least-squares method of treetime.
 outgroup: data/example-flu-seqneut-2025/outgroup.fa
+
+# Set branch lengths on the divergence tree to the number of amino-acid mutations
+# rather than the maximum-likelihood lengths inferred by `treetime`. This key is
+# optional and defaults to true.
+set_branch_lengths_to_n_mutations: true
 
 # Map sites in alignment to numbering used in mutation naming. Should be a TSV
 # with three columns:

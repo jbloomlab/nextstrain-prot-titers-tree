@@ -30,7 +30,7 @@ valid_options = {
 # these are always in the tree, and `augur export v2` handles them itself
 reserved_cols = {"strain", "date"}
 
-inline = snakemake.params.color_by_metadata or {}
+inline = snakemake.params.color_by_metadata
 print(f"Read {len(inline)} inline `color_by_metadata` column(s): {sorted(inline)}")
 
 if snakemake.params.has_file:
@@ -90,7 +90,7 @@ for col, options in list(inline.items()) + list(from_file.items()):
 
 # columns are passed to `augur export v2` as shell words, and auspice keys the colorings
 # on them, so whitespace in a column name cannot be handled
-metadata_columns = [str(c) for c in (snakemake.params.metadata_columns or [])]
+metadata_columns = [str(c) for c in snakemake.params.metadata_columns]
 for col_set, cols in [
     ("color_by_metadata", list(color_by_metadata)),
     ("metadata_columns", metadata_columns),

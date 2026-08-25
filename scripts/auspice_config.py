@@ -1,3 +1,5 @@
+"""Build the auspice configuration JSON, including the color scale for each coloring."""
+
 import json
 import sys
 
@@ -24,7 +26,7 @@ hex_colors = {
 }
 
 
-metadata = pd.read_csv(snakemake.input.metadata, sep="\t")
+metadata = pd.read_csv(snakemake.input.metadata, sep="\t", dtype={"strain": str})
 with open(snakemake.input.resolved_color_by_metadata) as f:
     color_by_metadata = yaml.safe_load(f)["color_by_metadata"]
 missing_cols = set(color_by_metadata) - set(metadata.columns)
@@ -45,6 +47,18 @@ for col, col_d in color_by_metadata.items():
                     f"For column '{col}', 'exclude_auto_scale' must be a list, "
                     f"but got type {type(col_d['exclude_auto_scale']).__name__}: "
                     f"{col_d['exclude_auto_scale']}"
+                )
+            # strain names here have had special characters replaced by
+            # `prep_and_sanitize_data.py`, so a name that does not match is either a
+            # typo or written in its original form
+            unmatched = sorted(
+                set(col_d["exclude_auto_scale"]) - set(metadata["strain"])
+            )
+            if unmatched:
+                raise ValueError(
+                    f"For column '{col}', these 'exclude_auto_scale' strains are not "
+                    f"in the metadata: {unmatched}. Names must match the metadata "
+                    "strain names with special characters replaced by '_'."
                 )
             for_lims = metadata[~metadata["strain"].isin(col_d["exclude_auto_scale"])]
         else:
@@ -117,17 +131,6 @@ for col, col_d in color_by_metadata.items():
             )
         else:
             raise ValueError(f"{scale=}")
-        valid_scale_types = [
-            "viridis_linear",
-            "viridis_log",
-            "viridis_r_linear",
-            "viridis_r_log",
-        ]
-        if scale_type not in valid_scale_types:
-            raise ValueError(
-                f"For column '{col}', scale_type '{scale_type}' is not valid. "
-                f"Valid options: {valid_scale_types}"
-            )
         legendlabels = [f"{v:.3g}" for v in scalevals]
         legendlabels[0] = minprefix + legendlabels[0]
         legendlabels[-1] = maxprefix + legendlabels[-1]

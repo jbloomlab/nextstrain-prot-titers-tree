@@ -2,6 +2,8 @@ alignment: data/example-H5NX-seqneutVSVdG/alignment.fa
 
 outgroup: null
 
+set_branch_lengths_to_n_mutations: true
+
 site_numbering_map: data/example-H5NX-seqneutVSVdG/site_numbering_map.tsv
 
 metadata: data/example-H5NX-seqneutVSVdG/metadata.tsv

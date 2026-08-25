@@ -1,4 +1,4 @@
-# Example configuration file for `nexstrain-prot-titers-tree` showing several
+# Example configuration file for `nextstrain-prot-titers-tree` showing several
 # collections of titers in the measurements panel. It uses the same data as
 # `config_example-flu-seqneut-2025.yaml`, but specifies `titers` as a list rather than a
 # single mapping. Each collection gets its own value column, title, and x-axis label, and
@@ -10,6 +10,8 @@
 alignment: data/example-flu-seqneut-2025/alignment.fa
 
 outgroup: data/example-flu-seqneut-2025/outgroup.fa
+
+set_branch_lengths_to_n_mutations: true
 
 site_numbering_map: data/example-flu-seqneut-2025/site_numbering_map.tsv
 

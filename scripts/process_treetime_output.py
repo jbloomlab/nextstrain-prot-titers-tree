@@ -87,18 +87,20 @@ if len(root_seqs) != 1:
         f"Each node in the tree must have exactly one corresponding ancestral sequence."
     )
 refseq = str(root_seqs[0].seq)
+if not refseq:
+    raise ValueError(f"Ancestral sequence for root '{root_name}' is empty")
 print(f"Using as the reference sequence {root_name}; {len(refseq)=}")
 
 # Get the site numbering map and do some error checking on it
 print(f"Reading site numbering map from {snakemake.input.site_numbering_map}")
 site_numbering_map = pd.read_csv(snakemake.input.site_numbering_map, sep="\t")
-if len(refseq) != len(site_numbering_map):
-    raise ValueError(f"{len(refseq)=}, {len(site_numbering_map)=}")
 req_cols = {"sequential_site", "protein", "protein_site"}
-if "nuc" in set(site_numbering_map["protein"]):
-    raise ValueError("Cannot have a protein called 'nuc' in site_numbering_map")
 if not req_cols.issubset(site_numbering_map.columns):
     raise ValueError(f"{site_numbering_map.columns=} lacks {req_cols=}")
+if len(refseq) != len(site_numbering_map):
+    raise ValueError(f"{len(refseq)=}, {len(site_numbering_map)=}")
+if "nuc" in set(site_numbering_map["protein"]):
+    raise ValueError("Cannot have a protein called 'nuc' in site_numbering_map")
 for col in ["sequential_site", "protein_site"]:
     if not pd.api.types.is_integer_dtype(site_numbering_map[col]):
         raise ValueError(f"{col=} in site_numbering_map not integer")
@@ -227,7 +229,7 @@ for treetype in ["timetree", "divtree"]:
         print(f"Resetting branch lengths to mutation counts for {treetype}")
         for clade in tree_nocomments.find_clades(order="preorder"):
             n_muts = node_mutation_counts.get(clade.name, 0)
-            clade.branch_length = n_muts / len(refseq) if len(refseq) > 0 else 0
+            clade.branch_length = n_muts / len(refseq)
 
     # Write tree to Newick
     print(f"Writing {treetype} to {outtree}")
@@ -254,7 +256,8 @@ with open(snakemake.output.aa_muts, "w") as f:
 brlens_nodes = {}
 
 dates = (
-    pd.read_csv(snakemake.input.dates, sep="\t")
+    # node names are identifiers, and are looked up below by the tree's string names
+    pd.read_csv(snakemake.input.dates, sep="\t", dtype={"#node": str})
     .rename(columns={"numeric date": "num_date"})
     .set_index("#node")
     .to_dict(orient="index")
