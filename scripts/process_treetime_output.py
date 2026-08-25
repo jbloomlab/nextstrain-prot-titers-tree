@@ -87,6 +87,8 @@ if len(root_seqs) != 1:
         f"Each node in the tree must have exactly one corresponding ancestral sequence."
     )
 refseq = str(root_seqs[0].seq)
+if not refseq:
+    raise ValueError(f"Ancestral sequence for root '{root_name}' is empty")
 print(f"Using as the reference sequence {root_name}; {len(refseq)=}")
 
 # Get the site numbering map and do some error checking on it
@@ -227,7 +229,7 @@ for treetype in ["timetree", "divtree"]:
         print(f"Resetting branch lengths to mutation counts for {treetype}")
         for clade in tree_nocomments.find_clades(order="preorder"):
             n_muts = node_mutation_counts.get(clade.name, 0)
-            clade.branch_length = n_muts / len(refseq) if len(refseq) > 0 else 0
+            clade.branch_length = n_muts / len(refseq)
 
     # Write tree to Newick
     print(f"Writing {treetype} to {outtree}")

@@ -1,3 +1,5 @@
+"""Build the auspice configuration JSON, including the color scale for each coloring."""
+
 import json
 import sys
 
