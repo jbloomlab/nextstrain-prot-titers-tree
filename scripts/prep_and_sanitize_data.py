@@ -1,4 +1,4 @@
-"""Check input metadata and alignment and remove special charactes from strain names."""
+"""Check input metadata and alignment and remove special characters from strain names."""
 
 import collections
 import re

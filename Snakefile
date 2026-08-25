@@ -216,13 +216,9 @@ rule tree:
 rule treetime:
     """Use `treetime` to refine tree and get ancestral states / inferred mutations.
 
-    We use `treetime` directly rather than `augur refine` and `augur ancestral`
-    in order to be able to process amino-acid sequences. We use a custom Poisson
-    GTR model (equal rates over a 22-state alphabet: 20 AAs + stop + gap) so that
-    gaps are treated as a distinct character state rather than ambiguous/missing
-    data. Without this, TreeTime's built-in JTT92 model uses a 20-state alphabet
-    that treats gaps as ambiguous, causing shared deletions to be assigned
-    independently to each tip rather than their common ancestor.
+    We use `treetime` directly rather than `augur refine` and `augur ancestral` in
+    order to be able to process amino-acid sequences, with the custom gap-aware
+    Poisson GTR model that the README describes.
     """
     input:
         raw_tree=rules.tree.output.raw_tree,

@@ -1,4 +1,4 @@
-# Example configuration file for `nexstrain-prot-titers-tree`
+# Example configuration file for `nextstrain-prot-titers-tree`
 
 # FASTA file with aligned protein sequences with titer measurements
 alignment: data/example-flu-seqneut-2025/alignment.fa
