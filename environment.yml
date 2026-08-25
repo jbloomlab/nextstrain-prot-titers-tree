@@ -3,10 +3,20 @@ name: nextstrain-prot-titers-tree
 channels:
   - conda-forge
   - bioconda
+  - nodefaults
 
 dependencies:
   - black
-  - augur=34.1.1
+  # `augur` requires `iqtree`, `treetime`, and `biopython` but constrains them loosely or
+  # not at all, and `matplotlib` only reaches the scripts because `treetime` needs it, so
+  # the versions this pipeline runs with are pinned here rather than left to `augur`
+  - augur=34.1.3
+  - biopython=1.88
+  - iqtree=3.1.3
+  # 3.11 is held back because it needs a `libraqm` built against glibc >= 2.28, which the
+  # lab cluster does not have
+  - matplotlib-base=3.10
+  - treetime=0.12.1
   - pandas=2.3
   - pyarrow
   # python is 3.13 rather than the 3.14 used by `seqneut-pipeline` because `augur`
@@ -14,5 +24,5 @@ dependencies:
   - python=3.13
   - pyyaml
   - snakefmt
-  - snakemake=9.23
+  - snakemake=9.25
   - ruff
