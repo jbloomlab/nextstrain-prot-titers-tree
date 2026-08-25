@@ -141,6 +141,22 @@ for col, col_d in color_by_metadata.items():
                 {"value": v, "display": d} for v, d in zip(scalevals, legendlabels)
             ],
         }
+    elif "categorical_colors" in col_d:
+        # colors are listed so that they can be the same across trees, so a value that is
+        # not in this tree is expected rather than an error; `augur export v2` drops it,
+        # and auspice colors any value of the column that is not listed here itself
+        absent = sorted(
+            set(col_d["categorical_colors"]) - set(metadata[col].dropna().astype(str))
+        )
+        if absent:
+            print(
+                f"For column '{col}', these 'categorical_colors' values are not in the "
+                f"metadata, so are not used in this tree: {absent}"
+            )
+        color_scale = {
+            "type": "categorical",
+            "scale": [[v, c] for v, c in col_d["categorical_colors"].items()],
+        }
     else:
         color_scale = {}
     # without a 'title', auspice labels the coloring with the column name itself

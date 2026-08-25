@@ -37,7 +37,19 @@ metadata: data/example-flu-seqneut-2025/metadata.tsv
 #   - fixed_max: number giving fixed maximum of scale; else determined from data
 #   - exclude_auto_scale: list strains to exclude when calculating auto limits
 #   - title: label for the coloring in auspice; else the column name is used
+#   - categorical_colors: for a column with no scale_type, a mapping of quoted values of
+#     the column to quoted hex colors; a value not listed is colored by auspice itself,
+#     and a listed value not in this tree is ignored, so one set of colors can be shared
+#     among trees whose sets of values differ
 color_by_metadata:
+  strain_type:
+    title: strain type
+    categorical_colors:
+      "circulating_2025": "#999999"
+      "2025-2026 cell-based vaccine": "#4C90C0"
+      "2025-2026 egg-based vaccine": "#E8C520"
+      "2024-2025 cell-based vaccine": "#4CAE4C"
+      "2024-2025 egg-based vaccine": "#D3557B"
   subclade: {}
   median_titer_All_sera:
     scale_type: viridis_r_log
@@ -63,8 +75,7 @@ color_by_metadata:
 color_by_metadata_file: data/example-flu-seqneut-2025/color_by_metadata.yaml
 
 # Metadata columns shown via node tooltips not already in `color_by_metadata`
-metadata_columns:
-  - strain_type
+metadata_columns: []
 
 # Do we display per-serum titers in measurement panel? If no, set titers to null. If
 # yes, specify a dict similar to below for a single collection of measurements, or a list

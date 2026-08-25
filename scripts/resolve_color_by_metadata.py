@@ -7,6 +7,7 @@ can be built by a rule and so may not exist at that point.
 
 """
 
+import re
 import shlex
 import sys
 
@@ -26,7 +27,13 @@ valid_options = {
     "fixed_max",
     "exclude_auto_scale",
     "title",
+    "categorical_colors",
 }
+# these options describe a continuous scale, so cannot be combined with the explicit
+# colors of `categorical_colors`
+continuous_options = {"scale_type", "fixed_min", "fixed_max", "exclude_auto_scale"}
+# hex colors as accepted by the auspice configuration schema
+hex_color = re.compile(r"#[0-9A-Fa-f]{6}")
 # these are always in the tree, and `augur export v2` handles them itself
 reserved_cols = {"strain", "date"}
 
@@ -86,6 +93,34 @@ for col, options in list(inline.items()) + list(from_file.items()):
             f"For column {col!r}, 'title' must be a string but is "
             f"{options['title']!r}"
         )
+    if "categorical_colors" in options:
+        conflicting = sorted(continuous_options.intersection(options))
+        if conflicting:
+            raise ValueError(
+                f"For column {col!r}, 'categorical_colors' cannot be combined with "
+                f"{conflicting}, which describe a continuous color scale"
+            )
+        cat_colors = options["categorical_colors"]
+        if not (isinstance(cat_colors, dict) and cat_colors):
+            raise ValueError(
+                f"For column {col!r}, 'categorical_colors' must be a non-empty mapping "
+                f"of column value to hex color, but is {cat_colors!r}"
+            )
+        for value, color in cat_colors.items():
+            # `augur export v2` matches these against the tree exactly, so a value that
+            # YAML reads as a bool or a number would never match the metadata
+            if not isinstance(value, str):
+                raise ValueError(
+                    f"For column {col!r}, the 'categorical_colors' value {value!r} is "
+                    f"read from the YAML as a {type(value).__name__}; quote it so that "
+                    "it is the string that is in the metadata"
+                )
+            if not (isinstance(color, str) and hex_color.fullmatch(color)):
+                raise ValueError(
+                    f"For column {col!r}, the color for 'categorical_colors' value "
+                    f"{value!r} must be a quoted hex color such as '#4C90C0', but is "
+                    f"{color!r}. Note that an unquoted # starts a YAML comment."
+                )
     color_by_metadata[col] = options
 
 # columns are passed to `augur export v2` as shell words, and auspice keys the colorings
