@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ### version 1.8.0
++ A sequence name that appears more than once in the alignment is now reported as such, naming the repeated sequences. It was previously reported only as a mismatch between the number of metadata rows and the number of sequences, which listed no names.
 + Read the `strain`, `serum`, and tree node name columns as strings. All-numeric names (eg, a serum called `007`) were previously read as numbers and then failed to match the alignment or the tree.
 + A strain in `exclude_auto_scale` that is not in the metadata is now an error. Such a name was previously ignored, so the color scale was computed over the strain it was meant to exclude. Note that names must match the metadata strain names after special characters have been replaced by `_`.
 + Pin `iqtree`, `treetime`, `biopython`, and `matplotlib-base` in [environment.yml](environment.yml). The pipeline runs all four directly, but they were installed only as dependencies of `augur`, which constrains `iqtree` not at all and `treetime` only to a range, so the versions building the trees could change without notice. Also add the `nodefaults` channel, and update `augur` to 34.1.3 and `snakemake` to 9.25.

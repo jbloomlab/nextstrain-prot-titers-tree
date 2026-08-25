@@ -12,6 +12,18 @@ import yaml
 
 sys.stdout = sys.stderr = open(snakemake.log[0], "w")
 
+n_show = 10  # how many offending names an error message lists
+
+
+def listed(names):
+    """One-per-line listing of `names` for an error message, showing `n_show` at most."""
+    names = sorted(names)
+    truncated = (
+        f" (showing first {n_show} of {len(names)})" if len(names) > n_show else ""
+    )
+    return truncated + ":\n  " + "\n  ".join(names[:n_show])
+
+
 with open(snakemake.input.resolved_color_by_metadata) as f:
     resolved_color_by_metadata = yaml.safe_load(f)
 
@@ -67,80 +79,38 @@ strains_w_space = metadata[metadata["strain"].str.contains(r"\s", regex=True)][
     "strain"
 ].tolist()
 if strains_w_space:
-    n_show = 10
-    shown = strains_w_space[:n_show]
-    more_msg = (
-        f" (showing first {n_show} of {len(strains_w_space)})"
-        if len(strains_w_space) > n_show
-        else ""
-    )
     raise ValueError(
-        f"Found {len(strains_w_space)} strain names containing whitespace{more_msg}:\n  "
-        + "\n  ".join(shown)
+        f"Found {len(strains_w_space)} strain names containing whitespace"
+        + listed(strains_w_space)
     )
 
-# Check metadata and alignment have same length and same strain names
+# Check the alignment has no repeated sequence name, which the set of names below
+# would otherwise hide by collapsing the repeats
 alignment_strains = {seq.id for seq in alignment}
+if len(alignment_strains) != len(alignment):
+    repeated = [
+        s for s, n in collections.Counter(s.id for s in alignment).items() if n > 1
+    ]
+    raise ValueError(
+        f"Alignment has {len(alignment)} sequences but only {len(alignment_strains)} "
+        "distinct names, so some are repeated" + listed(repeated)
+    )
+
+# Check metadata and alignment cover the same strains
 metadata_strains = set(metadata["strain"])
-
-if len(metadata) != len(alignment):
-    only_metadata = metadata_strains - alignment_strains
-    only_alignment = alignment_strains - metadata_strains
-    err_parts = [
-        f"Metadata has {len(metadata)} strains but alignment has {len(alignment)} sequences."
-    ]
-    if only_metadata:
-        n_show = 10
-        shown = list(only_metadata)[:n_show]
-        more_msg = (
-            f" (showing first {n_show} of {len(only_metadata)})"
-            if len(only_metadata) > n_show
-            else ""
-        )
-        err_parts.append(
-            f"Strains in metadata but not alignment{more_msg}:\n  " + "\n  ".join(shown)
-        )
-    if only_alignment:
-        n_show = 10
-        shown = list(only_alignment)[:n_show]
-        more_msg = (
-            f" (showing first {n_show} of {len(only_alignment)})"
-            if len(only_alignment) > n_show
-            else ""
-        )
-        err_parts.append(
-            f"Strains in alignment but not metadata{more_msg}:\n  " + "\n  ".join(shown)
-        )
-    raise ValueError("\n".join(err_parts))
-
 if metadata_strains != alignment_strains:
-    only_metadata = metadata_strains - alignment_strains
-    only_alignment = alignment_strains - metadata_strains
     err_parts = [
-        f"Metadata and alignment both have {len(metadata)} entries, but strain names differ."
+        (
+            f"Metadata has {len(metadata_strains)} strains and the alignment has "
+            f"{len(alignment_strains)}, and their names differ."
+        )
     ]
-    if only_metadata:
-        n_show = 10
-        shown = list(only_metadata)[:n_show]
-        more_msg = (
-            f" (showing first {n_show} of {len(only_metadata)})"
-            if len(only_metadata) > n_show
-            else ""
-        )
-        err_parts.append(
-            f"Strains in metadata but not alignment{more_msg}:\n  " + "\n  ".join(shown)
-        )
-    if only_alignment:
-        n_show = 10
-        shown = list(only_alignment)[:n_show]
-        more_msg = (
-            f" (showing first {n_show} of {len(only_alignment)})"
-            if len(only_alignment) > n_show
-            else ""
-        )
-        err_parts.append(
-            f"Strains in alignment but not metadata{more_msg}:\n  " + "\n  ".join(shown)
-        )
+    for descr, missing in [
+        ("Strains in metadata but not alignment", metadata_strains - alignment_strains),
+        ("Strains in alignment but not metadata", alignment_strains - metadata_strains),
+    ]:
+        if missing:
+            err_parts.append(descr + listed(missing))
     raise ValueError("\n".join(err_parts))
 
 strain_renames = {
@@ -208,16 +178,9 @@ for i, collection in enumerate(snakemake.params.titer_collection_keys):
     titers = titers[titer_cols].assign(strain=lambda x: x["strain"].map(strain_renames))
     titers_not_in_metadata = set(titers["strain"]) - set(metadata["strain"])
     if titers_not_in_metadata:
-        n_show = 10
-        shown = list(titers_not_in_metadata)[:n_show]
-        more_msg = (
-            f" (showing first {n_show} of {len(titers_not_in_metadata)})"
-            if len(titers_not_in_metadata) > n_show
-            else ""
-        )
         raise ValueError(
-            f"Found {len(titers_not_in_metadata)} strains with titers that are not in metadata{more_msg}:\n  "
-            + "\n  ".join(shown)
+            f"Found {len(titers_not_in_metadata)} strains with titers that are not in "
+            "metadata" + listed(titers_not_in_metadata)
         )
     titers_per_strain_serum = (
         titers.groupby(["strain", "serum"])
