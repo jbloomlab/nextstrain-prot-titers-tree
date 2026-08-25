@@ -20,7 +20,9 @@ if not len(alignment):
     raise ValueError(f"Empty alignment in {snakemake.input.alignment}")
 
 req_metadata_cols = {"strain", "date"}
-metadata = pd.read_csv(snakemake.input.metadata, sep="\t")
+# strain names are identifiers, so read them as strings rather than letting an
+# all-numeric set of names be read as numbers that no longer match the alignment
+metadata = pd.read_csv(snakemake.input.metadata, sep="\t", dtype={"strain": str})
 
 if not req_metadata_cols.issubset(metadata.columns):
     raise ValueError(f"{metadata.columns=} lacks {req_metadata_cols=}")
@@ -192,7 +194,9 @@ with open(snakemake.output.alignment, "w") as f:
 
 for i, collection in enumerate(snakemake.params.titer_collection_keys):
     print(f"\nProcessing titer collection {collection}")
-    titers = pd.read_csv(snakemake.input.titers[i], sep="\t")
+    titers = pd.read_csv(
+        snakemake.input.titers[i], sep="\t", dtype={"strain": str, "serum": str}
+    )
     titer_cols = snakemake.params.titer_cols[i]
     if not set(titer_cols).issubset(titers.columns):
         raise ValueError(f"{titer_cols=} not all in {titers.columns=}")

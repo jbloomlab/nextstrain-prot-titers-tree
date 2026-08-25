@@ -24,7 +24,7 @@ hex_colors = {
 }
 
 
-metadata = pd.read_csv(snakemake.input.metadata, sep="\t")
+metadata = pd.read_csv(snakemake.input.metadata, sep="\t", dtype={"strain": str})
 with open(snakemake.input.resolved_color_by_metadata) as f:
     color_by_metadata = yaml.safe_load(f)["color_by_metadata"]
 missing_cols = set(color_by_metadata) - set(metadata.columns)

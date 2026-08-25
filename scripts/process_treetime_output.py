@@ -254,7 +254,8 @@ with open(snakemake.output.aa_muts, "w") as f:
 brlens_nodes = {}
 
 dates = (
-    pd.read_csv(snakemake.input.dates, sep="\t")
+    # node names are identifiers, and are looked up below by the tree's string names
+    pd.read_csv(snakemake.input.dates, sep="\t", dtype={"#node": str})
     .rename(columns={"numeric date": "num_date"})
     .set_index("#node")
     .to_dict(orient="index")
