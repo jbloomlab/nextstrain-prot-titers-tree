@@ -379,50 +379,33 @@ if titer_collections:
                 &>{log}
             """
 
-    if len(titer_collection_keys) == 1:
-
-        rule measurements_sidecar:
-            """Make the sidecar JSON from the single collection of measurements."""
-            input:
-                json=expand(
-                    rules.export_measurements.output.json,
-                    collection=titer_collection_keys,
-                ),
-            output:
-                auspice_titers_json=auspice_titers_json,
-            log:
-                os.path.join(log_subdir, "measurements_sidecar.txt"),
-            conda:
-                "environment.yml"
-            shell:
-                "cp {input.json} {output.auspice_titers_json} &> {log}"
-
-    else:
-
-        rule measurements_sidecar:
-            """Concatenate the collections of measurements into the sidecar JSON."""
-            input:
-                jsons=expand(
-                    rules.export_measurements.output.json,
-                    collection=titer_collection_keys,
-                ),
-            output:
-                auspice_titers_json=auspice_titers_json,
-            log:
-                os.path.join(log_subdir, "measurements_sidecar.txt"),
-            conda:
-                "environment.yml"
-            params:
-                default_collection_arg=(
-                    f"--default-collection {shlex.quote(default_collection)}"
-                    if default_collection
-                    else ""
-                ),
-            shell:
-                """
-                augur measurements concat \
-                    --jsons {input.jsons} \
-                    --output-json {output.auspice_titers_json} \
-                    {params.default_collection_arg} \
-                    &>{log}
-                """
+    rule measurements_sidecar:
+        """Concatenate the collections of measurements into the sidecar JSON."""
+        input:
+            jsons=expand(
+                rules.export_measurements.output.json,
+                collection=titer_collection_keys,
+            ),
+        output:
+            auspice_titers_json=auspice_titers_json,
+        log:
+            os.path.join(log_subdir, "measurements_sidecar.txt"),
+        conda:
+            "environment.yml"
+        params:
+            # naming a default is meaningful only when there are several collections to
+            # choose among, and a lone unnamed collection is keyed by `augur measurements
+            # export` on its file name, which would not match the key named here
+            default_collection_arg=(
+                f"--default-collection {shlex.quote(default_collection)}"
+                if (default_collection and len(titer_collection_keys) > 1)
+                else ""
+            ),
+        shell:
+            """
+            augur measurements concat \
+                --jsons {input.jsons} \
+                --output-json {output.auspice_titers_json} \
+                {params.default_collection_arg} \
+                &>{log}
+            """

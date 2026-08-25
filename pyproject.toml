@@ -7,7 +7,7 @@ license = {text = "MIT"}
 authors = [
     {name = "Bloom Lab", email = "jbloom@fredhutch.org"}
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.13"
 
 [project.urls]
 Repository = "https://github.com/jbloomlab/nextstrain-prot-titers-tree"

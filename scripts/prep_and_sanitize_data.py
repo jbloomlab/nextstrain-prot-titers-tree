@@ -121,6 +121,8 @@ if len(strain_renames) != len(set(strain_renames.values())):
     raise ValueError(f"re-named strains not unique:\n{strain_renames=}")
 
 metadata = metadata.assign(strain=lambda x: x["strain"].map(strain_renames))
+# written at full precision, unlike the titers below: these are the values given in the
+# input metadata, and they pass through to auspice as the user wrote them
 metadata.to_csv(snakemake.output.metadata, sep="\t", index=False)
 
 no_outgroup = snakemake.params.no_outgroup
