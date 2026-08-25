@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ### version 1.8.0
++ Add an optional `categorical_colors` to a `color_by_metadata` entry, mapping values of a column with no `scale_type` to specific hex colors. A value that is not listed is colored by auspice itself, and a listed value that is not in a tree is ignored, so one set of colors can be shared among trees whose sets of values differ. It cannot be combined with `scale_type`, `fixed_min`, `fixed_max`, or `exclude_auto_scale`, which describe a continuous scale. The `example-flu-seqneut-2025` example now colors by `strain_type` this way rather than only showing it in tooltips.
 + A sequence name that appears more than once in the alignment is now reported as such, naming the repeated sequences. It was previously reported only as a mismatch between the number of metadata rows and the number of sequences, which listed no names.
 + Read the `strain`, `serum`, and tree node name columns as strings. All-numeric names (eg, a serum called `007`) were previously read as numbers and then failed to match the alignment or the tree.
 + A strain in `exclude_auto_scale` that is not in the metadata is now an error. Such a name was previously ignored, so the color scale was computed over the strain it was meant to exclude. Note that names must match the metadata strain names after special characters have been replaced by `_`.
