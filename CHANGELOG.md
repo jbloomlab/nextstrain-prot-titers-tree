@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ### version 1.9.0
-+ Rerunning the pipeline on the same inputs now gives the same auspice JSON, apart from the `updated` date that `augur` writes. IQ-TREE now builds the tree on a single thread by default, because with several threads it could give a different tree on each run despite its fixed random seed, choosing among equally likely arrangements of the zero-length branches. The new optional `tree_threads` key requests more threads, at the cost of that reproducibility. The order of the tree's filters, which `augur` takes from a set, is also fixed.
++ Rerunning the pipeline on the same inputs, on the same machine and environment, now gives the same auspice JSON, apart from the `updated` date that `augur` writes. IQ-TREE now builds the tree on a single thread by default, because with several threads it could give a different tree on each run despite its fixed random seed, choosing among equally likely arrangements of the zero-length branches. The new optional `tree_threads` key requests more threads, at the cost of that reproducibility. The order of the tree's filters, which `augur` takes from a set, is also fixed.
 + The tree is now rebuilt only when the alignment or outgroup changes, not whenever the metadata or titers do, as the alignment is now prepared in a step of its own rather than together with them.
 
 ### version 1.8.0

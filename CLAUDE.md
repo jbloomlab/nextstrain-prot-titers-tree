@@ -29,11 +29,13 @@ commit of that submodule; update periodically with
   `snakemake --forcerun <rule> <target>` does not do what it looks like: the target is read
   as a second argument to `--forcerun`, so `rule all` is built instead.
 - Running an example to completion rewrites the git-tracked JSONs in `auspice/`. A rerun on
-  unchanged inputs should differ only in `meta.updated`, the date `augur` writes, so
-  regenerate them deliberately and in their own commit. The tree is reproducible only
-  because the `tree` rule runs `iqtree` on one thread unless `tree_threads` asks for
-  more (`--seed` alone does not make a multithreaded run repeatable), and the order of `meta.filters` only because `export` sets
-  `PYTHONHASHSEED`, as `augur` builds that list from a set.
+  unchanged inputs on the same machine and environment should differ only in
+  `meta.updated`, the date `augur` writes, so regenerate them deliberately and in their
+  own commit. Another machine or environment can still differ in the last digits of
+  floating-point values. The tree is reproducible only because the `tree` rule runs
+  `iqtree` on one thread unless `tree_threads` asks for more (`--seed` alone does not
+  make a multithreaded run repeatable), and the order of `meta.filters` only because
+  `export` sets `PYTHONHASHSEED`, as `augur` builds that list from a set.
 - `pyproject.toml` holds the version and is the single source of truth for it. A version
   accumulates changes over several pull requests, and the git tag is what marks it released.
 

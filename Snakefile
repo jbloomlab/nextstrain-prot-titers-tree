@@ -156,6 +156,9 @@ rule prep_alignment:
     input:
         **({} if no_outgroup else {"outgroup": outgroup}),
         alignment=config["alignment"],
+        # imported by the script; an input so that changing it reruns the rule, which
+        # `snakemake` otherwise does only for a change to the script itself
+        strain_names=workflow.source_path("scripts/strain_names.py"),
     output:
         alignment=os.path.join(results_subdir, "alignment_w_outgroup.fa"),
     log:
@@ -181,6 +184,8 @@ rule prep_and_sanitize_data:
         alignment=config["alignment"],
         metadata=config["metadata"],
         resolved_color_by_metadata=rules.resolve_color_by_metadata.output.resolved,
+        # imported by the script, as for `prep_alignment`
+        strain_names=workflow.source_path("scripts/strain_names.py"),
     output:
         **(
             {"titers": [sanitized_titers[key] for key in titer_collection_keys]}
