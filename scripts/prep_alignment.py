@@ -55,8 +55,7 @@ if not no_outgroup:
         )
 
 with open(snakemake.output.alignment, "w") as f:
-    for seq in alignment:
-        f.write(f">{strain_renames[seq.id]}\n{seq.seq!s}\n")
+    f.writelines(f">{strain_renames[seq.id]}\n{seq.seq!s}\n" for seq in alignment)
     if not no_outgroup:
         f.write(f">outgroup\n{outgroup.seq!s}\n")
 print(f"Wrote {len(alignment)} sequences to {snakemake.output.alignment}")
