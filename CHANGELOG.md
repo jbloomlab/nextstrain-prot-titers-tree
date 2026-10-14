@@ -2,6 +2,7 @@
 
 ### version 1.9.0
 + Rerunning the pipeline on the same inputs now gives the same auspice JSON, apart from the `updated` date that `augur` writes. IQ-TREE now builds the tree on a single thread by default, because with several threads it could give a different tree on each run despite its fixed random seed, choosing among equally likely arrangements of the zero-length branches. The new optional `tree_threads` key requests more threads, at the cost of that reproducibility. The order of the tree's filters, which `augur` takes from a set, is also fixed.
++ The tree is now rebuilt only when the alignment or outgroup changes, not whenever the metadata or titers do, as the alignment is now prepared in a step of its own rather than together with them.
 
 ### version 1.8.0
 + Add an optional `categorical_colors` to a `color_by_metadata` entry, mapping values of a column with no `scale_type` to specific hex colors. A value that is not listed is colored by auspice itself, and a listed value that is not in a tree is ignored, so one set of colors can be shared among trees whose sets of values differ. It cannot be combined with `scale_type`, `fixed_min`, `fixed_max`, or `exclude_auto_scale`, which describe a continuous scale. The `example-flu-seqneut-2025` example now colors by `strain_type` this way rather than only showing it in tooltips.

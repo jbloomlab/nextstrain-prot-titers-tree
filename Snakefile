@@ -146,8 +146,30 @@ rule resolve_color_by_metadata:
         "scripts/resolve_color_by_metadata.py"
 
 
+rule prep_alignment:
+    """Prep alignment with the outgroup and remove special characters from strain names.
+
+    This is a rule of its own, rather than part of `prep_and_sanitize_data`, so that the
+    tree is rebuilt only when the alignment or outgroup changes, not whenever the metadata
+    or titers do.
+    """
+    input:
+        **({} if no_outgroup else {"outgroup": outgroup}),
+        alignment=config["alignment"],
+    output:
+        alignment=os.path.join(results_subdir, "alignment_w_outgroup.fa"),
+    log:
+        os.path.join(log_subdir, "prep_alignment.txt"),
+    conda:
+        "environment.yml"
+    params:
+        no_outgroup=no_outgroup,
+    script:
+        "scripts/prep_alignment.py"
+
+
 rule prep_and_sanitize_data:
-    """Prep alignment and remove special characters from strain names."""
+    """Check metadata and titers and remove special characters from strain names."""
     input:
         # titers are lists over the collections, in the order of `titer_collection_keys`
         **(
@@ -155,7 +177,7 @@ rule prep_and_sanitize_data:
             if titer_collections
             else {}
         ),
-        **({} if no_outgroup else {"outgroup": outgroup}),
+        # read only to check it has the same strains as the metadata
         alignment=config["alignment"],
         metadata=config["metadata"],
         resolved_color_by_metadata=rules.resolve_color_by_metadata.output.resolved,
@@ -165,7 +187,6 @@ rule prep_and_sanitize_data:
             if titer_collections
             else {}
         ),
-        alignment=os.path.join(results_subdir, "alignment_w_outgroup.fa"),
         metadata=os.path.join(results_subdir, "metadata.tsv"),
     log:
         os.path.join(log_subdir, "prep_and_sanitize_data.txt"),
@@ -186,7 +207,6 @@ rule prep_and_sanitize_data:
             for collection in titer_collections
         ],
         titer_collection_keys=titer_collection_keys,
-        no_outgroup=no_outgroup,
     script:
         "scripts/prep_and_sanitize_data.py"
 
@@ -194,7 +214,7 @@ rule prep_and_sanitize_data:
 rule tree:
     """Build tree using Poisson model that weights all amino-acid mutations equally."""
     input:
-        alignment=rules.prep_and_sanitize_data.output.alignment,
+        alignment=rules.prep_alignment.output.alignment,
     output:
         outdir=directory(os.path.join(results_subdir, "iqtree")),
         raw_tree=os.path.join(results_subdir, "raw_tree.nwk"),
@@ -231,7 +251,7 @@ rule treetime:
     input:
         raw_tree=rules.tree.output.raw_tree,
         metadata=rules.prep_and_sanitize_data.output.metadata,
-        alignment=rules.prep_and_sanitize_data.output.alignment,
+        alignment=rules.prep_alignment.output.alignment,
         custom_gtr=workflow.source_path("data/poisson_gap_aa.txt"),
     output:
         timetree_w_outgroup=os.path.join(results_subdir, "treetime/timetree.nexus"),
