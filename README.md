@@ -34,7 +34,7 @@ Then run the pipeline with:
 
 Note that running this requires `snakemake` to be installed, which you can do by building and activating the `conda` environment in [environment.yml](environment.yml).
 
-The tree-building step using IQ-TREE is multi-threaded, bounded by the `threads` of its rule and the number of cores given to `snakemake` with `-j`.
+IQ-TREE builds the tree on a single thread by default, since with several threads it can give a different tree on every run even with a fixed random seed. More threads can be requested with `tree_threads` in the configuration file, at the cost of that reproducibility.
 
 The result of this is an auspice JSON file with the tree suitable for viewing either by uploading to [https://auspice.us/](https://auspice.us/) or via a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html).
 The auspice JSON trees for the examples are in [./auspice](auspice) and can be viewed as a [Nextstrain Community Build](https://docs.nextstrain.org/en/latest/guides/share/community-builds.html) at:
