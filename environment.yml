@@ -10,9 +10,9 @@ dependencies:
   # `augur` requires `iqtree`, `treetime`, and `biopython` but constrains them loosely or
   # not at all, and `matplotlib` only reaches the scripts because `treetime` needs it, so
   # the versions this pipeline runs with are pinned here rather than left to `augur`
-  - augur=34.1.3
+  - augur=34.2.1
   - biopython=1.88
-  - iqtree=3.1.3
+  - iqtree=3.1.4
   # 3.11 is held back because it needs a `libraqm` built against glibc >= 2.28, which the
   # lab cluster does not have
   - matplotlib-base=3.10
@@ -24,5 +24,5 @@ dependencies:
   - python=3.13
   - pyyaml
   - snakefmt
-  - snakemake=9.25
+  - snakemake=9.27
   - ruff
