@@ -1,6 +1,11 @@
-"""Check input metadata and alignment and remove special characters from strain names."""
+"""Check input metadata and titers and remove special characters from strain names.
 
-import collections
+The alignment is only read here, to check it has the same strains as the metadata; it is
+written by `prep_alignment.py`, so that the tree is not rebuilt when only the metadata or
+titers change.
+
+"""
+
 import re
 import sys
 
@@ -8,28 +13,20 @@ import Bio.SeqIO
 
 import pandas as pd
 
+import strain_names
+
 import yaml
 
 sys.stdout = sys.stderr = open(snakemake.log[0], "w")
 
-n_show = 10  # how many offending names an error message lists
-
-
-def listed(names):
-    """One-per-line listing of `names` for an error message, showing `n_show` at most."""
-    names = sorted(names)
-    truncated = (
-        f" (showing first {n_show} of {len(names)})" if len(names) > n_show else ""
-    )
-    return truncated + ":\n  " + "\n  ".join(names[:n_show])
-
-
 with open(snakemake.input.resolved_color_by_metadata) as f:
     resolved_color_by_metadata = yaml.safe_load(f)
 
-alignment = list(Bio.SeqIO.parse(snakemake.input.alignment, format="fasta"))
-if not len(alignment):
-    raise ValueError(f"Empty alignment in {snakemake.input.alignment}")
+# repeated names, sequence lengths, and an empty alignment are checked by
+# `prep_alignment.py`, so just the names are needed here
+alignment_strains = {
+    seq.id for seq in Bio.SeqIO.parse(snakemake.input.alignment, format="fasta")
+}
 
 req_metadata_cols = {"strain", "date"}
 # strain names are identifiers, so read them as strings rather than letting an
@@ -81,19 +78,7 @@ strains_w_space = metadata[metadata["strain"].str.contains(r"\s", regex=True)][
 if strains_w_space:
     raise ValueError(
         f"Found {len(strains_w_space)} strain names containing whitespace"
-        + listed(strains_w_space)
-    )
-
-# Check the alignment has no repeated sequence name, which the set of names below
-# would otherwise hide by collapsing the repeats
-alignment_strains = {seq.id for seq in alignment}
-if len(alignment_strains) != len(alignment):
-    repeated = [
-        s for s, n in collections.Counter(s.id for s in alignment).items() if n > 1
-    ]
-    raise ValueError(
-        f"Alignment has {len(alignment)} sequences but only {len(alignment_strains)} "
-        "distinct names, so some are repeated" + listed(repeated)
+        + strain_names.listed(strains_w_space)
     )
 
 # Check metadata and alignment cover the same strains
@@ -110,59 +95,15 @@ if metadata_strains != alignment_strains:
         ("Strains in alignment but not metadata", alignment_strains - metadata_strains),
     ]:
         if missing:
-            err_parts.append(descr + listed(missing))
+            err_parts.append(descr + strain_names.listed(missing))
     raise ValueError("\n".join(err_parts))
 
-strain_renames = {
-    orig: re.sub(r"[^A-Za-z0-9._\-/]", "_", orig.replace("'", ""))
-    for orig in metadata["strain"].unique()
-}
-if len(strain_renames) != len(set(strain_renames.values())):
-    raise ValueError(f"re-named strains not unique:\n{strain_renames=}")
+strain_renames = strain_names.renames(metadata["strain"].unique())
 
 metadata = metadata.assign(strain=lambda x: x["strain"].map(strain_renames))
 # written at full precision, unlike the titers below: these are the values given in the
 # input metadata, and they pass through to auspice as the user wrote them
 metadata.to_csv(snakemake.output.metadata, sep="\t", index=False)
-
-no_outgroup = snakemake.params.no_outgroup
-if not no_outgroup:
-    outgroup = Bio.SeqIO.read(snakemake.input.outgroup, "fasta")
-    if "outgroup" in set(strain_renames.values()):
-        raise ValueError(
-            'Strain name "outgroup" is reserved for the tree root. '
-            "One of your strains is being renamed to 'outgroup', which conflicts with this reserved name. "
-            f"Original strain names that map to 'outgroup': "
-            f"{[k for k, v in strain_renames.items() if v == 'outgroup']}"
-        )
-
-seqlengths = collections.defaultdict(int)
-with open(snakemake.output.alignment, "w") as f:
-    for seq in alignment:
-        strain = seq.id
-        if strain not in strain_renames:
-            raise ValueError(
-                f"Strain '{strain}' found in alignment but not in metadata. "
-                "This should not happen as earlier validation checked metadata and alignment have matching strains."
-            )
-        strain = strain_renames[strain]
-        seq = str(seq.seq)
-        seqlengths[len(seq)] += 1
-        f.write(f">{strain}\n{seq}\n")
-
-    if len(seqlengths) != 1:
-        raise ValueError(f"Not all sequences same length in alignment:\n{seqlengths=}")
-
-    if not no_outgroup:
-        alignment_length = next(iter(seqlengths))
-        outgroup_length = len(outgroup)
-        if outgroup_length != alignment_length:
-            raise ValueError(
-                f"Outgroup sequence length ({outgroup_length}) does not match "
-                f"alignment sequence length ({alignment_length}). "
-                f"All sequences must be the same length."
-            )
-        f.write(f">outgroup\n{outgroup.seq!s}\n")
 
 for i, collection in enumerate(snakemake.params.titer_collection_keys):
     print(f"\nProcessing titer collection {collection}")
@@ -182,7 +123,7 @@ for i, collection in enumerate(snakemake.params.titer_collection_keys):
     if titers_not_in_metadata:
         raise ValueError(
             f"Found {len(titers_not_in_metadata)} strains with titers that are not in "
-            "metadata" + listed(titers_not_in_metadata)
+            "metadata" + strain_names.listed(titers_not_in_metadata)
         )
     titers_per_strain_serum = (
         titers.groupby(["strain", "serum"])
